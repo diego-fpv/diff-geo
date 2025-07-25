@@ -1,2 +1,2 @@
-numpy1.26.4
+numpy1==.26.4
 matplotlib
