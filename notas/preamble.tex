@@ -1,0 +1,172 @@
+\usepackage{amsmath,amssymb,amsthm,tensor}
+\numberwithin{equation}{section}
+
+% \usepackage{layouts}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{observationcolor}{red!30!black}
+\colorlet{observationcolorframe}{red!75!black!60!gray}
+\colorlet{examplecolortext}{red!30!black}
+\colorlet{examplecolorframe}{red!75!black!30!white}
+\usepackage{microtype}
+
+\usepackage[spanish,es-nodecimaldot]{babel}
+\addto\captionsspanish{
+    \renewcommand{\contentsname}
+    {Contenidos}
+    }
+    
+\usepackage[left=3.8cm,right=3.8cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{parskip}
+\parskip=0.15cm
+\parindent=0.5cm
+
+\usepackage{marginfit} % margin paragraphs settings
+\setlength{\marginparsep}{0.3cm}
+\setlength{\marginparwidth}{2.8cm}
+% modify alignement: left or right depending on page, rather than justified.
+\usepackage{marginnote}
+\usepackage{calc}  % dimension subtraction capabilites.
+\newlength{\marginnotelift}
+\newcommand{\rnote}[3][0cm]{
+    \normalmarginpar%
+    \setlength{\marginnotelift}{#1}%
+    \marginnote{
+        \raggedright\leavevmode\fontsize{8}{8}\color{red!60!gray}\sffamily {\bfseries #2}\\[5pt] #3\par}[\marginnotelift]%
+}
+\newcounter{marginexercise}
+\newcommand{\marginexercise}[2][0cm]{
+    \refstepcounter{marginexercise}
+    \reversemarginpar%
+    \setlength{\marginnotelift}{#1}%
+    \marginnote{
+        \raggedleft\leavevmode\fontsize{8}{8}\color{red!60!gray}\sffamily {\bfseries Ejercicio \#\thesection.\themarginexercise}\\[5pt] #2\par}[\marginnotelift]%
+}
+
+\usepackage{graphicx}
+\usepackage{caption}  % caption outside float
+\usepackage{floatrow}
+\floatsetup[figure]{capposition=beside,capbesideposition={top,right}}
+
+\usepackage{enumitem}
+\newenvironment{myitemize}{
+    \begin{itemize}[label=\textcolor{red!75!black}{\raisebox{.45ex}{\rule{0.6ex}{0.6ex}}}]
+}{
+    \end{itemize}
+}
+
+\usepackage{environ}
+\usepackage{adjustbox}
+\newlength{\captionwidth}
+\NewEnviron{figbox}[2][0.45]{ % figures in the colorboxes
+    \setlength{\captionwidth}{0.95\linewidth-#1\linewidth}%
+    \begin{minipage}[t]{#1\linewidth}
+        \centering
+        \adjustbox{valign=t}{\BODY}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{\captionwidth}
+        {\captionsetup{font={sf,color=observationcolor}}
+            \captionof{figure}{#2}}
+    \end{minipage}
+}
+
+
+\usepackage{footnote}
+\usepackage[breakable, skins]{tcolorbox}
+
+\makeatletter
+\def\observation@makefntext#1{%
+  \noindent\textcolor{observationcolor}{\@textsuperscript{\@thefnmark}\ \sffamily #1}%
+}
+\def\observation@makefnmark{%
+  \hbox{\@textsuperscript{\normalfont\textcolor{observationcolor}{\sffamily\@thefnmark}}}%
+}
+\makeatother
+
+\makeatletter
+\newcounter{observation}
+\newenvironment{observation}[1]{
+    \let\@makefntext\observation@makefntext
+    \refstepcounter{observation}
+    \fontfamily{cmss}\selectfont
+    \begin{tcolorbox}[
+        before upper={
+            \setlength{\parskip}{0.15cm}
+            \setlength{\parindent}{0pt}},
+            enhanced jigsaw,
+            breakable,
+            colupper=observationcolor, 
+            colback=white,
+            colframe=observationcolorframe,
+            title=Observación \thesection.\theobservation: #1]
+    \savenotes
+}{
+
+    \endsavenotes
+    \end{tcolorbox}
+}
+\makeatother
+
+
+\makeatletter
+\newcounter{example}
+\newenvironment{example}[1]{
+    \let\@makefntext\observation@makefntext
+    \refstepcounter{example}
+    \fontfamily{cmss}\selectfont
+    \begin{tcolorbox}[
+        before upper={
+            \setlength{\parskip}{0.15cm}
+            \setlength{\parindent}{0pt}},
+        sharp corners,
+        skin=enhancedmiddle jigsaw,
+        frame hidden,
+        breakable,
+        colupper=examplecolortext, 
+        colback=white,
+        colframe=examplecolorframe,
+        borderline west={1.5pt}{0pt}{examplecolorframe},
+        borderline east={2.5pt}{0pt}{examplecolorframe},
+        attach boxed title to top left,
+        boxed title style={frame hidden, colback=examplecolorframe, left=4mm + 0.5pt, boxsep=1mm, borderline west={1.5pt}{0pt}{examplecolorframe}},
+        coltitle=examplecolortext,
+        title= Ejemplo \thesection.\theexample: #1]
+    \savenotes
+}{
+    \endsavenotes
+    \end{tcolorbox}
+}
+\makeatother
+
+\newenvironment{bequation}{
+    \begin{tcolorbox}[
+        sharp corners,
+        colback=red!10!white,
+        frame empty]
+        \begin{equation}
+}{      \end{equation}
+    \end{tcolorbox}
+}
+
+\usepackage[colorlinks=true,
+            allcolors=red]{hyperref}
+\usepackage{bookmark}
+\usepackage[nameinlink]{cleveref}
+\crefname{section}{sección}{secciones}
+\crefname{equation}{ec.}{ecs.}
+\crefname{figure}{fig.}{figs.}
+\crefname{observation}{observación}{observaciones}
+\crefname{example}{ejemplo}{ejemplos}
+
+\usepackage{media9}
+\usepackage[inline]{asymptote}
+
+\newcommand{\jcbn}[4]{\frac{\partial #1^{#2}}{\partial #3^{#4}}}
+
+\makeatletter
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}%
+  {\z@}{\parskip}{-1em}%
+  {\color{red!60!black}\normalfont\normalsize\bfseries}%
+}
+\makeatother

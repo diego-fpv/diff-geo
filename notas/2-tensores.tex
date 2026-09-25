@@ -1,0 +1,451 @@
+\newpage
+\section{Álgebra tensorial}
+\label{sec.2tensores}
+
+\emph{Un tensor es todo aquello que transforma como tal}. Todo el que haya estudiado tensores alguna vez ha encontrado esta frase que mezcla, a partes iguales, sarcasmo y entendimiento. Lo del sarcasmo está claro para cualquiera; la frase suena a tautología burlona. El asunto es que, cuanto más estudia uno tensores, más de acuerdo está con ella.\footnote{Por lo menos viniendo desde la física.} Nuestro objetivo en esta sección es presentar la construcción de los tensores y dejar la impresión de que, efectivamente, los tensores transforman como tensores. 
+
+Para empezar esta parte, la \cref{subsec.2repaso} da un repaso a las nociones de álgebra lineal básicas, en un registro más formal del que hemos usado hasta ahora. Además de ser un recordatorio, nos permitirá fijar la notación. A continuación, 
+
+
+
+\subsection{Repaso de álgebra: espacios de Hilbert}
+\label{subsec.2repaso}
+
+Después de la \cref{sec.1motivacion} debería estar relativamente claro cómo entra el álgebra en la imagen de la geometría diferencial que estamos dibujando. El espacio base donde sucede la física no es necesariamente un espacio vectorial, pero tiene un espacio tangente en cada punto que sí lo es. Empecemos por el principio.
+
+Se dice que un conjunto \(V\) es un espacio vectorial sobre el cuerpo\rnote{Cuerpo (matemáticas)}{Conjunto dotado de suma y producto que cumplen los siguientes axiomas: asociatividad, conmutatividad, elementos neutros, elementos inversos (salvo el 0 respecto al producto), distribución del producto sobre la suma.} \(\mathbb{R}\) (espacio vectorial real) si lo dotamos de una operación suma
+\begin{equation*}
+    S:V\times V \rightarrow V,\quad \forall\, \mathbf{u},\mathbf{v}\in V,\ S(\mathbf{u},\mathbf{v}) =: \mathbf{u}+\mathbf{v}\in V
+\end{equation*}
+y una operación producto por escalares
+\begin{equation*}
+    P:\mathbb{R}\times V \rightarrow V,\quad \forall\, \alpha\in\mathbb{R}\forall\, \mathbf{v}\in V,\ P(\alpha,\mathbf{v}) =: \alpha\mathbf{v}\in V
+\end{equation*}
+tales que 
+\begin{myitemize}
+    \item \(\forall\, \mathbf{u},\mathbf{v}\in V,\ \mathbf{u}+\mathbf{v} = \mathbf{v}+ \mathbf{u}\) (suma de vectores conmutativa).
+    \item \(\forall\, \mathbf{u},\mathbf{v},\mathbf{w}\in V,\ (\mathbf{u}+\mathbf{v}) + \mathbf{w} = \mathbf{v} + (\mathbf{u} + \mathbf{w})\) (suma de vectores asociativa).
+    \item \(\exists\, \mathbf{0}\in V\ \text{tal que}\ \mathbf{v} + \mathbf{0} = \mathbf{v}\ \forall\, \mathbf{v}\in V\) (elemento neutro respecto de la suma de vectores).
+    \item \(\forall\, \mathbf{v}\in V,\ \exists -\mathbf{v}\in V\ \text{tal que}\ (-\mathbf{v}) + \mathbf{v} = \mathbf{0}\) (elemento respecto de la suma de vectores).
+    \item \(\forall\, \alpha,\beta\in \mathbb{R}\ \forall\, \mathbf{v}\in V, \ \alpha(\beta\mathbf{v}) = (\alpha\beta)\mathbf{v}\) (compatibilidad del producto en \(\mathbb{R}\) con el producto por escalares de \(V\)).
+    \item \(\forall\, \alpha,\beta\in \mathbb{R}\ \forall\, \mathbf{v}\in V,\ \alpha\mathbf{v} + \beta\mathbf{v} = (\alpha+\beta)\mathbf{v}\) (distribución del producto por escalares de \(V\) sobre la suma en \(\mathbb{R}\)).
+    \item \(\forall\, \alpha\in \mathbb{R}\ \forall\, \mathbf{u},\mathbf{v}\in V,\ \alpha(\mathbf{u}+\mathbf{v}) =  \alpha\mathbf{u} + \alpha\mathbf{v}\) (distribución del producto en \(\mathbb{R}\) sobre la suma en \(V\)).
+    \item Para el escalar \(1\in\mathbb{R}\), \(\forall\,\mathbf{v}\in V, 1\mathbf{v} = \mathbf{v}\) (elemento neutro respecto del producto por escalares)
+\end{myitemize}
+Parecen muchas reglas, pero son básicamente las que llevamos usando toda la vida.
+
+Estos axiomas están detrás de toda la intución que tenemos de álgebra lineal, en el sentido de que podemos interpretar los vectores como ``direcciones'' en un espacio abstracto. Las direcciones (\(\mathbf{v}\)) salen desde un origen (\(\mathbf{0}\)), se extienden indefinidamente (\(\alpha\mathbf{v}\)), podemos sumarlas para llegar a una dirección intermedia... Esta intuición cristaliza con total claridad en el ejemplo más familiar de todos, \(\mathbb{R}^n\), pero funciona igual para espacios vectoriales menos protagonistas. Algunos ejemplos interesantes son
+\begin{myitemize}
+    \item \(\mathbb{C}^n\), cuyos elementos se pueden ver como \(n-\)tuplas de complejos.
+    \item \(\mathfrak{P}_n\), el conjunto de todos los polinomios de grado menor a \(n\).
+    \item \(GL(n)\) (grupo lineal general), conjunto de transformaciones lineales (matrices) invertibles de rango \(n\).
+\end{myitemize}
+Hay, por supuesto, muchos más. 
+
+Existen algunos conceptos importantes que se siguen de las reglas anteriores; pasemos por ellos rápidamente. En concreto, decimos que un conjunto de vectores \(\{\mathbf{v}_i\}_{i=1}^n\) es \emph{linealmente dependiente} si existen \(
+n\) coeficientes \(\alpha^i\neq0\) tales que \(\alpha^i\mathbf{v}_i = \mathbf{0}\)\footnote{Recuerda que usamos la notación de suma implícita.}. Por contra, los vectores de \(\{\mathbf{v}_i\}_{i=1}^n\) son \emph{linealmente independientes} si \(\alpha^i\mathbf{v}_i=\mathbf{0}\implies \alpha^i=0\ \forall\, i=1, 2, ..., n\). Otro concepto fundamental es la existencia de \emph{bases}. Una \emph{base} \(\mathfrak{B}\) es un conjunto de vectores linealmente independientes tal que cualquier vector de \(V\) se puede escribir como combinación lineal de elementos de \(\mathfrak{B}\), que además es única. Al número de elementos de la base se lo conoce como la \emph{dimensión} de \(V\). El último concepto importante es el de \emph{isomorfismo} lineal entre espacios vectoriales. Sean \(V\) y \(W\) espacios vectoriales, si existe un mapa biyectivo \(T:V\rightarrow W\) que preserva la estructura lineal, esto es, que cumple \(T(\alpha^i\mathbf{v}_i) = \alpha^iT(\mathbf{v}_i)\), diremos que \(T\) es un isomorfismo entre \(V\) y \(W\). Si \(W=V\), se usa el término \emph{automorfismo} lineal.
+
+Fijémonos en que no hemos hablado en ningún momento de nociones tan ``naturales'' como la norma de un vector o el producto interno. Lo cierto es que no son propiedades intrínsecas al álgebra lineal. Son operaciones que proporcionan estructura adicional. Esta estructura establece una jerarquía de los tipos de espacios vectoriales, y se han escrito ríos de tinta sobre estos asuntos. Aquí únicamente vamos a mencionar un par de ideas para situarnos. Dado un espacio vectorial con las operaciones de antes, podemos definir encima (i) una topología, (ii) una métrica,\footnote{La métrica y la topología se pueden definir también para espacios sin estructura vectorial.} (iii) una norma o (iv) un producto interno:
+\begin{myitemize}
+    \item Una \emph{topología} es una familia seleccionada de subconjuntos de \(V\) que se definen como abiertos, y es lo más básico que hace falta para hablar de relaciones entre elementos de \(V\). 
+    \item Una \emph{métrica} es una aplicación \(d:V\times V\rightarrow\mathbf{R}^+\) que da una noción más precisa de la ``distancia'' entre elementos de \(V\). 
+    \item Una \emph{norma} define el ``tamaño'' de los elementos de \(V\). 
+    \item Finalmente, un \emph{producto interno/escalar} es una aplicación \(g:V\times V\rightarrow \mathbf{R}\) que sintetiza el tamaño de los vectores y el ángulo que forma cada par. 
+\end{myitemize}
+
+La relación entre espacios vectoriales con cada tipo de estructura es la siguiente:
+\begin{equation*}
+    \text{topología} 
+    \impliedby 
+    \text{métrica} 
+    \impliedby
+    \text{norma} 
+    \impliedby
+    \text{producto interno/escalar}
+\end{equation*}
+Todo producto interno define una norma, toda norma define una métrica, y toda métrica define una topología; al revés no. Hay topologías que no admiten ninguna métrica, métricas que no admiten ninguna norma, y normas que no salen de ningún producto interior. Los detalles no importan para nuestros propósitos, pero ahora por lo menos estamos situados. Además, podemos ``desmitificar'' un poco el término de \emph{espacios de Hilbert} que tanto se oye en mecánica cuántica: un espacio de Hilbert es un espacio vectorial con producto interno completo. Lo único nuevo aquí es lo de completo, pero no supone ninguna preocupación para nosotros.\rnote{Completitud (métrica)}{Un espacio métrico \(V\) es completo si toda sucesión de Cauchy en \(V\) converge en \(V\). Una sucesión \((x_n)\) es de Cauchy si \(\forall\,\varepsilon>0\ \exists\, N\) tal que \(d(x_n,x_m)<\epsilon\ \forall\, n,m>N.\)} Afortunadamente, los espacios vectoriales con producto interno de dimensión finita, que son los únicos que nos importan en este curso, son automáticamente completos: siempre trabajaremos con espacios de Hilbert. 
+
+Aclarada la terminología, vamos ahora a entrar en los detalles de dos conceptos fundamentales:
+\paragraph{Producto escalar} En la \cref{sec.1motivacion} ya nos encontramos al producto escalar. Es una aplicación que toma dos vectores y devuelve un real, \(g:V\times V\rightarrow \mathbb{R}\), y que cumple las siguientes propiedades:
+\begin{myitemize}
+    \item \(\forall\, \mathbf{v}\in V,\ g(\mathbf{v},\mathbf{v})\geq0\) y \(g(\mathbf{v},\mathbf{v})=0\iff\mathbf{v}=\mathbf{0}\) (definida positiva)
+    \item \(\forall\, \mathbf{u},\mathbf{v}\in V,\ g(\mathbf{u},\mathbf{v})=g(\mathbf{v},\mathbf{u})\) (simétrica)
+    \item \(\forall\, \mathbf{u},\mathbf{v},\mathbf{w}\in V\) y \(\forall\,\alpha,\beta\in\mathbb{R},\) \(g(\alpha\mathbf{u}+\beta\mathbf{v},\mathbf{w})=\alpha g(\mathbf{u},\mathbf{w}) + \beta g(\mathbf{v},\mathbf{w})\) (aplicación lineal en la primera componente)
+\end{myitemize}
+Notemos que, por la propiedad de simetría, la linealidad en la primera componente implica que la segunda componente también es lineal. 
+
+Como apuntábamos antes, el producto escalar da información de longitudes (normas) y ángulos. Para sorpresa de nadie, la norma asociada a \(g\) se define como \(||\mathbf{v}||_g = \sqrt{g(\mathbf{v},\mathbf{v})}\), y el ángulo entre dos vectores cumple \(\cos(\theta_{\mathbf{u},\mathbf{v}}) = \frac{g(\mathbf{u}, \mathbf{v})}{||\mathbf{u}||_g ||\mathbf{v}||_g}\). Además, cumple la desigualdad de Schwartz:
+\begin{equation}
+    |g(\mathbf{u},\mathbf{v})|\leq ||\mathbf{u}||_g ||\mathbf{v}||_g.
+\end{equation}
+
+Vistas las propiedades generales, vale la pena matizar la nomenclatura. Estrictamente, \(g\) es un producto escalar, a partir del cual se define una norma que, a su vez, define una métrica. No hemos entrado en los detalles sobre qué es una métrica, pero esencialmente podemos decir que hay más libertad en la definición de lo que es una métrica que en la de un producto escalar.\marginexercise{Busca qué es una métrica matemáticamente. Busca la definición de la métrica discreta y comprueba que es, efectivamente, una métrica.} No son conceptos equivalentes. Aun así, los físicos, laxos con la terminología como podemos ser, usamos el nombre métrica (o tensor métrico) para hablar de \(g\). Siendo precisos, no es una terminología del todo incorrecta, pero, siendo correctos, sí que es un poco imprecisa.
+
+El producto escalar tiene asociada una matriz simétrica y definida positiva con coeficientes \(g_{ij}\), los mismos que ya encontramos en la \cref{subsec.1escalares}. Dada una base \(\mathfrak{B} = \{\mathbf{e}_i\}_{i=1}^n\), podemos conocer los coeficientes de dicha matriz mediante:
+\begin{equation}
+    g(\mathbf{u},\mathbf{v}) = u^iv^j g(\mathbf{e}_i,\mathbf{e}_j) =: u^i v^j g_{ij}.
+\end{equation}
+Es decir, \(g_{ij}\) se obtiene evaluando directamente los productos escalares de los vectores de la base: \(g(\mathbf{e}_i,\mathbf{e}_j)\). Obviamente, los elementos \(g_{ij}\) dependen de qué base se utilice para trabajar, lo que nos lleva al siguiente punto.
+
+\paragraph{Cambio de base} Sean \(\mathfrak{B} = \{\mathbf{e}_i\}_{i=1}^n\) y \(\mathfrak{B}' = \{\mathbf{e}_{i'}\}_{i'=1}^n\) dos bases de \(V\). Entonces, cualquier vector \(\mathbf{v}\in V\) se puede expresar como
+\begin{equation}
+    \mathbf{v} = v^i \mathbf{e}_i = v^{i'} \mathbf{e}_{i'},
+\end{equation}
+donde \(v^{i/i'}\) son los coeficientes de las expansiones lineales respectivas. ¿Cómo pasamos de unos coeficientes a otros? Si conocemos el cambio de base explícitamente, \(\mathbf{e}_{i'} = \tensor{T}{_{i'}^i} \mathbf{e}_i\), entonces
+\begin{equation}
+    v^i\mathbf{e}_i = v^{i'}\tensor{T}{_{i'}^i} \mathbf{e}_i \implies v^i = v^{i'}\tensor{T}{_{i'}^i},
+\end{equation}
+que se deduce de la unicidad de la expansión de \(\mathbf{v}\) en la base \(\mathfrak{B}\). \marginexercise{Supón que las bases son ortogonales. Demuestra que los elementos de la matriz de cambio de base son \(\tensor{T}{_{i'}^i} = g(\mathbf{e}_{i'},\mathbf{e}_i)\).} Recordemos de la \cref{subsec.1transformaciones} que los vectores y las componentes se transformaban a la inversa. Aquí hemos obtenido exactamente lo mismo: la matriz que nos lleva de \(\mathbf{e}_{i}\) a \(\mathbf{e}_{i'}\) es la misma que nos lleva de \(v^{i'}\) a \(v^i\).
+
+Volvamos ahora a la cuestión de obtener \(g_{ij}\) en otra base. Por la linealidad en ambas componentes, \(g_{i'j'}\) se puede escribir como
+\begin{equation}
+    g_{i'j'} = g(e_{i'},e_{j'}) = \tensor{T}{_{i'}^i}\tensor{T}{_{j'}^j}g(e_{i},e_{j}) = \tensor{T}{_{i'}^i}\tensor{T}{_{j'}^j}g_{ij}.
+\end{equation}
+He aquí la regla de transformación que habíamos escrito, sin justificar del todo, en el \cref{ex.1-metrica_polares_R2}, cambiando \(\tensor{T}{_{i'}^{i}}\) por la matriz jacobiana \(\frac{\partial x^i}{\partial x^{i'}}\) en aquel contexto. Lo único que nos falta para terminar de justificar las \cref{eq.1-transformacion_componentes,eq.1-transformacion_vectores,eq.1-transformacion_metrica} es entender por qué \(T\) es la matriz jacobiana, aunque es esperable si observamos que dichos cambios de base estaban ligados a cambios de coordenadas. Lo exploraremos con mayor detalle en la \cref{sec.3variedades}. Por ahora, veamos un ejemplo.
+
+\begin{example}
+    {Producto escalar
+    \label{ex.2-productoescalar_I}
+    }
+    Sea \(V\) un espacio vectorial de dimensión 2, \(\mathfrak{B} = \{\mathbf{e}_1, \mathbf{e}_2\}\) una base y \(g:V\times V\rightarrow\mathbb{R}\) un producto escalar especificado por\marginexercise{Averigua qué rango de valores puede tomar \(g(\mathbf{e}_2,\mathbf{e}_2)\), dejando el resto sin tocar, de modo que \(g\) siga siendo un producto escalar.}
+    \begin{equation*}
+        g(\mathbf{e}_1, \mathbf{e}_1) = 1,\quad g(\mathbf{e}_1, \mathbf{e}_2) = 2,\quad g(\mathbf{e}_2, \mathbf{e}_2) = 5.
+    \end{equation*}
+    El producto escalar nos dice (i) que la base \(\mathfrak{B}\) no es ortogonal, debido a los elementos no diagonales \(g(\mathbf{e}_1,\mathbf{e}_2)\), y (ii) que el vector \(\mathbf{e}_2\) tiene norma \(\sqrt{5}\).
+
+    Vamos a construir paso a paso una base ortonormal \(\mathfrak{B}'\) a partir de la anterior. En primer lugar, fijamos \(\mathbf{e}_{1'} = \mathbf{e}_1\). A continuación, buscamos un vector \(\mathbf{v}\) ortogonal a \(\mathbf{e}_{1'}\):
+    \begin{equation*}
+        \mathbf{v} = v^{i}\mathbf{e}_{i} \perp \mathbf{e}_{1'} = \mathbf{e}_{1} \implies v^i g(\mathbf{e}_i,\mathbf{e}_1) = v^1\cdot 1 + v^2\cdot 2 = 0 \implies v^1 = -2v^2.
+    \end{equation*}
+    Así, los vectores ortogonales a \(\mathbf{e}_{1'}\) serán los de la forma \(\mathbf{v} = -2\lambda \mathbf{e}_{1} + \lambda \mathbf{e}_2\). Si, además, queremos que sea un vector unitario exigimos
+    \begin{align*}
+        \sqrt{g(\mathbf{v},\mathbf{v})} = 1 \implies v^iv^jg_{ij} &= (-2\lambda)^2\cdot 1 + \lambda(-2\lambda)\cdot 2 \\
+        &\phantom{=}+ \lambda(-2\lambda)\cdot 2 + \lambda^2\cdot 5\\
+        &= \lambda^2 \implies \lambda = \pm1.
+    \end{align*}
+    Tomemos la solución con \(\lambda = -1\), por concretar. Nuestro vector ortogonal, que fijamos como segundo vector de la nueva base, ha resultado ser \(\mathbf{v} = 2\mathbf{e}_1 - \mathbf{e}_2=: \mathbf{e}_{2'}\).
+
+    Finalmente, veamos qué aspecto tiene el producto escalar en esta nueva base:\marginexercise{Extrae la matriz \(\tensor{T}{_{i'}^i}\) y haz el cambio de base de la métrica con la expresión general.}
+    \begin{align*}
+        g(\mathbf{e}_{1'},\mathbf{e}_{1'}) &= g(\mathbf{e}_{1},\mathbf{e}_{1}) = 1\\
+        g(\mathbf{e}_{1'},\mathbf{e}_{2'}) &= g(\mathbf{e}_{1},2\mathbf{e}_{1} - \mathbf{e}_2) = 2 - 2 = 0\\
+        g(\mathbf{e}_{2'},\mathbf{e}_{2'}) &= 1
+    \end{align*}
+    Dispuesto como una matriz, no es más que la identidad, que da lugar al producto escalar de toda la vida en el que se multiplican componentes y se suma:
+    \begin{equation*}
+        g(\mathbf{u},\mathbf{w}) = u^{i'}w^{j'} g_{i'j'} = \sum_{i'=1}^2 u^{i'}w^{i'}.
+    \end{equation*}
+    La conclusión interesante es precisamente que, dado cualquier producto escalar, podemos expresarlo como el producto sencillo de siempre mediante un cambio de base adecuado. 
+    
+    Un comentario esclarecedor. Los espacios vectoriales que nos conciernen son los espacios tangentes de alguna variedad con curvatura. Además, a cada sistema de coordenadas le corresponde naturalmente una base del espacio tangente en cada punto. Resulta que, para cada punto de la variedad, existe una elección de coordenadas que convierte el tensor métrico en la identidad, expresado en la base asociada. Lo que no será posible en general es encontrar un sistema de coordenadas que convierta el tensor métrico en la identidad en todos los puntos de la variedad al mismo tiempo. Volveremos sobre este punto en la \cref{sec.3variedades}.
+\end{example}
+
+\subsection{Espacio dual: formas lineales}
+\label{subsec.2formaslineales}
+
+En esta sección introducimos unos objetos muy naturales desde un punto de vista matemático. Llamaremos forma lineal\footnote{También se usa funcional lineal.} a toda aplicación lineal \(\boldsymbol{\omega}\) de \(V\) en \(\mathbb{R}\) (\(\boldsymbol{\omega}:V\rightarrow\mathbb{R}\)). Esencialmente, cualquier mapa de \(V\) en \(\mathbb{R}\) que cumpla \(\boldsymbol{\omega}(\alpha^i\mathbf{u}_i) = \alpha^i\boldsymbol{\omega}(\mathbf{u}_i)\) es una forma lineal.\marginexercise{Demuestra que \(\boldsymbol{\omega}(p):=\int_{a}^{b}\mathrm{d}x\, \omega(x)p(x)\), donde \(\omega(x)\) es una función integrable, es una forma lineal en el espacio de polinomios de grado menor a \(n\), \(\mathfrak{P}_n\).} Hasta aquí la definición. Vamos a desarrollar las formas lineales un poco más, pero todo lo que veremos a continuación es relativamente sencillo. Es difícil hacerse una idea de la tremenda importancia que tienen las formas lineales en variedades diferenciales. Únicamente por dejar un titular \textit{clickbaity}, resulta que las formas diferenciales, entre las que se encuentran las formas lineales, son clave para hacer integrales en variedades.
+
+Analicemos este invento un poco más. Para empezar, observemos que la combinación lineal de formas lineales es también una forma lineal. Efectivamente, 
+\begin{equation*}
+    [\alpha\boldsymbol{\omega} + \beta\boldsymbol{\nu}](\mathbf{v}) := \alpha\boldsymbol{\omega}(\mathbf{v}) + \beta\boldsymbol{\nu}(\mathbf{v})
+\end{equation*}
+es una aplicación lineal de \(V\) en \(\mathbb{R}\). De aquí se desprende que las formas lineales viven en su propio espacio vectorial \(V^*\), al que comúnmente nos referimos como espacio dual. Es por ello que a las formas lineales también se la puede llamar vectores duales.
+
+Como buen espacio vectorial que es el dual, podemos encontrar conjuntos de formas lineales que sean bases de \(V^*\). Además, la relación íntima entre \(V\) y \(V^*\), permite construir una base del segundo a partir de una base del primero. Consideremos \(\mathfrak{B}=\{\mathbf{e}_i\}_{i=1}^n\), base de \(V\). Tomando aquellas formas que cumplan 
+\begin{equation}
+    \label{eq.2-basedual}
+    \boldsymbol{\epsilon}^j(\mathbf{e}_i) = \delta_{i}^j, 
+\end{equation}
+definimos una base de \(V^*\) como \(\mathfrak{B}^*=\{\boldsymbol{\epsilon}^j\}_{j=1}^n\). \marginexercise{Convéncete de que las formas \(\boldsymbol{\epsilon}^j\) así definidas son únicas, y de que realmente forman una base en \(V^*\), esto es, cualquier forma lineal se puede escribir como una expansión única en las formas de la base.} 
+
+Aquí hemos tomado otra de esas decisiones sobre la notación que permite el saber a dónde vamos (por lo menos yo lo sé). Fijémonos que las formas lineales llevan superíndices. Ya en la \cref{subsec.1newton} dijimos que la posición de los índices está cargada de información importante sobre los cambios de base. Las formas lineales de la base las enumeramos con superíndices precisamente porque son contravariantes, se transforman al contrario que los vectores. Si tengo dos bases en \(V\), \(\mathfrak{B}^{(\prime)} = \{\mathbf{e}_{i^{(\prime)}}\}_{i=1}^n\), relacionadas mediante \(\mathbf{e}_{i'} = \tensor{T}{_{i'}^i}\mathbf{e}_i\), entonces ¿cómo se relacionan las bases duales asociadas? 
+
+Por un lado,
+\begin{equation*}
+    \boldsymbol{\epsilon}^i(\mathbf{e}_{j'}) = \tensor{T}{_{j'}^j}\boldsymbol{\epsilon}^i(\mathbf{e}_{j}) = \tensor{T}{_{j'}^j}\delta^{i}_{j} = \tensor{T}{_{j'}^i}.
+\end{equation*}
+Por otro, 
+\begin{equation*}
+    \boldsymbol{\epsilon}^{i'}(\mathbf{e}_{j'}) = \delta^{i'}_{j'} \implies  \left[\tensor{T}{_{i'}^i} \boldsymbol{\epsilon}^{i'}\right](\mathbf{e}_{j'}) = \tensor{T}{_{i'}^i} \boldsymbol{\epsilon}^{i'}(\mathbf{e}_{j'}) = \tensor{T}{_{i'}^i} \delta_{j'}^{i'} = \tensor{T}{_{j'}^i}.
+\end{equation*}
+Juntando las ecuaciones concluimos que 
+\begin{equation}
+    \boldsymbol{\epsilon}^{i} = \tensor{T}{_{i'}^i}\boldsymbol{\epsilon}^{i'} \iff \boldsymbol{\epsilon}^{i'} = \tensor{(T^{-1})}{^{i'}_i}\boldsymbol{\epsilon}^i,
+\end{equation}
+donde \(T^{-1}\) denota la transformación inversa. Dado que las formas lineales de la base llevan un índice contravariante, las componentes de cualquier forma lineal arbitraria tendrán índices covariantes: \(\boldsymbol{\omega} = \omega_i \boldsymbol{\epsilon}^i\).\marginexercise{Demuestra que las componentes \(\omega_i\) transforman como \(\omega_{i'} = \tensor{T}{_{i'}^i}\omega_i\).}
+
+Cerramos la discusión sobre formas lineales resaltando dos ideas significativas. 
+
+\paragraph{Teorema de representación de Riesz} Quien haya prestado mucha atención habrá notado que hay una conexión entre las formas lineales y el producto escalar \(g\). Sin ir más lejos, a cada vector \(\mathbf{u}\in V\) podemos asociarle una forma lineal \(\boldsymbol{\omega}_\mathbf{u}(\mathbf{v}) := g(\mathbf{u}, \mathbf{v})\).\marginexercise{Demuestra que, así definida, \(\boldsymbol{\omega}_\mathbf{u}\) es realmente una forma lineal.} Está claro, entonces, que cada vector de \(V\) define, mediante el producto escalar, una forma lineal. El teorema de representación de Riesz lleva esta observación al siguiente nivel: 
+\begin{equation}
+    \label{eq.2riesz}
+    \forall\, \boldsymbol{\omega}\in V^*,\ \exists!\, \mathbf{w}_{\boldsymbol{\omega}}\in V
+    \text{ tal que }
+    \boldsymbol{\omega}(\mathbf{v}) = g(\mathbf{w}_{\boldsymbol{\omega}},\mathbf{v}). 
+\end{equation}
+Así, la relación entre \(V\) y \(V^*\) queda puesta de manifiesto. \marginexercise[0.5cm]{Demuestra que los vectores de la base dual están asociados a vectores ortogonales a los de la base.}
+
+La conexión de las formas lineales con el producto escalar queda perfectamente recogida en la \cref{eq.2riesz}. Aun así, en textos de física solemos encontrar otra versión equivalente. Descompongamos, para empezar, la acción de una forma lineal sobre un vector como
+\begin{equation*}
+    \boldsymbol{\omega}(\mathbf{v}) = \omega_i v^j \boldsymbol{\epsilon}^i(\mathbf{e}_j) = \omega_i v^i.
+\end{equation*}
+Ahora, desarrollemos el producto escalar para llegar a
+\begin{equation*}    
+    g(\mathbf{w}_{\boldsymbol{\omega}},\mathbf{v}) = 
+    g_{ji}(w_{\boldsymbol{\omega}})^j \mathbf{v}^i.
+\end{equation*}
+Poniendo ambas ecuaciones a la luz de la \cref{eq.2riesz} vemos que 
+\begin{equation}
+    \omega_i = g_{ij}(w_{\boldsymbol{\omega}})^j,
+\end{equation}
+es decir, que las componentes de \(\boldsymbol{\omega}\) salen de contraer la métrica con el vector \(\mathbf{w}_{\boldsymbol{\omega}}\). A este proceso se lo conoce simplemente como ``bajar el índice'' pero, como vemos, lleva una serie de detalles matemáticos detrás. Es tan común esta operación que, en lo que sigue, no nos molestaremos generalmente en usar un símbolo nuevo para la forma lineal asociada al vector \(\mathbf{w}_{\boldsymbol{\omega}}\). Es decir, tenemos un vector \(\mathbf{w}=w^i\mathbf{e}_i\). Al vector \(\mathbf{w}\) le asociamos la forma lineal \(\mathbf{w}=w_j \boldsymbol{\epsilon}^j\), mismo nombre, mediante el teorema de Riesz, donde \(g_{ij} w^j = w_i\).
+
+\begin{example}
+    {Bajada y subida de índices
+    \label{ex.2bajarindice}}
+    Sea un espacio vectorial \(V\) con producto escalar \(g\), con componentes 
+    \begin{equation*}
+        g_{11} = 9,\quad g_{12} = 2,\quad g_{22} = 1/4.
+    \end{equation*}
+    en la base \(\mathfrak{B}= \{\mathbf{e}_i\}_{i=1}^2\). Veamos qué sucede al bajar el índice de las componentes de un vector \(\mathbf{v} = v^i\mathbf{e}_i = 1\mathbf{e}_1 + 2\mathbf{e}_2\):
+    \begin{equation}
+        v_j = g_{ij}v^i \implies \left\{
+            \begin{aligned}
+                v_1 &= 9\cdot 1 + 2\cdot 2 = 13\\
+                v_2 &= 2\cdot 1 + 1/4\cdot 2 = 5/2
+            \end{aligned}
+        \right.
+    \end{equation}
+    
+    En concreto, podemos buscar así la forma lineal \(\boldsymbol{\omega}_{\mathbf{e}_1}\) asociada al vector \(\mathbf{e}_1 = 1\mathbf{e}_1 + 0\mathbf{e}_2\):\footnote{Observa que la forma asociada a \(\mathbf{e}_i\) que obtenemos bajando índices con la métrica no es \(\boldsymbol{\epsilon}^i\), aunque uno pudiera pensar que sí. En realidad, \(\boldsymbol{\epsilon}^i\) debe estar asociado a un vector perpendicular a \(\mathbf{e}_i\).}
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                (\omega_{\mathbf{e}_1})_1 &= 9\cdot 1 + 2\cdot 0 = 9 = _g{11}\\
+                (\omega_{\mathbf{e}_1})_2 &= 2\cdot 1 + 1/4\cdot 0 = 2 = g_{12}
+            \end{aligned}
+        \right.
+    \end{equation}
+    y lo mismo para \(\boldsymbol{\omega}_{\mathbf{e}_2}\), ligada al vector \(\mathbf{e}_2 = 0\mathbf{e}_1 + 1\mathbf{e}_2\):
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                (\omega_{\mathbf{e}_2})_1 &= 9\cdot 0 + 2\cdot 1 = 2 = g_{21}\\
+                (\omega_{\mathbf{e}_2})_2 &= 2\cdot 0 + 1/4\cdot 1 = 1/4 = g_{22}
+            \end{aligned}
+        \right.
+    \end{equation}
+    Al calcular directamente \(\boldsymbol{\omega}_{\mathbf{e}_i}(\mathbf{e}_j)\) deberíamos obtener directamente \(g(\mathbf{e}_i,\mathbf{e}_j) = g_{ij} = ||\mathbf{e}_i||_g||\mathbf{e}_j||_g \cos(\theta_{\mathbf{e}_i,\mathbf{e}_j})\). Veamos un caso explícitamente:\marginexercise{Haz el resto de los casos.}
+    \begin{equation}
+        \boldsymbol{\omega}_{\mathbf{e}_1}(\mathbf{e}_1) = (\omega_{\mathbf{e}_1})_1 \boldsymbol{\epsilon}^1(\mathbf{e}_1) + (\omega_{\mathbf{e}_1})_2 \boldsymbol{\epsilon}^2(\mathbf{e}_1) = 9\cdot1+2\cdot0 = 9 = g_{11}.
+    \end{equation}
+
+    Veamos ahora cómo dar el paso inverso, de la forma lineal al vector. Si tenemos \(\boldsymbol{\omega} = \omega_j \boldsymbol{\epsilon}^j\), existe un vector \(\mathbf{w}_{\boldsymbol{\omega}}=(w_{\boldsymbol{\omega}})^i\mathbf{e}_i\) tal que \(\omega_j = g_{ji}(w_{\boldsymbol{\omega}})^i\). Para despejar \(w_{\boldsymbol{\omega}}\), nuestra incógnita aquí, tenemos que ``pasar la métrica dividiendo''. En otras palabras, tenemos que multiplicar a ambos lados por la métrica inversa. Por consistencia indicial, denotaremos a la métrica inversa por \(g^{ij}\), con los índices arriba, de modo que \marginexercise{Demuestra que la métrica inversa permite ``extender'' el producto escalar de \(V\) a \(V^*\).}
+    \begin{equation}
+        g^{ij}g_{jk} = \delta^i_k \implies g^{kj}\omega_j = g^{kj}g_{ji}(w_{\boldsymbol{\omega}})^i = (w_{\boldsymbol{\omega}})^k.
+    \end{equation}
+    Con esto último tenemos ya el montacargas de índices completo. Podemos coger una forma, subirle los índices y convertirla en un vector, o al contrario. 
+\end{example}
+
+\paragraph{Espacio dual del dual} Hemos establecido que \(V^*\) es un espacio vectorial de pleno derecho. Es razonable, entonces, hablar del dual de \(V^*\), que denotamos por \(V^{**}\) y consiste en las ``formas lineales de las formas lineales'', por decirlo de alguna manera. 
+
+¿Cómo establecemos las formas lineales de los vectores duales? La idea es que si en \(\boldsymbol{\omega}(\mathbf{v})\) dejamos \(\boldsymbol{\omega}\) fijo y probamos distintos \(\mathbf{v}\), realmente estamos encontrando formas lineales \(\boldsymbol{\upsilon}_\mathbf{v}\in V^{**}\) que actúan sobre \(\boldsymbol{\omega}\), es decir, \(\boldsymbol{\upsilon}_\mathbf{v}(\boldsymbol{\omega}):=\boldsymbol{\omega}(\mathbf{v})\). Entra dentro de lo razonable que hay una base de \(V^{**}\) asociada a cualquier base de \(V^*\), definida por la siguiente acción sobre formas lineales
+\begin{equation}
+    \boldsymbol{\upsilon}_{\mathbf{e}_i}(\boldsymbol{\epsilon}^j) = \delta_{i}^j = \boldsymbol{\epsilon}^j(\mathbf{e}_i).
+\end{equation}
+Vemos, pues, que hay una relación íntima entre \(\boldsymbol{\upsilon}_{\mathbf{e}_i}\in\mathfrak{B}^{**}\) y \(\mathbf{e}_i\in \mathfrak{B}\): a cada vector de la base \(\mathfrak{B}\) le corresponde un vector dos veces dual de la base \(\mathfrak{B}^{**}\). Es más, este mapa de \(V\) en \(V^{**}\) (\(\mathbf{v}\rightarrow\boldsymbol{\upsilon}_\mathbf{v}\)), que se llama la correspondencia canónica, es un isomorfismo. Por ello, a menudo se hace un pequeño abuso de notación llamando \(\mathbf{v}\) al propio \(\boldsymbol{\upsilon}_\mathbf{v}\). En consecuencia, tenemos que los vectores duales actúan sobre vectores y podemos decir que los vectores\footnote{Mediante la correspondencia canónica de \(V\) a \(V^{**}\).} actúan sobre vectores duales, de manera que
+\begin{equation}
+    \boldsymbol{\omega}(\mathbf{v}) = \mathbf{v}(\boldsymbol{\omega}).
+\end{equation}
+
+\begin{example}
+    {Acción de un vector dual sobre un vector y viceversa
+    \label{ex.2acciones}}
+    Sea un espacio vectorial \(V\) de dimensión 2 con producto escalar \(g\). En la base \(\mathfrak{B}=\{\mathbf{e}_i\}_{i=1}^2\), las componentes de la métrica son 
+    \begin{equation*}
+        g_{11} = 1,\quad g_{12} = 3,\quad g_{22} = 10.
+    \end{equation*}
+    Al vector \(\mathbf{v}=v^i\mathbf{e}_i=1\mathbf{e}_1+2\mathbf{e}_2\) podemos asignarle una forma lineal, \(v_j \boldsymbol{\epsilon}^j\), con componentes dadas por \(v_j = g_{ji}v^i\). Con los valores numéricos del ejemplo:
+    \begin{align*}
+        v_1 &= g_{1i}v^i = 1\cdot 1 + 3\cdot 2 = 7,\\
+        v_2 &= g_{2i}v^i = 3\cdot 1 + 10\cdot 2 = 23.
+    \end{align*}
+    Esta forma lineal actúa sobre \(\mathbf{u} = u^i\mathbf{e}_i\in V\) igual que el vector \(\mathbf{v}\) con el producto escalar:
+    \begin{equation*}
+        v_j\boldsymbol{\epsilon}^j(u^i\mathbf{e}_i)= v_ju^i \delta_i^j = v_i u^i = g_{ij}v^j u^i = g(\mathbf{v},\mathbf{u}).
+    \end{equation*}
+
+    Además, la correspondencia entre \(V\) y \(V^{**}\) nos permite escribir \(\mathbf{e}_i(\boldsymbol{\epsilon}^j) = \delta_i^j\), con lo que 
+    \begin{equation*}
+        \mathbf{u}(v_j \boldsymbol{\epsilon}^j) = u^i v_j\mathbf{e}_i(\boldsymbol{\epsilon}^j) = u^i v_i = g_{ij}u^i v^j = g(\mathbf{u},\mathbf{v}) = g(\mathbf{v},\mathbf{u}).
+    \end{equation*}
+\end{example}
+
+
+\subsection{Tensores}
+\label{subsec.2formasmultilineales}
+
+Cuando encontramos tensores en física, habitualmente vemos expresiones que involucran objetos intimidantes llenos de índices por todas partes como
+\begin{equation}
+    \tensor{T}{^i^j_k^l_m}.
+\end{equation}
+Este objeto tiene 2 índices contravariantes, luego uno covariante, seguido de otro contravariante y finalmente un índice covariante. Por suerte, la intuición detrás es más sencilla de lo que a primera vista parece, y generaliza todo lo que hemos visto en la sección. No obstante, antes de meternos de lleno en la definición, tenemos que introducir el producto tensorial.
+
+\paragraph{Producto tensorial} Supongamos que tenemos dos espacios vectoriales \(U\) y \(V\), con bases \(\mathfrak{B}_U = \{\mathbf{u}_i\}_{i=1}^{\dim{U}}\) y \(\mathfrak{B}_V = \{\mathbf{v}_j\}_{j=1}^{\dim{V}}\). Definimos su producto tensorial \(W = U\otimes V\) como 
+\begin{equation}
+    W = U\otimes V = \text{span}\{\mathbf{u}_i\otimes\mathbf{v}_j,\ i=1, ..., \dim{U},\ j=1, ..., \dim{V}\}.
+\end{equation}
+Esencialmente, combinamos los vectores de las bases de todas las maneras posibles preservando el orden de los espacios vectoriales en el producto temporal, y dichas combinaciones \(\mathbf{w} = \mathbf{u}_i\otimes\mathbf{v}_j\) se toman como base del nuevo espacio vectorial \(U\otimes V\). El símbolo \(\otimes\) debe entenderse simplemente como una manera de ``etiquetar'' qué vectores de las bases originales entran en los vectores de la base del nuevo espacio.
+
+Asimilaremos mejor el manejo de los productos tensoriales si miramos las siguientes propiedades:
+\begin{myitemize}
+    \item Distribuye respecto a la suma: \(\mathbf{u}_1\otimes\mathbf{v}+\mathbf{u}_2\otimes\mathbf{v} = (\mathbf{u}_1+\mathbf{u}_2)\otimes\mathbf{v}\). La segunda componente también lo hace.
+    \item \(\forall\, \mathbf{w}\in W\ \exists\, w^{ij}\) tales que \(\mathbf{w}=w^{ij}\mathbf{u}_i\otimes\mathbf{v}_j\). Los coeficientes de la expansión tienen, como es lógico, dos índices. Aunque \(\mathbf{w}\) es un vector de \(W\), tiene una estructura más compleja que los \(\mathbf{u}_i\) o \(\mathbf{v}_j\) individuales. \marginexercise{Si \(\mathbf{w}\) y \(\mathbf{m}\in U\otimes V\), ¿cuáles son las componentes de \(\mathbf{w}+\mathbf{m}\)? }
+    \item Admite vectores con ``entrelazamiento cuántico''. Hay ocasiones en las que podemos factorizar un vector de \(W\) como \(\mathbf{w} = \mathbf{u}\otimes\mathbf{v}\). Se dice, entonces, que \(\mathbf{w}\) es separable, pero no siempre es así. Considera \(\mathbf{u}_1\otimes\mathbf{v}_1 + \mathbf{u}_2\otimes\mathbf{v}_2\). No hay forma humana de factorizarlo. Precisamente vectores así son los que están detrás del entrelazamiento cuántico.
+\end{myitemize}  
+
+De alguna manera, el producto tensorial aglutina dos espacios vectoriales en uno, pero manteniéndolos en compartimentos separados. Hay operaciones con efectos aparentemente parecidos, como el producto cartesiano, pero que tienen diferencias esenciales. El siguiente ejemplo ilustra la diferencia en un caso sencillo.
+\begin{example}
+    {\(\mathbb{R}\times\mathbb{R}^2\neq\mathbb{R}\otimes\mathbb{R}^2\)
+    \label{ex.2cartesiano_tensorial}}
+
+    Como indica el título de este ejemplo, consideremos \(U=\mathbb{R}\) y \(V=\mathbb{R}^2\). Tanto \(\mathbb{R}\) como \(\mathbb{R}^2\) son \(\mathbb{R}-\)espacios vectoriales; de hecho, los más sencillos de todos. Definamos sendas bases
+    \begin{equation*}
+        \mathfrak{B}_\mathbb{R} = \{\mathbf{u}\}\quad \text{y}\mathfrak{B}_{\mathbb{R}^2} = \{\mathbf{v}_1, \mathbf{v}_2\}.
+    \end{equation*}
+    Bien, el producto cartesiano consiste en 
+    \begin{equation*}
+        \mathbb{R}\times\mathbb{R}^2 = \{\alpha \mathbf{u} + \beta^1\mathbf{v}_1 + \beta^2\mathbf{v}_2,\ \forall\, \alpha,\beta,\gamma\in\mathbb{R}\} = \mathbb{R}^3.
+    \end{equation*}
+    En otras palabras, a \(\mathbb{R}\) le sumamos dos dimensiones adicionales linealmente independientes, lo que nos lleva al espacio euclídeo \(\mathbb{R}^3\). En la notación de arrays habitual es como añadir nuevas componentes al vector columna \(\mathbb{R}\times\mathbb{R}^2=\{(\alpha,\beta^1,\beta^2)^\mathrm{t}\}\). El producto tensorial, en cambio, lo construimos de otro modo:
+    \begin{equation*}
+        U\otimes V = \text{span}\{\mathbf{u}\otimes\mathbf{v}_1, \mathbf{u}\otimes\mathbf{v}_2\}.
+    \end{equation*}
+    Es decir, \(U\otimes V = \{\alpha^1\mathbf{u}\otimes\mathbf{v}_1 + \alpha^2\mathbf{u}\otimes\mathbf{v}_2,\ \forall\, \alpha^1,\alpha^2\in\mathbb{R}\}\), que es de hecho isomorfo a \(\mathbb{R}^2\). Como vemos, cada elemento de las combinaciones lineales tiene \(\mathbf{u}\) y \(\mathbf{v}_i\) en compartimentos separados, pero aparecen siempre juntos. El producto cartesiano es como una ``suma'', mientras que el producto tensorial sí se comporta más como un ``producto''.
+
+    Sin que sirva de precedente, vamos a terminar de ilustrar la diferencia usando la notación de arrays. Para que tenga más gracia, miremos ahora el caso \(U=\mathbb{R}^3\) y \(V=\mathbb{R}^2\). Sean 
+    \begin{equation*}
+        \mathbf{u} = \begin{pmatrix}
+            u^1, u^2, u^3
+        \end{pmatrix}^\mathrm{t}\in\mathbb{R}^3\quad\text{y}\quad
+        \mathbf{v} = \begin{pmatrix}
+            v^1,v^2
+        \end{pmatrix}^\mathrm{t}\in\mathbb{R}^2.
+    \end{equation*}
+    Su producto cartesiano es 
+    \begin{equation*}
+        \mathbf{u}\times\mathbf{v} = \begin{pmatrix}
+            \mathbf{u}^\mathrm{t},\mathbf{v}^\mathrm{t}
+        \end{pmatrix}^\mathrm{t} = \begin{pmatrix}
+            u^1,u^2,u^3,v^1,v^2
+        \end{pmatrix}^\mathrm{t},
+    \end{equation*}
+    mientras que el producto tensorial es 
+    \begin{equation*}
+        \mathbf{u}\otimes\mathbf{v} = \begin{pmatrix}
+            u^1\begin{pmatrix}
+                v^1,v^2
+            \end{pmatrix}^\mathrm{t}\\
+            u^2\begin{pmatrix}
+                v^1,v^2
+            \end{pmatrix}^\mathrm{t}\\
+            u^3\begin{pmatrix}
+                v^1,v^2
+            \end{pmatrix}^\mathrm{t}
+        \end{pmatrix} = 
+        \begin{pmatrix}
+            u^1v^1,u^1v^2,u^2v^1,u^2v^2,u^3v^1,u^3v^2
+        \end{pmatrix}^\mathrm{t}.
+    \end{equation*}
+    Atención a lo que hace cada producto. El cartesiano suma componentes, mientras que el tensorial las multiplica.
+\end{example}
+Ahora que entendemos el producto tensorial, veamos cómo definir un tensor. 
+
+\paragraph{Mapa multilineal} Dado un espacio vectorial \(V\), un tensor de rango \((n,m)\) es un mapa 
+\begin{equation}
+    \mathbf{T}: \underset{n}{\underbrace{V^*\times\cdots\times V^*}} \times\underset{m}{\underbrace{V\times\cdots\times V}} \rightarrow \mathbb{R}.
+\end{equation}
+En el lenguaje cotidiano, \(T\) es una función lineal que toma como argumentos \(n\) vectores duales y \(m\) vectores y devuelve un número real. Definimos sus componentes a partir de la acción de \(T\) sobre los covectores y vectores de las bases:\footnote{No hay un motivo real para elegir la misma base en todos los \(V\) y su base dual en todos los \(V^*\), pero cualquier otra elección incurre en complicaciones innecesarias.}
+\begin{equation}
+    \mathbf{T}(\boldsymbol{\epsilon}^{i_1}, \dots, \boldsymbol{\epsilon}^{i_n},\mathbf{e}_{j_1}, \dots, \mathbf{e}_{j_m}) =: \tensor{T}{^{i_1}^{...}^{i_n}_{j_1}_{...}_{j_m}}.
+\end{equation}
+
+
+Como podemos apreciar, \(\mathbf{T}\) es un objeto cuyas componentes tienen más de un índice. A la luz de la discusión previa sobre el producto tensorial, este mismo tensor lo podemos considerar como 
+\begin{equation}
+    \mathbf{T}\in \underset{n}{\underbrace{V\otimes \cdots\otimes V}}\otimes\underset{n}{\underbrace{V^*\otimes \cdots\otimes V^*}},
+\end{equation}
+esto es, un elemento del espacio vectorial que resulta de hacer todos esos productos tensoriales. En la base de dicho espacio vectorial compuesto, \(\mathbf{T}\) se expresa 
+\begin{equation}
+    \mathbf{T} = \tensor{T}{^{i_1}^{...}^{i_n}_{j_1}_{...}_{j_m}} \mathbf{e}_{i_1}\otimes\cdots\otimes\mathbf{e}_{i_n}\otimes\boldsymbol{\epsilon}^{j_1}\otimes\cdots\otimes\boldsymbol{\epsilon}^{j_m}.
+\end{equation}
+Es aquí donde por fin apreciamos la ligereza que aporta a nuestra dieta la suma implícita. Si tuviéramos que especificar las sumas, habría que poner \(n+m\) sumatorios; a nadie le apetece poner \(n+m\) sumatorios.
+
+Por supuesto, podemos considerar diferentes combinaciones de \(V\)s y \(V^*\)s; no está prohibido. Así, \(\tensor{T}{^i_j^k_l}\) podrían ser las componentes de un tensor \(\in V\otimes V^*\otimes V\otimes V^*\), que actúa sobre elementos de \(V^*\times V\times V^*\times V\). Un apunte que no debemos olvidar es que el producto tensorial es no conmutativo. Para empezar, \(V\otimes V^*\) no es lo mismo que \(V^* \otimes V\). Son espacios equivalentes porque contienen la misma información, pero ordenada de manera distinta. Olvidarse del orden da lugar a inconsistencias. Al nivel de los vectores individuales, \(\mathbf{u}\otimes\mathbf{v}\neq \mathbf{v}\otimes\mathbf{u}\) porque, para empezar, \(\mathbf{u}\) y \(\mathbf{v}\) no tienen por qué pertenecer al mismo espacio vectorial siquiera. Pero incluso si \(\mathbf{u}\) y \(\mathbf{v}\) son ambos vectores de \(V\), el producto no conmuta. Veámoslo en el siguiente ejemplo:
+
+\begin{example}
+    {El producto tensorial no conmuta
+    \label{ex.2productotensorial_conmutacion}}
+    Sean \(\mathbf{u} = u^i\mathbf{e}_{i}\) y \(\mathbf{u} = v^j\mathbf{e}_{j}\) vectores de \(V\). Su producto tensorial es 
+    \begin{equation*}
+        \mathbf{T} = \mathbf{u}\otimes\mathbf{v} = u^iv^j\mathbf{e}_i\otimes\mathbf{e}_j \in V\otimes V,
+    \end{equation*}
+    tensor de rango \((2, 0)\). Apliquemos este tensor a \(\boldsymbol{\omega}\times\boldsymbol{\varpi}\), elemento de \(V^*\times V^*\), 
+    \begin{equation*}
+        \mathbf{T}(\boldsymbol{\omega},\boldsymbol{\varpi}) = u^iv^j\mathbf{e}_i(\boldsymbol{\omega})\mathbf{e}_j(\boldsymbol{\varpi}) =  u^iv^j\omega_k \varpi_l\, \mathbf{e}_i(\boldsymbol{\epsilon}^k)\mathbf{e}_j(\boldsymbol{\epsilon}^l) = u^i v^j\omega_i\varpi_j.
+    \end{equation*}
+    Si en lugar de \(\mathbf{u}\otimes\mathbf{v}\) hacemos \(\mathbf{v}\otimes\mathbf{u}\), llegamos a 
+    \begin{equation*}
+        u^iv^j\omega_j\varpi_i,
+    \end{equation*}
+    que tiene los índices contraídos de forma distinta, luego es distinto en general.
+\end{example}
+
+Antes de ver algunos ejemplos de tensores, detengámonos a discutir algunas propiedades importantes.
+\begin{myitemize}
+    \item Subida y bajada de índices. Igual que con los vectores y las formas lineales, podemos subir y bajar índices en un tensor aplicando la métrica o su inversa. Por ejemplo, en \(g^{im}g_{kn}\tensor{T}{_m^j^n^l}\tensor{T}{^i^j_k^l}\) hemos subido el primer índice y bajado el tercero.
+    \item Contracción de índices. A partir de un tensor con al menos un índice contravariante y otro covariante, podemos construir un tensor relacionado mediante la contracción de índices, que consiste en tomar la traza sobre dichos índices: \(\tensor{T}{^i_j^k}\rightarrow\tensor{T}{^i_i^k} = t^k\).\marginexercise{Convéncete de que esto es, efectivamente, como tomar la traza de una matriz.}
+    \item Cambio de base. Si hacemos un cambio de base simultáneo en todos los espacios vectoriales dentro del producto tensorial, dado por 
+    \begin{equation}
+        \mathbf{e}_{i'} = \tensor{T}{_{i'}^i}\mathbf{e}_{i}\quad\text{y}\quad \boldsymbol{\epsilon}^{i'} = \tensor{(T^{-1})}{^{i'}_i}\boldsymbol{\epsilon}^{i},
+    \end{equation}
+    entonces las componentes de cualquier tensor cambian siguiendo una regla concreta. Para ver cómo, sea \(\mathbf{R} = \tensor{R}{^i_j^k}\,\mathbf{e}_i\otimes\boldsymbol{\epsilon}^j\otimes \mathbf{e}_k\). Cuando cambiemos de base, el tensor sigue siendo el mismo objeto, representado por vectores, covectores y componentes distintas. Si expresamos \(\mathbf{R}\) en la nueva base y deshacemos el cambio, llegamos a
+    \begin{equation}
+        \mathbf{R} = \tensor{R}{^{i'}_{j'}^{k'}}\,\mathbf{e}_{i'}\otimes\boldsymbol{\epsilon}^{j'}\otimes \mathbf{e}_{k'} = \tensor{R}{^{i'}_{j'}^{k'}}\,\tensor{T}{_{i'}^i}\tensor{(T^{-1})}{^{j'}_j}\tensor{T}{_{k'}^k}\mathbf{e}_{i}\otimes\boldsymbol{\epsilon}^{j}\otimes \mathbf{e}_{k},
+    \end{equation}
+    que demuestra que 
+    \begin{equation}
+        \tensor{R}{^i_j^k} = \tensor{R}{^{i'}_{j'}^{k'}}\tensor{T}{_{i'}^i}\tensor{(T^{-1})}{^{j'}_j}\tensor{T}{_{k'}^k} \iff 
+        \tensor{R}{^{i'}_{j'}^{k'}} = \tensor{R}{^i_j^k} \tensor{(T^{-1})}{^{i'}_i}\tensor{T}{_{j'}^j}\tensor{(T^{-1})}{^{k'}_k}.
+    \end{equation}
+    Los índices covariantes se transforman igual que los vectores, y los contravariantes como los vectores duales, ni más ni menos.\footnote{Por supuesto, no tenemos por qué cambiar de base simultáneamente en todos los términos del producto tensorial. Podemos incluso usar una base distinta para cada copia de \(V\) o \(V^*\). Nada nos lo impide, salvo el instinto de autopreservación que nos aleja de tales complicaciones superfluas.}
+\end{myitemize}
+
+Los físicos, en la pereza descuidada que nos caracteriza a ojos de un matemático, nunca escribimos \(\mathbf{R}\) como tal, sino que directamente hablamos de sus componentes. De ahí que la imagen que uno acaba haciéndose en la cabeza sobre tensores sea esencialmente un montón de índices. Aun así, hay que tener cuidado. No todo objeto con muchos índices es realmente un tensor tal y como lo hemos definido. Hay entidades que aparecen constantemente en geometría diferencial que tienen varios índices, pero que no son tensores. Un ejemplo que veremos en detalle son los famosos \emph{símbolos de Christoffel}. La manera que tenemos de comprobar si lo son o no, es averiguar cómo se transforman bajo cambios de base. De ahí la famosa frase que encabeza la sección.
+
+\paragraph{Ejemplos de tensores} Siguiendo con la desmitificación del mundo de los tensores, presentamos aquí algunos ejemplos.
+\begin{myitemize}
+    \item Cualquier vector es un tensor de rango \((1, 0)\), que actúa sobre vectores duales.
+    \item Cualquier vector dual es un tensor de rango \((0, 1)\), que actúa sobre vectores.
+    \item El tensor métrico es un tensor de rango \((0, 2)\) que toma dos vectores y devuelve un escalar:
+    \begin{align}
+        \nonumber
+        \mathbf{g}(\mathbf{u},\mathbf{v}) &= g_{ij}[\boldsymbol{\epsilon}^i\otimes\boldsymbol{\epsilon}^j](\mathbf{u},\mathbf{v}) = g_{ij}\,\boldsymbol{\epsilon}^i(\mathbf{u})\otimes\boldsymbol{\epsilon}^j(\mathbf{v})\\
+        &= g_{ij}u^k v^l\,\boldsymbol{\epsilon}^i(\mathbf{e}_k)\otimes\boldsymbol{\epsilon}^j(\mathbf{e}_l) = g_{ij}u^i v^j.
+    \end{align}
+    Además, es un tensor simétrico porque \(g_{ij}=g_{ji}\). También existen los tensores antisimétricos, que cumplen \(a_{ij} = -a_{ji}\).\footnote{Los tensores antisimétricos, de hecho, son los protagonistas de la integración sobre variedades.}\marginexercise{Demuestra que cualquier tensor de rango \(2\) se puede descomponer en una componente simétrica y otra antisimétrica.\\ Demuestra que la traza de un tensor antisimétrico es siempre nula.}
+    \item Los escalares se pueden ver como tensores de rango 0.
+    \item La identidad es un tensor de rango \((1, 1)\): \begin{equation}
+        \label{eq.2identity}
+        \mathbf{1} = \delta^i_j\, \mathbf{e}_i\otimes\boldsymbol{\epsilon}^j \in V\otimes V^*.
+    \end{equation}
+    Notemos que, técnicamente hablando, hay dos identidades: la de \(V\) y la de \(V^*\). La primera actúa sobre vectores y devuelve vectores, mientras que la segunda hace lo propio con vectores duales. Podríamos distinguirlas escribiendo \(\tensor{\delta}{^i_j}\) o \(\tensor{\delta}{_i^j}\), pero por comodidad vamos a relajarnos un poco escribiendo siempre \(\delta^i_j\) como hasta ahora.      
+\end{myitemize}
+
+Una posible preocupación es si las componentes del tensor identidad dependen de la base en la que la expresemos. Uno desearía que no, y comprobarlo es el ejercicio propuesto a la izquierda.\marginexercise{Demuestra que en un cambio de base simultáneo en \(V\) y \(V^*\) las componentes del tensor identidad siguen coincidiendo con la \(\delta\) de Kronecker.}Podemos destacar otro aspecto interesante y relacionado del tensor \(\mathbf{1}\) con la siguiente pregunta: ¿Las componentes de la matriz de cambio de base \(\tensor{T}{_{i'}^i}\) son componentes de algún tensor? La respuesta es afirmativa; simplemente tenemos que considerar el tensor identidad de la \cref{eq.2identity} haciendo un cambio de base en \(V\):
+\begin{equation}
+    \mathbf{1} = \delta^i_j\, \mathbf{e}_i\otimes\boldsymbol{\epsilon}^j = \delta^{i}_{j} \tensor{T}{^{i'}_i}\,\mathbf{e}_{i'}\otimes\boldsymbol{\epsilon}^j = \tensor{T}{^{i'}_j}\,\mathbf{e}_{i'}\otimes\boldsymbol{\epsilon}^j.
+\end{equation}
+La expresión de arriba pone de manifiesto la verdadera naturaleza de los cambios de base: fundamentalmente, \emph{no hacen nada}. Los objetos siguen siendo los mismos, su acción sigue igual. Lo único que cambia es el modo de referirnos a lo mismo; al fin y al cabo un cambio de base no es más que una manera peculiar de escribir la identidad.
+
+Así damos clausura a esta sección sobre álgebra tensorial. Todo lo que hemos hecho ha tomado como base espacios vectoriales de dimensión finita, que realmente son isomorfos a \(\mathbb{R}^n\) para algún \(n\). En la siguiente sección vamos a introducir los ``espacios base'', o variedades diferenciales, de los que hablamos en la \cref{sec.1motivacion}. Los espacios vectoriales que surgen serán, entonces, los espacios tangentes en cada punto de la variedad.
