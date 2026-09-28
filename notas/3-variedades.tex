@@ -293,7 +293,7 @@ Ahora que hemos metido en la mochila el asunto de las variedades, vamos a ver qu
 
     Consideremos la variedad definida por la superficie del paraboloide hiperbólico (patata \textit{pringle}). Como subconjunto de \(\mathbb{R}^3\) es
     \begin{equation*}
-        \mathcal{M} = \left\{(x, y, z)\in\mathbb{R}^3 | z = x^2 - y^2\right\}
+        \mathcal{M} = \left\{(x, y, z)\in\mathbb{R}^3\ |\ z = x^2 - y^2\right\}
     \end{equation*}
     Puesto que sabemos medir distancias en \(\mathbb{R}^3\) con la métrica euclídea,
     \begin{equation*}
@@ -335,7 +335,7 @@ Ahora que hemos metido en la mochila el asunto de las variedades, vamos a ver qu
     {Métricas lorentzianas
     \label{ej.3-metricas_lorentzianas}}
     
-    En las teorías de la relatividad especial y general, el espacio-tiempo se describe como una variedad diferencial 4-dimensional a la que se dota de una (pseudo-)métrica. En relatividad especial, la métrica es la de Lorentz:\footnote{Comparando con la \cref{eq.1-intervalo_esptemp_infinitesimal}, vemos que técnicamente nos faltaba el producto tensorial entre los \(\mathrm{d}x^\mu\).} 
+    En las teorías de la relatividad especial y general, el espacio-tiempo se describe como una variedad diferencial de cuatro dimensiones a la que se dota de una (pseudo-)métrica. En relatividad especial, la métrica es la de Lorentz:\footnote{Comparando con la \cref{eq.1-intervalo_esptemp_infinitesimal}, vemos que técnicamente nos faltaba el producto tensorial entre los \(\mathrm{d}x^\mu\).} 
     \begin{equation*}
         \eta = \eta_{\mu\nu}\, \mathrm{d}x^\mu\otimes\mathrm{d}x^\nu
     \end{equation*}
@@ -495,7 +495,7 @@ La idea es, a primera vista, calcada a como concebimos la integración sobre \(\
     \end{equation*}
     donde el término en valor absoluto es el determinante de la matriz jacobiana de la transformación de coordenadas. En otras palabras,
     \begin{equation*}
-        \int_\mathcal{M} \mathrm{d}x^{1'}\wedge\cdots\wedge\mathrm{d}x^{n'} = \int_\mathcal{M} \det\left(\frac{\partial x^{i'}}\partial {x^i}\right) \mathrm{d}x^{1}\wedge\cdots\wedge\mathrm{d}x^{n}.
+        \int_\mathcal{M} \mathrm{d}x^{1'}\wedge\cdots\wedge\mathrm{d}x^{n'} = \int_\mathcal{M} \det\left(\frac{\partial x^{i'}}{\partial {x^i}}\right) \mathrm{d}x^{1}\wedge\cdots\wedge\mathrm{d}x^{n}.
     \end{equation*}
     Observamos que aparece justamente el determinate jacobiano de siempre cuando cambiamos de variable en una integral. 
 

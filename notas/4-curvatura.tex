@@ -2,6 +2,28 @@
 \section{Curvatura}
 \label{sec.4curvatura}
 
+Sabemos qué es una variedad diferencial. Sabemos qué es un tensor. Ahora nos toca estudiar las consecuencias de trabajar en un espacio curvo. Para ello, conviene precisar qué se entiende por un espacio plano. Diremos que una variedad \(\mathcal{M}\) es plana si podemos encontrar una carta alrededor de cada punto, tal que las componentes de la métrica son \(g_{\mu\nu} = \text{diag}(\pm1, 1...)\). Ojo: las componentes de la métrica dependen del sistema de coordenadas. Es ciertamente posible encontrar sistemas de coordenadas en los que \(g_{\mu\nu} \neq \text{diag}(\pm1, 1...)\), incluso siendo la variedad plana. Lo que hemos afirmado es que es posible hacer \(g_{\mu\nu} = \text{diag}(\pm1, 1...)\) a la vez en toda \(\mathcal{M}\). Cuando no sea posible, diremos que el espacio tiene curvatura.
+
+Una apreciación clave es que, para hablar de curvatura, tenemos que fijar una métrica en \(\mathcal{M}\). En la misma variedad podemos escoger distintos tensores métricos que dan lugar a diferentes nociones de distancia. Consideremos el ejemplo del toro \(T^2\). Entendido como una superficie embebida en \(\mathbb{R}^3\), donde medimos distancias con la métrica euclídea, el toro hereda una métrica como en el \cref{ej.3-metrica_paraboloide}:\marginexercise{Demuestra que la métrica heredada es la que se da en la expresión del texto.}
+\begin{equation}
+    g = r^2\,\mathrm{d}\theta\otimes\mathrm{d}\theta + (R+r\sin\theta)^2\,\mathrm{d}\phi\otimes\mathrm{d}\phi,
+\end{equation}
+donde \(r\) y \(R\) son los radios menor y mayor del toro. Esta \(g\) es un tensor de rango \((0, 2)\), simétrico y definido positivo, luego es una métrica razonable. 
+
+Aun así, no es la única métrica posible; cualquier otro tensor con características similares lo es también, por ejemplo
+\begin{equation}
+    \tilde{g} = \mathrm{d}\theta\otimes\mathrm{d}\theta + \mathrm{d}\phi\otimes\mathrm{d}\phi.
+\end{equation}
+Si quisiréramos visualizar el toro correspondiente a esta nueva métrica, deberíamos imaginar algo más parecido al universo de PacMan, un rectángulo plano en el que identificamos tanto las paredes derecha e izquierda como la superior e inferior. Las coordenadas \(\theta\) y \(\phi\) se corresponden con las coordenadas ``cartesianas'' en el rectángulo. Este es el toro plano, mientras que el otro era el toro curvo, con la curvatura heredada de su inmersión en 
+\(\mathbb{R}^3\). Del mismo modo, podríamos concebir otras métricas que alterarían la curvatura de la variedad diferencial.
+
+\paragraph{Curvatura intrínseca vs. extrínseca} Observemos que la curvatura de la que estamos hablando depende de propiedades intrínsecas de la variedad como es la métrica. Es decir, es una curvatura que se puede describir y percibir sin necesidad de observar la variedad ``desde fuera de ella''. Por ejemplo, la esfera con la métrica habitual tiene curvatura intrínseca, y se puede averiguar sin necesidad de subirse a un cohete. Dos personas podrían ponerse a caminar desde puntos distintos del ecuador hacia el polo norte y, a pesar de que sus caminos comienzan paralelos, acabarían cruzándose en el polo norte. O podríamos dibujar un triángulo y comprobar que sus lados suman más de 180\(^\circ\). En cambio, un cilindro visto desde una perspectiva extrínseca es claramente curvo, mientras que su curvatura intrínseca se anula.\marginexercise{Reflexiona sobre la curvatura intrínsica de un cilindro.} 
+
+La idea de que la métrica es lo que determina la curvatura intrínseca del espacio es, precisamente, lo que establece el teorema egregio de Gauss, uno de los resultados fundamentales de la geometría diferencial de curvas y superficies ``clásica''.
+
+unir con lo siguiente.
+
+
 \subsection{Conexión afín}
 - problema del transporte paralelo
 
