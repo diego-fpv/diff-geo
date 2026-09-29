@@ -2,7 +2,7 @@
 \section{Curvatura}
 \label{sec.4curvatura}
 
-Sabemos qué es una variedad diferencial. Sabemos qué es un tensor. Ahora nos toca estudiar las consecuencias de trabajar en un espacio curvo. Para ello, conviene precisar qué se entiende por un espacio plano. Diremos que una variedad \(\mathcal{M}\) es plana si podemos encontrar una carta alrededor de cada punto, tal que las componentes de la métrica son \(g_{\mu\nu} = \text{diag}(\pm1, 1...)\). Ojo: las componentes de la métrica dependen del sistema de coordenadas. Es ciertamente posible encontrar sistemas de coordenadas en los que \(g_{\mu\nu} \neq \text{diag}(\pm1, 1...)\), incluso siendo la variedad plana. Lo que hemos afirmado es que es posible hacer \(g_{\mu\nu} = \text{diag}(\pm1, 1...)\) a la vez en toda \(\mathcal{M}\). Cuando no sea posible, diremos que el espacio tiene curvatura.
+Sabemos qué es una variedad diferencial. Sabemos qué es un tensor. Ahora nos toca estudiar las consecuencias de trabajar en un espacio curvo. Para ello, conviene precisar qué se entiende por un espacio plano. Diremos que una variedad \(\mathcal{M}\) es plana si podemos encontrar una carta alrededor de cada punto, tal que las componentes de la métrica son \(g_{\mu\nu} = \text{diag}(\pm1, 1...)\) en toda la variedad. Ojo: las componentes de la métrica dependen del sistema de coordenadas. Es ciertamente posible encontrar sistemas de coordenadas en los que \(g_{\mu\nu} \neq \text{diag}(\pm1, 1...)\), incluso siendo la variedad plana. Lo que hemos afirmado es que es posible hacer \(g_{\mu\nu} = \text{diag}(\pm1, 1...)\) a la vez en toda \(\mathcal{M}\). Cuando no sea posible, diremos que el espacio tiene curvatura.
 
 Una apreciación clave es que, para hablar de curvatura, tenemos que fijar una métrica en \(\mathcal{M}\). En la misma variedad podemos escoger distintos tensores métricos que dan lugar a diferentes nociones de distancia. Consideremos el ejemplo del toro \(T^2\). Entendido como una superficie embebida en \(\mathbb{R}^3\), donde medimos distancias con la métrica euclídea, el toro hereda una métrica como en el \cref{ej.3-metrica_paraboloide}:\marginexercise{Demuestra que la métrica heredada es la que se da en la expresión del texto.}
 \begin{equation}
@@ -19,10 +19,33 @@ Si quisiréramos visualizar el toro correspondiente a esta nueva métrica, deber
 
 \paragraph{Curvatura intrínseca vs. extrínseca} Observemos que la curvatura de la que estamos hablando depende de propiedades intrínsecas de la variedad como es la métrica. Es decir, es una curvatura que se puede describir y percibir sin necesidad de observar la variedad ``desde fuera de ella''. Por ejemplo, la esfera con la métrica habitual tiene curvatura intrínseca, y se puede averiguar sin necesidad de subirse a un cohete. Dos personas podrían ponerse a caminar desde puntos distintos del ecuador hacia el polo norte y, a pesar de que sus caminos comienzan paralelos, acabarían cruzándose en el polo norte. O podríamos dibujar un triángulo y comprobar que sus lados suman más de 180\(^\circ\). En cambio, un cilindro visto desde una perspectiva extrínseca es claramente curvo, mientras que su curvatura intrínseca se anula.\marginexercise{Reflexiona sobre la curvatura intrínsica de un cilindro.} 
 
-La idea de que la métrica es lo que determina la curvatura intrínseca del espacio es, precisamente, lo que establece el teorema egregio de Gauss, uno de los resultados fundamentales de la geometría diferencial de curvas y superficies ``clásica''.
+La idea de que la métrica es lo que determina la curvatura intrínseca del espacio es, precisamente, lo que establece el teorema egregio de Gauss, uno de los resultados fundamentales de la geometría diferencial de curvas y superficies ``clásica''. De todos modos, el criterio sobre la métrica no es el más sencillo de aplicar directamente. Considera el siguiente ejemplo.
 
-unir con lo siguiente.
+\begin{example}
+    {\(\mathbb{R}^2\) con coordenadas curvilíneas
+    \label{ex.4-plano_curvilineas}}
+    Sea \(\mathbb{R}^2\) el plano con coordenadas \(u\in(-\pi/2,\pi/2)\) y \(v\in(-\pi/2,\pi/2)\) y métrica
+    \begin{align*}
+        g =&\, \frac{4}{9\cos^4(u)}\mathrm{d}u\otimes\mathrm{d}u + \frac{10}{9\cos^4(v)}\mathrm{d}v\otimes\mathrm{d}v \\
+        &+\frac{2}{9\cos^2(u)\cos^2(v)}\left(\mathrm{d}u\otimes\mathrm{d}v + \mathrm{d}v\otimes\mathrm{d}u \right).
+    \end{align*}
+    ¿Da esta métrica una geometría curva o plana a \(\mathbb{R}^2\)? Así escrita puede ser difícil decidirlo, desde luego. Sin embargo, el cambio de coordenadas\marginexercise{Calcula el cambio de coordenadas inverso y obtén la métrica en las coordenadas \(x\) e \(y\). Esboza las líneas de \(u=0,\pm0.5,\pm1,\pm1.5\) y \(v=0,\pm0.5,\pm1,\pm1.5\).}
+    \begin{align*}
+        &\left\{
+            \begin{aligned}
+                x(u, v) &= \frac{\sqrt{2}(\tan(u)+2\tan(v))}{3}\\
+                y(u, v) &= \frac{\sqrt{2}(\tan(u)-\tan(v))}{3}
+            \end{aligned}
+        \right.,
+    \end{align*}
+    con \(x\in(-\infty,\infty)\) e \(y\in(-\infty,\infty)\), convierte la métrica anterior en 
+    \begin{equation*}
+        g = \mathrm{d}x\otimes\mathrm{d}x + \mathrm{d}y\otimes\mathrm{d}y.
+    \end{equation*}
+    Es decir, las coordenadas \(u\) y \(v\) únicamente ocultaban la planitud del espacio. 
+\end{example}
 
+Salvo que se nos ocurra un cambio de coordenadas feliz, puede ser difícil averiguar si un espacio es plano o no. Con ese objetivo, vamos a recorrer el camino hacia un método más sencillo mediante los tensores de curvatura, aunque aprovecharemos para dar un paseo por otros problemas e ideas interesantes.
 
 \subsection{Conexión afín}
 - problema del transporte paralelo
@@ -50,8 +73,8 @@ intuición ``Einsteniana''
 
 % ejemplo de fuerzas ficticias
 
-% \subsection{Transporte paralelo}
+\subsection{Transporte paralelo}
 
-% \subsection{Curvas geodésicas}
+\subsection{Curvas geodésicas}
 
-
+\subsection{Tensores de curvatura}
