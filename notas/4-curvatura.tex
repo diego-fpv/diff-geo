@@ -2,9 +2,9 @@
 \section{Curvatura}
 \label{sec.4curvatura}
 
-Sabemos qué es una variedad diferencial. Sabemos qué es un tensor. Ahora nos toca estudiar las consecuencias de trabajar en un espacio curvo. Para ello, conviene precisar qué se entiende por un espacio plano. Diremos que una variedad \(\mathcal{M}\) es plana si podemos encontrar una carta alrededor de cada punto, tal que las componentes de la métrica son \(g_{\mu\nu} = \text{diag}(\pm1, 1...)\) en toda la variedad. Ojo: las componentes de la métrica dependen del sistema de coordenadas. Es ciertamente posible encontrar sistemas de coordenadas en los que \(g_{\mu\nu} \neq \text{diag}(\pm1, 1...)\), incluso siendo la variedad plana. Lo que hemos afirmado es que es posible hacer \(g_{\mu\nu} = \text{diag}(\pm1, 1...)\) a la vez en toda \(\mathcal{M}\). Cuando no sea posible, diremos que el espacio tiene curvatura.
+Sabemos qué es una variedad diferencial. Sabemos qué es un tensor. Ahora nos toca estudiar las consecuencias de trabajar en un espacio curvo. Para ello, conviene precisar qué se entiende por un espacio plano. Diremos que una variedad \(\mathcal{M}\) es plana si podemos encontrar una carta alrededor de cada punto, tal que las componentes de la métrica son \(g_{ij} = \text{diag}(\pm1, 1...)\) en toda la variedad. Ojo: las componentes de la métrica dependen del sistema de coordenadas. Es ciertamente posible encontrar sistemas de coordenadas en los que \(g_{ij} \neq \text{diag}(\pm1, 1...)\), incluso siendo la variedad plana. Lo que hemos afirmado es que es posible hacer \(g_{ij} = \text{diag}(\pm1, 1...)\) a la vez en toda \(\mathcal{M}\). Cuando no sea posible, diremos que el espacio tiene curvatura.
 
-Una apreciación clave es que, para hablar de curvatura, tenemos que fijar una métrica en \(\mathcal{M}\). En la misma variedad podemos escoger distintos tensores métricos que dan lugar a diferentes nociones de distancia. Consideremos el ejemplo del toro \(T^2\). Entendido como una superficie embebida en \(\mathbb{R}^3\), donde medimos distancias con la métrica euclídea, el toro hereda una métrica como en el \cref{ej.3-metrica_paraboloide}:\marginexercise{Demuestra que la métrica heredada es la que se da en la expresión del texto.}
+Una apreciación clave es que, para hablar de curvatura, tenemos que fijar una métrica en \(\mathcal{M}\).\footnote{Estrictamente hablando, lo que hay que fijar es una \emph{conexión afín}, que es más general que una métrica. Veremos la relación más adelante.} En la misma variedad podemos escoger distintos tensores métricos que dan lugar a diferentes nociones de distancia. Consideremos el ejemplo del toro \(T^2\). Entendido como una superficie embebida en \(\mathbb{R}^3\), donde medimos distancias con la métrica euclídea, el toro hereda una métrica como en el \cref{ej.3-metrica_paraboloide}:\marginexercise{Demuestra que la métrica heredada es la que se da en la expresión del texto.}
 \begin{equation}
     g = r^2\,\mathrm{d}\theta\otimes\mathrm{d}\theta + (R+r\sin\theta)^2\,\mathrm{d}\phi\otimes\mathrm{d}\phi,
 \end{equation}
@@ -29,7 +29,7 @@ La idea de que la métrica es lo que determina la curvatura intrínseca del espa
         g =&\, \frac{4}{9\cos^4(u)}\mathrm{d}u\otimes\mathrm{d}u + \frac{10}{9\cos^4(v)}\mathrm{d}v\otimes\mathrm{d}v \\
         &+\frac{2}{9\cos^2(u)\cos^2(v)}\left(\mathrm{d}u\otimes\mathrm{d}v + \mathrm{d}v\otimes\mathrm{d}u \right).
     \end{align*}
-    ¿Da esta métrica una geometría curva o plana a \(\mathbb{R}^2\)? Así escrita puede ser difícil decidirlo, desde luego. Sin embargo, el cambio de coordenadas\marginexercise{Calcula el cambio de coordenadas inverso y obtén la métrica en las coordenadas \(x\) e \(y\). Esboza las líneas de \(u=0,\pm0.5,\pm1,\pm1.5\) y \(v=0,\pm0.5,\pm1,\pm1.5\).}
+    ¿Da esta métrica una geometría curva o plana a \(\mathbb{R}^2\)? Así escrita puede ser difícil decidirlo, desde luego. Sin embargo, el cambio de coordenadas\marginexercise{Calcula el cambio de coordenadas inverso y obtén la métrica en las coordenadas \(x\) e \(y\). Esboza las líneas de \(u=0,\pm0.5,\pm1\) y \(v=0,\pm0.5,\pm1\).}
     \begin{align*}
         &\left\{
             \begin{aligned}
@@ -48,19 +48,262 @@ La idea de que la métrica es lo que determina la curvatura intrínseca del espa
 Salvo que se nos ocurra un cambio de coordenadas feliz, puede ser difícil averiguar si un espacio es plano o no. Con ese objetivo, vamos a recorrer el camino hacia un método más sencillo mediante los tensores de curvatura, aunque aprovecharemos para dar un paseo por otros problemas e ideas interesantes.
 
 \subsection{Conexión afín}
-- problema del transporte paralelo
+\label{subsec4}
 
-podríamos equipar Rn con una conexión ``extraña'', pero entonces sería todo un poco raro. no sería muy paralelo, que digamos.
+Con lo que comentado hasta ahora, hemos visto que la métrica permite describir la curvatura. Sin embargo, la relación entre la métrica y la curvatura es más sutil de lo que hasta ahora ha podido parecer. Vamos a remediarlo introduciendo la herramienta que realmente da lugar a la curvatura: la conexión afín. 
 
-metric-compatible: vectors do not grow when transported
+Ya dedicamos unas palabras a la conexión afín en la \cref{subsec.3tensores}, pero hay mucho más que decir. Empecemos por la definición. Una conexión afín es un objeto geométrico que definimos sobre una variedad diferencial \(\mathcal{M}\), que conecta espacios tangentes cercanos. En otras palabras, lo que hace es identificar cada vector de \(T_p\mathcal{M}\) con algún vector de \(T_q\mathcal{M}\), donde \(p\) y \(q\) son puntos distintos de \(\mathcal{M}\). Además, dicha identificación debe ser un isomorfismo lineal, es decir, es biyectiva y preserva las combinaciones lineales. Veamos algunos ejemplos de conexiones en \(\mathcal{M} = \mathbb{R}^2\), por empezar con algo sencillo.
 
-torsion-free: they do not ``twist''.
+\begin{example}
+    {Conexión trivial en \(\mathbb{R}^2\).
+    \label{ej.4-conexion_trivialR2}}
 
-- métrica? conexión compatible con la métrica
+    Describiendo \(\mathbb{R}^2\) con coordenadas cartesianas \(\{x, y\}\), la conexión ``trivial'' sería tomar \(\mathbf{u} = u^i\partial_i\in T_p\mathcal{M}\) y llevarlo a \(\mathbf{v} = v^i\partial_i\in T_q\mathcal{M}\), de manera que las componentes coincidan: \(u^i = v^i\). Esta es la conexión que respeta la noción intuitiva de paralelismo. 
+
+    Observemos que en otras coordenadas, las componentes de \(\mathbf{u}\) y \(\mathbf{v}\) no tienen por qué coincidir. Continuando con el mismo ejemplo de conexión, pero utilizando coordenadas polares \(\{r, \theta\}\), los vectores de la base son, en un punto arbitrario \(p\)
+    \begin{equation*}
+        \left\{\begin{aligned}
+            \partial_r|_p &= \frac{x_p}{r_p}\partial_x + \frac{y_p}{r_p}\partial_y\\
+            \partial_\theta|_p &= -y_p\partial_x + x_p\partial_y
+        \end{aligned}\right.
+    \end{equation*}
+    Por simplicidad notacional, denotamos \(x_p\) e \(y_p\) a las coordenadas cartesianas de \(p\), y \(r_p = \sqrt{x_p^2 + y_p^2}\). En los vectores \(\partial_{x/y}\) no especificamos el punto porque sí son los mismos, independientemente del punto. A partir de aquí, podemos deducir que los vectores polares en \(p\) y \(q\) se relacionan por\marginexercise{Obtén la siguiente relación entre los vectores de la base asociada a las coordenadas polares en distintos puntos de \(\mathbb{R}^2\).}
+    \begin{equation*}
+        \left\{
+            \begin{aligned}
+                \partial_r|_p &= \frac{x_px_q + y_py_q}{r_pr_q}\partial_r|_q + \frac{-x_py_q + y_px_q}{r_pr_q^2}\partial_\theta|_q\\
+                \partial_\theta|_p &= \frac{-y_px_q + x_py_q}{r_q}\partial_r|_q + \frac{x_px_q + y_py_q}{r_q^2}\partial_\theta|_q
+            \end{aligned}
+        \right.
+    \end{equation*}
+    Dado que los vectores de la base cumplen esta relación, la conexión trivial del plano vendrá dada por 
+    \begin{equation*}
+        \left\{
+            \begin{aligned}
+                v^r &= u^r\frac{x_px_q + y_py_q}{r_pr_q} + u^\theta \frac{-y_px_q + x_py_q}{r_q}\\
+                v^\theta &= u^r\frac{-x_py_q + y_px_q}{r_pr_q^2} + u^\theta\frac{x_px_q + y_py_q}{r_q^2}
+            \end{aligned}
+        \right.
+    \end{equation*}
+\end{example}
+
+\begin{example}
+    {Conexión afín peculiar en \(\mathbb{R}^2\).
+    \label{ej.4-conexion_peculiarR2}}
+    Consideremos de nuevo \(\mathcal{M} = \mathbb{R}^2\) con coordenadas cartesianas. Una conexión posible viene dada por la siguiente transformación. Si \(\mathbf{u}\in T_p\mathcal{M}\) y \(\mathbf{v}\in T_q\mathcal{M}\),
+    \begin{equation*}
+        \left\{
+        \begin{aligned}
+            v^x = e^{y_q-y_p}\left(\cos(x_q-x_p)u^x - \sin(x_q-x_p)u^y\right)\\
+            v^y = e^{y_q-y_p}\left(\sin(x_q-x_p)u^x + \cos(x_q-x_p)u^y\right)
+        \end{aligned}\right.
+    \end{equation*}
+    El significado geométrico de esta conexión afín es el siguiente. Dado un vector en \(p\), con coordenadas \((x_p, y_p)\), lo llevamos a \(q\) rotándolo un ángulo igual a \(x_q-x_p\) y estirándolo o contrayéndolo un factor \(e^{y_q-y_p}\). La \cref{fig.4-conexion_trivialR2} muestra lo que le pasa al vector \(\partial_x\) cuando lo movemos desde el punto \((1.3, 0)\) a lo largo de una circunferencia centrada en el origen.
+
+    \begin{figbox}
+        {Evolución del vector \(\partial_x\) de acuerdo con una conexión afín peculiar. A medida que la coordenada \(y\) del punto aumenta, el módulo del vector aumenta. Por otro lado, el movimiento horizontal rota el vector.
+        \label{fig.4-conexion_peculiarR2}}
+        \includegraphics{figuras/conexionR2.pdf}
+    \end{figbox}
+\end{example}
+
+Obviamente, para cualquier variedad existen infinitas maneras de relacionar los vectores de distintos espacios tangentes, luego hay infinitas conexiones posibles. Algunas (pocas) serán geométricamente muy intuitivas, otras no. A la conexión afín no le importa lo que pensemos de ella. Solo se preocupa de la asignación de vectores de unos espacios tangentes a otros. 
+
+Falta precisar un par de detalles para acabar de presentar las conexiones afines. En general, el mapa que relaciona un vector \(\mathbf{u}\in T_p\mathcal{M}\) con otro \(\mathbf{v}\in T_q\mathcal{M}\) depende del camino que sigamos entre los puntos \(p\) y \(q\). Las conexiones de los \cref{ej.4-conexion_trivialR2,ej.4-conexion_peculiarR2} concretamente no dependen del camino, pero es una peculiaridad, no la norma. En la mayor parte de los casos \(\mathbf{v}\in T_q\mathcal{M}\) sí depende del camino con el que unamos \(p\) y \(q\). 
+
+La dependencia del camino hace que normalmente no podamos dar la expresión de una conexión afín ``a pelo'' como hemos hecho en los \cref{ej.4-conexion_trivialR2,ej.4-conexion_peculiarR2}. En su lugar, lo que sí podemos hacer es caracterizar la conexión infinitesimalmente, ya que todo camino se puede descomponer en trozos infinitesimalmente pequeños. Para ello introducimos ahora los símbolos de Christoffel.
+
+\subsubsection{Símbolos de Christoffel}
+\label{subsubsec.4christoffel}
+
+Especialmente en física, es habitual hablar de la conexión en términos de los famosos símbolos de Christoffel, que definen la transformación infinitesimalmente. En otras palabras, dado un vector en \(T_p\mathcal{M}\) nos dicen a qué vector lo mandan en puntos \(q\) infinitesimalmente cercanos. 
+
+A partir de la relación de las componentes de unos vectores y otros es sencillo obtener los símbolos de Christoffel. La conexión lleva \(\mathbf{u}|_p\in T_p\mathcal{M}\) a \(\mathbf{u}|_q\in T_q\mathcal{M}\):\footnote{Antes hablábamos de \(\mathbf{u}\) y \(\mathbf{v}\), pero ahora es más conveniente usar el mismo nombre y especificar el espacio tangente al que pertenece con \(|_p\) o \(|_q\).}
+\begin{equation*}
+    \mathbf{u}|_p = \left(\mathbf{u}|_p\right)^i \partial_i \quad\longrightarrow\quad \mathbf{u}|_q = \left(\mathbf{u}|_q\right)^i \partial_i.
+\end{equation*}
+En el límite en que las coordenadas de \(q\), \(x^i(q)\), van hacia las de \(p\), \(x^i(p)\), a orden lineal tenemos
+\begin{equation}
+    \left(\mathbf{u}|_q\right)^i\left(x^1(q), ..., x^n(q); \mathbf{u}|_p\right)\approx \left(\mathbf{u}|_p\right)^i + \frac{\partial \left(\mathbf{u}|_p\right)^i}{\partial x^k} \left(x^k(q) - x^k(p)\right).
+\end{equation}
+Aquí, las componentes de \(\mathbf{u}|_q\) dependen de las coordenadas del punto \(q\) y también de las componentes del vector original \(\mathbf{u}|_p\). Ahora, recordando que la transformación de la conexión es lineal en las componentes \(u^j\), escribimos las derivadas parciales como
+\begin{equation}
+    \label{eq.4-christoffel}
+    \frac{\partial \left(\mathbf{u}|_p\right)^i}{\partial x^k} =: -\Gamma^{i}_{jk}\left(x^1(p),..., x^n(p)\right)\left(\mathbf{u}|_p\right)^j. 
+\end{equation}
+
+Los coeficientes \(\Gamma^{i}_{jk}\) son los símbolos de Christoffel.\footnote{Una aclaración pertinente es que aunque sean objetos con varios índices, los símbolos de Christoffel no son tensores, por es olos llamamos símbolos.} En la \cref{eq.4-christoffel}, para \(k\) fijo, \(\Gamma^{i}_{jk}\) representa una matriz que relaciona la variación de la componente \(i\) con la componente \(j\). Además, los símbolos de Christoffel dependen, generalmente, del punto \(p\). Si damos valores a los \(\Gamma^{i}_{jk}\), estamos definiendo una conexión infinitesimalmente.
+
+A partir de dichos coeficientes, podemos reconstruir el mapa entre vectores de espacios tangentes a \(\mathcal{M}\) en puntos \(p\) y \(q\) lejanos uniendo trocitos infinitesimales. En más detalle, sea \(\gamma:[t_0, t_1]\rightarrow\mathcal{M}\) un camino con extremos \(\gamma(t_0) = p\) y \(\gamma(t_1) = q\), y las componentes del vector inicial \(u^i(t_0) = \left(\mathbf{u}|_q\right)^i\). A lo largo del camino, las componentes se convertirán en \(u^i(t)\) hasta llegar a \(u^i(t_1) = \left(\mathbf{u}|_q\right)^i\). Visto así, tenemos una ecuación diferencial para las \(u^i(t)\):
+\begin{equation}
+    \label{eq.4-transporte_paralelo}
+    \frac{\mathrm{d}u^i}{\mathrm{d}t} = \frac{\partial u^i}{\partial x^k} \frac{\mathrm{d}x^k}{\mathrm{d}t} = -\Gamma^{i}_{jk}\left(x^1(t),..., x^n(t)\right)u^j(t) \frac{\mathrm{d}x^k}{\mathrm{d}t},
+\end{equation}
+donde \(x^i(t)\) son las coordenadas a lo largo de la trayectoria \(\gamma\). La \cref{eq.4-transporte_paralelo} es, por cierto, la ecuación del \emph{transporte paralelo}. Esencialmente nos dice cómo desplazar un vector \(\mathbf{u}\) ``paralelo'' a sí mismo a lo largo de una trayectoria, dada una conexión. Cada una de las infinitas conexiones afines posibles dará lugar a una noción de paralelismo distinta, aunque hay una elección concreta que se corresponde justamente con la noción intuitiva en la que pensamos casi sin querer: la conexión de Levi-Civita que exploraremos al final de esta subsección. La solución formal de la ecuación del transporte paralelo es, trivialmente,
+\begin{equation}
+    u^i(t_1) = u^i(t_0) - \int_{t_0}^{t_1}\mathrm{d}t\, \Gamma^{i}_{jk} \left(x^1(t),...,x^n(t)\right) u^j(t) \frac{\mathrm{d}x^k}{\mathrm{d}t}.
+\end{equation}
+
+\begin{example}
+    {Símbolos de Christoffel para la conexión del \cref{ej.4-conexion_peculiarR2}.
+    \label{ej.4-christoffel_from_connection}}
+
+    A partir de la conexión entre puntos lejanos podemos obtener los coeficientes de la conexión infinitesimal simplemente expandiendo a primer orden:
+    \begin{equation*}
+        \left\{
+        \begin{aligned}
+            \exp(y_q-y_p) &\approx 1 + (y_q - y_p)\\
+            \cos(x_q-x_p) &\approx 1\\
+            \sin(x_q-x_p) &\approx x_q-x_p
+        \end{aligned}\right.
+    \end{equation*}
+    y escribir la transformación de la conexión en este límite, despreciando contribuciones de órdenes superiores:\footnote{En la expresión de abajo hay, en rigor, términos de segundo orden. En efecto, expandiendo tenemos términos proporcionales a \((y_q - y_p)(x_q - x_p)\). En los pasos siguientes los eliminaremos.}
+    \begin{equation*}
+        \left\{
+        \begin{aligned}
+            v^x &\approx \left[1 + (y_q - y_p)\right]\left(u^x - (x_q-x_p)u^y\right)\\
+            v^y &\approx \left[1 + (y_q - y_p)\right]\left((x_q-x_p)u^x + u^y\right)
+        \end{aligned}\right.
+    \end{equation*}
+    Extraemos ahora las coordenadas originales \(u^i\) y podemos leer los símbolos de Christoffel de lo que sobre:
+    \begin{equation*}
+        \left\{
+        \begin{aligned}
+            v^x &\approx u^x + (y_q - y_p)u^x - (x_q - x_p)u^y\\
+            v^y &\approx u^y + (x_q - x_p)u^x + (y_q - y_p)u^y
+        \end{aligned}\right. \implies 
+        \left\{
+        \begin{aligned}
+            \Gamma^x_{yx} &= -1, && \Gamma^{x}_{yx}  = +1\\
+            \Gamma^y_{xx} &= -1, && \Gamma^{y}_{yy}  = -1
+        \end{aligned}\right.
+    \end{equation*}
+    Los otros cuatro coeficientes son 0.
+\end{example}
+
+Ahora que sabemos qué es una conexión, veamos qué nos dice respecto a la curvatura. Sea \(p\in\mathcal{M}\) un punto y \(\gamma:[t_0, t_1]\rightarrow\mathcal{M}\) un camino cerrado con inicio y fin en \(p\): \(\gamma(t_0) = \gamma(t_1) = p\). Con la maquinaria desarrollada, podemos dar por fin una primera manera de determinar la curvatura de una variedad. Para ello, nos preguntamos qué le sucede a un vector de \(T_p\mathcal{M}\) cuando lo transportamos a lo largo de \(\gamma\) según dicten los coeficientes de la conexión.
+
+Si el vector final coincide con el inicial independientemente del camino cerrado que escojamos y lo mismo sucede para cualquier otro punto inicial en \(\mathcal{M}\), entonces la variedad es plana. En cambio, si el transporte en caminos cerrados devuelve un vector distinto al incial, la variedad tendrá curvatura no nula. Por supuesto, hay maneras más aplicables de calcular la curvatura de una superficie, pero la intuición es la que hemos discutido aquí.\marginexercise{¿Es la conexión del \cref{ej.4-conexion_peculiarR2} plana?} 
+
+\begin{example}
+    {Conexión con curvatura en \(S^2\).
+    \label{ej.4-conexión_esfera}}
+
+    En este ejemplo vamos a ver los detalles tras la \cref{fig.3-transporte_paralelo_S2}. Los cálculos son más laboriosos que complicados; no debemos asustarnos al ver la extensión del ejemplo.
+
+    En la esfera, como en cualquier otra variedad diferencial, podemos definir una conexión infinitesimalmente a través de sus símbolos de Christoffel. Vamos a dar aquí los valores de los símbolos de una conexión concreta sobre la que hablaremos más adelante, la de Levi-Civita. Dejemos para ese momento la discusión sobre los detalles. Por el momento lo único que hace falta saber es que es la conexión más natural e intuitiva, y que está relacionada con la métrica.
+
+    Si en \(S^2\) elegimos la métrica heredada del espacio euclídeo, tenemos
+    \begin{equation}
+        g = \text{diag}\left(1, \sin^2(\theta)\right)
+    \end{equation}
+    en las coordenadas \(\{\theta, \phi\}\). Los símbolos de Christoffel no nulos asociados son:
+    \begin{equation*}
+        \Gamma^{\theta}_{\phi\phi} = -\sin(\theta)\cos(\theta)\quad\text{y}\quad\Gamma^{\phi}_{\theta\phi} = \Gamma^{\phi}_{\phi\theta} = \cot(\theta).
+    \end{equation*}
+    Por el momento, como si nos hubieran caído del cielo.
+
+    Con estos símbolos de Christoffel, miremos qué le pasa al vector \(\mathbf{u} = \partial_\theta\) situado en un punto cercano al polo norte, dado por \(\theta=\epsilon\) y \(\phi = 0\), cuando lo trasladamos a lo largo de un meridiano (\(\phi = 0\)) hasta el ecuador, después lo desplazamos por el ecuador (\(\theta = \pi/2\)) hasta \(\phi=\pi/2\), luego volvemos a subirlo por un meridiano (\(\phi = \pi/2\)) y, por último, cerramos el camino por el paralelo \(\theta=\epsilon\), como en la \cref{fig.4-transporteS2}. Usamos esta trayectoria para evitar el polo norte, que no está bien descrito por nuestras coordenadas, pero al final del cálculo tomaremos el límite \(\epsilon\rightarrow0\) para recuperar el resultado asociado a una trayectoria más sencilla en la que empezamos y acabamos en el polo norte.
+
+    \begin{figbox}
+        {Transporte del vector \(\mathbf{u} = \partial_x = \partial_\theta\) a lo largo de la trayectoria marcada en negro. Durante los tres primeros tramos, las componentes del vector no se ven alteradas, de modo que tenemos siempre \(\mathbf{u} = \partial_\theta\). En el último tramo cercano al polo norte sí se producen modificaciones en las componentes, de tal modo que al volver al punto de origen \(\mathbf{u} \approx \partial_y \propto \partial_phi\).
+        \label{fig.4-transporteS2}}
+        \input{figuras/transporteS2.tex}
+    \end{figbox}
+    
+    Parametricemos la trayectoria en 4 trozos con \(t_1\in(\epsilon,\pi/2)\), \(t_2\in(0,\pi/2)\), \(t_3\in(0, \pi/2-\epsilon)\) y \(t_4\in(0,\pi/2)\), de manera que
+    \begin{align*}
+        &\gamma_1:\left\{\begin{aligned}
+            \theta(t_1) &= t_1\\
+            \phi(t_1) &= 0
+        \end{aligned}\right.
+        &&\gamma_2:\left\{\begin{aligned}
+            \theta(t_2) &= \pi/2\\
+            \phi(t_2) &= t_2
+        \end{aligned}\right.\\
+        &\gamma_3:\left\{\begin{aligned}
+            \theta(t_3) &= \pi/2-t_3\\
+            \phi(t_3) &= \pi/2
+        \end{aligned}\right.
+        &&\gamma_4:\left\{\begin{aligned}
+            \theta(t_4) &= \epsilon\\
+            \phi(t_4) &= \pi/2-t_4
+        \end{aligned}\right.
+    \end{align*}  
+    La componente \(u^\theta\) obedece la siguiente relación:
+    \begin{align*}
+        u^\theta = 1& + \int_\epsilon^{\pi/2} \mathrm{d}t_1\, \sin(t_1)\cos(t_1) u^\phi(t_1) \frac{\mathrm{d}\phi(t_1)}{\mathrm{d}t_1} \\
+        &+ \int_0^{\pi/2} \mathrm{d}t_2\, \sin(t_2)\cos(\pi/2) u^\phi(\pi/2) \frac{\mathrm{d}\phi(t_2)}{\mathrm{d}t_2}\\
+        &+ \int_0^{\pi/2-\epsilon} \mathrm{d}t_3\, \sin(\pi/2-t_3)\cos(\pi/2-t_3) u^\phi(t_3) \frac{\mathrm{d}\phi(t_3)}{\mathrm{d}t_3}\\
+        &+ \int_0^{\pi/2} \mathrm{d}t_4\, \sin(\epsilon)\cos(\epsilon) u^\phi(t_4) \frac{\mathrm{d}\phi(t_4)}{\mathrm{d}t_4}.
+    \end{align*}
+    En los trozos 1 y 3, \(\phi(t_3)\) es constante, luego las integrales se anulan. En el trozo 2, \(\theta = \pi/2\), luego \(\cos(\theta)=0\) y también se anula. El trozo 4 no podemos simplificarlo más sin obtener primero \(u^\phi(t_4)\), pero sí podemos expresarlo como el resultado de integrar la siguiente ecuación diferencial:
+    \begin{equation}
+        \label{eq.4-examplea}
+        \frac{\mathrm{d}u^\theta}{\mathrm{d}t} = - \sin(\epsilon)\cos(\epsilon) u^\phi(t)
+    \end{equation}
+    entre \(t=0\) y \(t=\pi/2\), sobreentendiendo ya que es el cuarto trozo.
+    
+    Falta estudiar la componente \(u^\phi\). Siguiendo la misma regla, con los cambios de símbolos de Christoffel oportunos:\marginexercise{Comprueba que está todo bien en esta expresión para \(u^\phi\) y en la anterior para \(u^\theta\).}
+    \begin{align*}
+        u^\phi = -&\int_\epsilon^{\pi/2} \mathrm{d}t_1\, \cot(t_1) \left[u^\theta(t_1) \frac{\mathrm{d}\phi(t_1)}{\mathrm{d}t_1} + u^\phi(t_1) \frac{\mathrm{d}\theta(t_1)}{\mathrm{d}t_1}\right] \\
+        - &\int_0^{\pi/2} \mathrm{d}t_2\, \cot(\pi/2) \left[u^\theta(t_2) \frac{\mathrm{d}\phi(t_2)}{\mathrm{d}t_2} + u^\phi(t_2) \frac{\mathrm{d}\theta(t_2)}{\mathrm{d}t_2}\right]\\
+        - &\int_0^{\pi/2-\epsilon} \mathrm{d}t_3\, \cot(\pi/2-t_3) \left[u^\theta(t_3) \frac{\mathrm{d}\phi(t_3)}{\mathrm{d}t_3} + u^\phi(t_3) \frac{\mathrm{d}\theta(t_3)}{\mathrm{d}t_3}\right]\\
+        - &\int_0^{\pi/2} \mathrm{d}t_4\, \cot(\epsilon) \left[u^\theta(t_4) \frac{\mathrm{d}\phi(t_4)}{\mathrm{d}t_4} + u^\phi(t_4) \frac{\mathrm{d}\theta(t_4)}{\mathrm{d}t_4}\right].
+    \end{align*}
+    Sabiendo ya que \(u^\theta = 1\) durante los tres primeros fragmentos, y con la parametrización de cada trozo de la trayectoria, podemos reducir las integrales anteriores a
+    \begin{align*}
+        u^\phi = -&\int_\epsilon^{\pi/2} \mathrm{d}t_1\, \cot(t_1) u^\phi(t_1) - \int_0^{\pi/2} \mathrm{d}t_2\, \cot(\pi/2) \\
+        + &\int_0^{\pi/2-\epsilon} \mathrm{d}t_3\, \cot(\pi/2-t_3) u^\phi(t_3) + \int_0^{\pi/2} \mathrm{d}t_4\, \cot(\epsilon) u^\theta(t_4).
+    \end{align*}
+    La primera integral se anula, porque es el resultado de integrar entre \(t=\epsilon\) y \(t=\pi/2\) la ecuación\marginexercise{Convéncete de que esto implica que el primer término se anula.}
+    \begin{equation*}
+        \frac{\mathrm{d}u^\phi}{\mathrm{d}t} = \cot(t)u^\phi(t)
+    \end{equation*}
+    con la condición inicial \(u^\phi(\epsilon) = 0\). El segundo fragmento también se anula porque \(\cot(\pi/2) = 0\). El tercero, por motivos análogos al primero resulta dar 0. Finalmente, el trozo 4 se puede expresar como el resultado de integrar
+    \begin{equation}
+        \label{eq.4-exampleb}
+        \frac{\mathrm{d}u^\phi}{\mathrm{d}t} = \cot(\epsilon) u^\theta(t)
+    \end{equation}
+    entre \(t = 0\) y \(t=\pi/2\). 
+    
+    Las \cref{eq.4-examplea,eq.4-exampleb} forman un sistema acoplado de ecuaciones diferenciales ordinarias de fácil solución. Con las condiciones inciales que tenemos justo al finalizar el tercer trozo del camino, la solución del sistema de EDOs es
+    \begin{equation*}
+        u^\theta = \cos(\cos(\epsilon)t)\quad\text{y}\quad u^\phi = \frac{1}{\sin(\epsilon)}\sin(\cos(\epsilon)t).
+    \end{equation*}
+    En \(t = \pi/2\), tomando el límite \(\epsilon\rightarrow 0\), \(\cos(\epsilon)\rightarrow 1\) y
+    \begin{equation*}
+        \mathbf{u} = 0 \partial_\theta + \frac{1}{\sin(\epsilon)} \partial_\phi.
+    \end{equation*}
+    Es decir, el vector inicial \(\partial_\theta\) se ha convertido, después de este rodeo, en el vector \(\frac{1}{\sin(\epsilon)}\partial_\phi\) al volver al polo norte. 
+    
+    A partir de la métrica podemos averiguar la norma de este nuevo vector:
+    \begin{equation*}
+        \left|\left|\frac{1}{\sin(\epsilon)}\partial_\phi\right|\right| = g_{\phi\phi}\frac{1}{\sin^2(\epsilon)} = 1,
+    \end{equation*}
+    y el ángulo que forma con el original:
+    \begin{equation*}
+        g\left(\partial_\theta,\frac{1}{\sin(\epsilon)}\partial_\phi\right) = g_{\theta\phi}\frac{1}{\sin(\epsilon)} = 0.
+    \end{equation*}
+    Justamente son ortogonales. Efectivamente, en el límite \(\epsilon\rightarrow0\), el vector \(\mathbf{u}\) se corresponde inicialmente con \(\partial_x\) y, al final, con \(\partial_y\).
+
+    La manera de entender intuitivamente lo que pasa en el último trozo del camino es la siguiente. La esfera, suficientemente cerca de cualquiera de sus puntos, es aproximadamente plana. Por tanto, el problema de transportar el vector por dicho camino, dada la conexión elegida, es como transportarlo en el plano, donde el vector no cambia independientemente del camino que sigamos. De este modo, el vector una vez comienza el último tramo debe transportarse prácticamente sin modificarse. Por supuesto, los vectores \(\partial_\theta\) y \(\partial_\phi\) sí cambian a lo largo del camino, pero su cambio ha de ser contrarrestado aproximadamente por la evolución de las componentes \(u^\phi\) y \(u^\theta\).
+
+\end{example}
 
 \paragraph{Conexión de Levi-Civita}
 
+% metric-compatible: vectors do not grow when transported
+
+% torsion-free: they do not ``twist''.
+
+% - métrica? conexión compatible con la métrica
+
 ejemplo en R2 con coordenadas polares.
+
+símbolos de Christoffel 
+
+
 
 \subsection{Derivada covariante}
 
@@ -72,8 +315,6 @@ intuición ``Einsteniana''
 
 
 % ejemplo de fuerzas ficticias
-
-\subsection{Transporte paralelo}
 
 \subsection{Curvas geodésicas}
 
