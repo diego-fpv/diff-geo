@@ -1,3 +1,4 @@
+\newpage
 \section{Motivación y ejemplos preliminares}
 \label{sec.1motivacion}
 
@@ -418,6 +419,7 @@ Convencidos de que la parametrización no importa, podemos escoger sin problema 
 \end{equation*}
 Es decir, dará exactamente lo mismo trabajar con la raíz que sin ella. Si, además, multiplicamos la segunda parte por \(m/2\), llegamos a que el lagrangiano es exactamente la energía cinética de una partícula:
 \begin{equation}
+    \label{eq.1-lagrangiano-libre}
     L = \frac{m}{2}g_{ij}\dot{x}^i\dot{x}^j.
 \end{equation}
 Basta, pues, con obtener las ecuaciones de Euler-Lagrange para este lagrangiano ``físico'', que se corresponde con una partícula que se mueve libremente (en ausencia de potenciales o fuerzas), pero confinada a cierto espacio base con métrica \(g_{ij}\). Maravilloso.\footnote{En \href{https://physics.stackexchange.com/questions/149082/geodesic-equation-from-variation-is-the-squared-lagrangian-equivalent?noredirect=1&lq=1}{esta pregunta} de Stack Exchange hay dos respuestas que discuten esto mismo, pero con mayor rigor y nivel de detalle.} Impulsados por una oleadada de optimismo, vamos a ver algunos ejemplos. 
@@ -512,6 +514,48 @@ Basta, pues, con obtener las ecuaciones de Euler-Lagrange para este lagrangiano 
     
     De entre todas las trayectorias que extremizan la acción, lo que selecciona la que seguimos son las condiciones iniciales (la velocidad). No todas las velocidades iniciales nos llevarán del punto negro al punto gris, claro, pero todas aquellas que sí nos dejen en el punto gris, lo harán a través de una de estas trayectorias extremas. 
 \end{observation}
+
+Antes de pasar a lo siguiente, vamos a calcular la expresión general para las trayectorias a partir del lagrangiano de la \cref{eq.1-lagrangiano-libre}. Se trata de introducirlo en las ecuaciones de Euler-Lagrange que conocemos de mecánica. Eligiendo \(m = 2\) para quitarnos los prefactores molestos,
+\begin{equation*}
+    \left\{
+        \begin{aligned}
+            \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial \dot{x}^{k}} =&\, 
+            \frac{\mathrm{d}}{\mathrm{d}t} \left[g_{ij} \frac{\partial \dot{x}^i}{\partial \dot{x}^k} \dot{x}^j +  g_{ij} \dot{x}^i\frac{\partial \dot{x}^j}{\partial \dot{x}^k} \right] = 2\frac{\mathrm{d}}{\mathrm{d}t} \left[g_{jk} \dot{x}^j\right]
+            = 2 \partial_i g_{jk} \dot{x}^i \dot{x}^j + 2 g_{jk} \ddot{x}^j\\
+            \frac{\partial L}{\partial x^k} =&\, \partial_{k}g_{ij}\dot{x}^i\dot{x}^j
+        \end{aligned}
+    \right..
+\end{equation*}
+Uniendo ambos trozos obtenemos
+\begin{equation}
+    g_{jk} \ddot{x}^j = \frac{1}{2}\left(\partial_{k}g_{ij} - 2 \partial_i g_{jk}\right)\dot{x}^i\dot{x}^j.
+\end{equation}
+Para terminar de retocar esta expresión, primero observamos que 
+\begin{equation*}
+    \partial_i g_{jk}\dot{x}^i\dot{x}^j = \partial_j g_{ik}\dot{x}^j\dot{x}^i = \partial_j g_{ik}\dot{x}^i\dot{x}^j, 
+\end{equation*}
+de modo que
+\begin{equation*}
+    g_{jk} \ddot{x}^j = \frac{1}{2}\left(\partial_{k}g_{ij} - \partial_i g_{jk} - \partial_j g_{ik}\right)\dot{x}^i\dot{x}^j.
+\end{equation*}
+Además, multiplicando por la matriz inversa de \(g_{jk}\), que denotaremos por \(g^{lk}\):
+\begin{equation}
+    \label{eq.1-newton_christoffel}
+    \ddot{x}^l = \frac{1}{2}g^{lk}\left(\partial_{k}g_{ij} - \partial_i g_{jk} - \partial_j g_{ik}\right)\dot{x}^i\dot{x}^j.
+\end{equation}
+
+Esta expresión representa la ecuación de Newton en un espacio base cualquiera y en coordenadas arbitrarias. El término de la izquierda se corresponde con las ``aceleraciones'', y el de la derecha se corresponde con fuerzas ficticias derivadas de la curvatura. Esta curvatura puede venir del propio espacio base, como en los ejemplos anteriores, o de la elección de coordenadas. Por ejemplo, si utilizamos coordenadas polares para describir \(\mathbb{R}^2\), la métrica tiene coeficientes
+\begin{equation}
+    g_{rr} = 1,\quad g_{r\theta} = g_{\theta r} = 0\quad\text{y}\quad g_{\theta\theta} = r^2.
+\end{equation}
+A partir de las componentes de la métrica en este sistema de coordenadas, las ecuaciones de Newton se convierten en \marginexercise{Obtén las ecuaciones siguientes a partir de la \cref{eq.1-newton_christoffel}.}
+\begin{equation}
+    \left\{\begin{aligned}
+        \ddot{r} &= r\dot{\theta}^2\\
+        \ddot{\theta} &= -\frac{2}{r}\dot{\theta}\dot{r}
+    \end{aligned}\right.
+\end{equation}
+En la ecuación de \(r\) reconocemos la aceleración centrífuga, mientras que la segunda se puede reorganizar como \(\frac{\mathrm{d}}{\mathrm{d}t}(r^2\dot{\theta}) = 0\), es decir, la conservación del momento angular. 
 
 \subsection{Relatividad especial}
 \label{subsec.1relatividad}

@@ -191,13 +191,9 @@ Si el vector final coincide con el inicial independientemente del camino cerrado
 
     En este ejemplo vamos a ver los detalles tras la \cref{fig.3-transporte_paralelo_S2}. Los cálculos son más laboriosos que complicados; no debemos asustarnos al ver la extensión del ejemplo.
 
-    En la esfera, como en cualquier otra variedad diferencial, podemos definir una conexión infinitesimalmente a través de sus símbolos de Christoffel. Vamos a dar aquí los valores de los símbolos de una conexión concreta sobre la que hablaremos más adelante, la de Levi-Civita. Dejemos para ese momento la discusión sobre los detalles. Por el momento lo único que hace falta saber es que es la conexión más natural e intuitiva, y que está relacionada con la métrica.
+    En la esfera, como en cualquier otra variedad diferencial, podemos definir una conexión infinitesimalmente a través de sus símbolos de Christoffel. Vamos a dar aquí los valores de los símbolos de una conexión concreta sobre la que hablaremos más adelante, la de Levi-Civita. Dejemos para ese momento la discusión sobre los detalles. Por el momento lo único que hace falta saber es que es la conexión más natural e intuitiva.
 
-    Si en \(S^2\) elegimos la métrica heredada del espacio euclídeo, tenemos
-    \begin{equation}
-        g = \text{diag}\left(1, \sin^2(\theta)\right)
-    \end{equation}
-    en las coordenadas \(\{\theta, \phi\}\). Los símbolos de Christoffel no nulos asociados son:
+    En \(S^2\) elegimos las coordenadas \(\{\theta, \phi\}\). Los símbolos de Christoffel no nulos asociados son:
     \begin{equation*}
         \Gamma^{\theta}_{\phi\phi} = -\sin(\theta)\cos(\theta)\quad\text{y}\quad\Gamma^{\phi}_{\theta\phi} = \Gamma^{\phi}_{\phi\theta} = \cot(\theta).
     \end{equation*}
@@ -291,17 +287,160 @@ Si el vector final coincide con el inicial independientemente del camino cerrado
 
 \end{example}
 
-\paragraph{Conexión de Levi-Civita}
+\subsubsection{Conexión de Levi-Civita}
+\label{subsubsec.4levicivita}
 
-% metric-compatible: vectors do not grow when transported
+Ya la hemos mencionado en un par de sitios, pero no le hemos dedicado la atención que merece a la conexión de Levi-Civita. Es hora de arreglarlo. Sea \(\mathcal{M}\) una variedad diferencial que dotamos de métrica \(g\). Notemos que, hasta ahora, no hemos mencionado nada sobre métricas en nuestra discusión sobre las conexiones. Son conceptos diferentes. La métrica mide vectores, la conexión asocia vectores. Sin embargo, la conexión de Levi-Civita es un caso particular que sí está relacionado con la métrica de la variedad. Siendo más formales, la conexión de Levi-Civita es la única conexión \emph{sin torsión} y \emph{compatible con la métrica}. 
 
-% torsion-free: they do not ``twist''.
+\paragraph{Torsión} La torsión de una conexión es una propiedad algo sutil. La idea es preguntarse si un paralelogramo infinitesimal se cierra sobre sí mismo o no. Imaginemos dos vectores \(\mathbf{u}, \mathbf{v}\in T_p\mathcal{M}\), y un desplazamiento infinitesimal \(\delta_\mathbf{u} x^i\) y \(\delta_\mathbf{v} x^i\) a lo largo de la dirección de cada uno, lo que nos lleva a los puntos \(p_\mathbf{u}\) y \(p_\mathbf{v}\). Ahora, cojamos \(\mathbf{u}\) y transportémoslo a lo largo del desplazamiento infinitesimal \(\delta_\mathbf{v} x^i\), y viceversa. Así, llegamos a nuevos vectores en los nuevos puntos: \(\mathbf{u}'\in T_{p_\mathbf{v}}\mathcal{M}\) y \(\mathbf{v}'\in T_{p_\mathbf{u}}\mathcal{M}\). Desde esos nuevos puntos, hacemos nuevos desplazamientos infinitesimales \(\delta_{\mathbf{u}'} x^i\) y \(\delta_{\mathbf{v}'} x^i\). Así, hemos constuido dos caminos desde \(p\); uno caminando primero en \(\mathbf{u}\) y luego en \(\mathbf{v}'\) y el otro primero en \(\mathbf{v}\) y luego en \(\mathbf{u}'\). Si llegamos al mismo punto de ambas formas, a segundo orden en \(\delta x\), entonces la métrica no tiene torsión. Vamos a ilustrarlo con un ejemplo, y después vemos cómo se manifiesta en los símbolos de Christoffel.
 
-% - métrica? conexión compatible con la métrica
+\begin{example}
+    {Conexión con torsión.
+    \label{ex.4-conexion_torsion}}
+    La conexión que dimos a \(\mathbb{R}^2\) en el \cref{ej.4-conexion_peculiarR2} tiene torsión. Para comprobarlo, sigamos el proceso descrito en el punto anterior. La \cref{fig.4-conexion_torsion} ilustra los pasos para desplazamientos finitos cada vez menores. Los vectores horizontales y ``verticales'' desplazados no coinciden en el mismo punto, y la diferencia se hace menor cuanto más infinitesimal sean los desplazamientos.
 
-ejemplo en R2 con coordenadas polares.
+    \begin{figbox}
+        {``Paralelogramos'' abiertos dados por la conexión del \cref{ej.4-conexion_peculiarR2}. Se muestran desplazamientos de norma 0.4, 0.3, 0.2 y 0.1 en ambas direcciones.
+        \label{fig.4-conexion_torsion}}
+        \includegraphics{figuras/conexion_torsion.pdf}
+    \end{figbox}
+    
+    Trabajando en coordenadas cartesianas \(\{x, y\}\). El punto inicial es el \((0, 0)\), y los vectores son \(\mathbf{u} = \partial_x\) y \(\mathbf{v} = \partial_y\). Transportamos \(\mathbf{u}\) en la dirección de \(\mathbf{v}\) una cantidad infinitesimal \(\delta_\mathbf{v}\) (punto \((0, \delta_\mathbf{v})\)), viendo la regla del \cref{ej.4-conexion_peculiarR2}, a
+    \begin{equation*}
+        \mathbf{u}' = \partial_x (1 + \delta_\mathbf{v}). 
+    \end{equation*}
+    Ahora nos movemos en la dirección de \(\mathbf{u}'\) una cantidad \(\delta_\mathbf{u}\) y llegamos al punto con coordenadas:
+    \begin{equation*}
+        (0, \delta_\mathbf{v}) + \delta_\mathbf{u}(1 + \delta_\mathbf{v}, 0) = (\delta_\mathbf{u} + \delta_\mathbf{u}\delta_\mathbf{v}, \delta_\mathbf{v})
+    \end{equation*}
 
-símbolos de Christoffel 
+    El otro vector \(\mathbf{v}\) lo transportamos a hasta el punto \((\delta_\mathbf{u}, 0)\):
+    \begin{equation*}
+        \mathbf{v}' = \partial_y - \delta_\mathbf{u} \partial_x,
+    \end{equation*}
+    y nos movemos en su dirección una cantidad \(\delta_\mathbf{v}\) para llegar al punto
+    \begin{equation*}
+        (\delta_\mathbf{u}, 0) + \delta_\mathbf{v}(-\delta_\mathbf{u}, 1) = (\delta_\mathbf{u} - \delta_\mathbf{u}\delta_\mathbf{v}, \delta_\mathbf{v})
+    \end{equation*}
+    Entre las dos puntas hay una distancia igual a \(2\delta_\mathbf{u}\delta_\mathbf{v}\), que es un término de segundo orden en \(\delta\). Por tanto, la conexión tiene torsión.
+\end{example}
+
+Veamos cómo expresar estas ideas ahora en términos de los símbolos de Christoffel. Sean dos vectores en \(T_p\mathcal{M}\) con componentes \(u^i = \delta^{i}_{i_1}\) y \(v^i = \delta^{i}_{i_2}\). Los desplazamientos que debemos considerar son, en función de las coordenadas, \(\Delta x^{i_1}\) y \(\Delta y^{i_2}\), que nos llevan a los puntos \(p_1\) y \(p_2\), con coordenadas \footnote{Los índices \(i_1\) e \(i_2\) no están sumados, porque se refieren a valores concretos como \(i_1 = 3\) e \(i_2 = 7\), que daría lugar a desplazamientos en la tercera y séptima dimensiones.}
+\begin{equation*}
+    p_1 \rightarrow \delta^{i}_{i_1} \Delta x^{i_1} \quad\text{y}\quad p_2 \rightarrow \delta^{i}_{i_2} \Delta y^{i_2}.
+\end{equation*}
+De acuerdo con la \cref{eq.4-transporte_paralelo}, las componentes de los vectores transportados son
+\begin{align*}
+    u^i &= \delta^{i}_{i_1} - \Gamma^{i}_{j k} \delta^{j}_{i_1} \delta^{k}_{i_2} \Delta y^{i_2} = \delta^{i}_{i_1} - \Gamma^{i}_{i_1 i_2} \Delta y^{i_2}, \\
+    v^i &= \delta^{i}_{i_2} - \Gamma^{i}_{j k} \delta^{j}_{i_2} \delta^{k}_{i_1}\Delta x^{i_1} = \delta^{i}_{i_2} - \Gamma^{i}_{i_2 i_1} \Delta x^{i_1}.
+\end{align*}
+Por último, encadenamos los últimos desplazamientos sobre \(\mathcal{M}\) desde \(p_1\) y \(p_2\), proporcionales a \(\Delta y^{i_2}\) y \(\Delta x^{i_1}\) respectivamente. Así, acabamos en los puntos con coordenadas
+\begin{equation*}
+    \left\{
+    \begin{aligned}
+        p_1' \rightarrow \delta^{i}_{i_1}\Delta x^{i_1} + \Delta y^{i_2}v^i = \left(\delta^{i}_{i_1}\Delta x^{i_1} + \delta^{i}_{i_2}\Delta y^{i_2}\right) - \Gamma^{i}_{i_1 i_2} \Delta x^{i_1}\Delta y^{i_2}\\
+        p_2' \rightarrow \delta^{i}_{i_2}\Delta y^{i_2} + \Delta x^{i_1}u^i = \left(\delta^{i}_{i_2}\Delta y^{i_2} + \delta^{i}_{i_1}\Delta x^{i_1}\right) - \Gamma^{i}_{i_2i_1} \Delta x^{i_1}\Delta y^{i_2}
+    \end{aligned}
+    \right.
+\end{equation*}
+
+La torsión viene de la diferencia entre las coordenadas de \(p_1'\) y \(p_2'\), a segundo orden en \(\Delta\). En base a las expresiones de arriba, la torsión está relacionada con:
+\begin{equation*}
+    \left(\Gamma^{i}_{i_2 i_1}- \Gamma^{i}_{i_1 i_2}\right)\Delta x^{i_1}\Delta y^{i_2},
+\end{equation*}
+que se anula cuando \(\Gamma^{i}_{i_2 i_1} = \Gamma^{i}_{i_1 i_2}\). En otras palabras, la conexión no tiene torsión cuando los símbolos de Christoffel son simétricos en las componentes inferiores: \(\Gamma^{i}_{jk} = \Gamma^i_{kj}\).
+
+
+\paragraph{Compatibilidad métrica} El otro aspecto, más claro geométricamente, es la condición de compatibilidad métrica significa que si transportamos un par de vectores de \(T_p\mathcal{M}\) a \(T_q\mathcal{M}\), su producto escalar se mantiene constante. En otras palabras, las normas y los ángulos no cambian. A partir de esta relación podemos obtener una expresión relativamente compacta para los símbolos de Christoffel como función de la métrica y sus derivadas.
+
+La idea es la siguiente. Tomemos dos vectores \(\mathbf{u}\) y \(\mathbf{v}\) de \(T_p\mathcal{M}\) y transportémoslos a lo largo de una trayectoria con parámetro \(t\). Si su producto escalar debe permanecer inalterado tenemos que\marginexercise{Queda como ejercicio desarrollar los pasos descritos pero no explícitos.}
+\begin{equation}
+    \frac{\mathrm{d}}{\mathrm{d}t}(g_{il} u^{i}v^l) = 0.
+\end{equation}
+Desarrollando la derivada, ultilizando la regla de la cadena y la \cref{eq.4-transporte_paralelo} cuando sea oportuno, llegamos a
+\begin{equation}
+    \partial_k g_{il}u^iv^l \dot{x}^k = g_{il}\left[\Gamma_{jk}^{i}u^{j}v^l + \Gamma^l_{jk} u^iv^j\right]\dot{x}^k.
+\end{equation}
+Como esta relación debe cumplirse para cualquier par de vectores y cualquier trayectoria, la igualdad se reduce a 
+\begin{subequations}
+    \begin{equation}
+        \partial_k g_{il} = g_{jl}\Gamma^{j}_{ik} + g_{ij} \Gamma^{j}_{lk}
+    \end{equation}
+    renombrando adecuadamente índices sumados. Por último, permutamos cíclicamente los índices inferiores
+    \begin{align}
+        \partial_i g_{lk} &= g_{jk}\Gamma^{j}_{li} + g_{lj} \Gamma^{j}_{ki}\\
+        \partial_l g_{ki} &= g_{ji}\Gamma^{j}_{kl} + g_{kj} \Gamma^{j}_{il}
+    \end{align}
+\end{subequations}
+Ahora podemos restar la segunda y tercera líneas de la primera, multiplicar por la métrica inversa \(g^{ak}\) y aplicar la condición de torsión nula (\(\Gamma{i}_{jk} = \Gamma^{i}_{kj}\)). Así, renombrando algunos índices otra vez, obtenemos
+\begin{bequation}
+    \label{eq.4-christoffel_levi_civita}
+    \Gamma^{i}_{jk} = \frac12 g^{il}\left[\partial_j g_{lk} + \partial_k g_{lj} - \partial_l g_{jk}\right].
+\end{bequation}
+
+Veamos un ejemplo sencillo donde podamos calcular los símbolos de Christoffel de la conexión de Levi-Civita sin sudar demasiado.
+\begin{example}
+    {Símbolos de Christoffel en \(S^2\).
+    \label{ej.4-christoffel_S2}}
+    Estos símbolos de Christoffel los escribimos sin cuestionar nada en el \cref{ej.4-conexión_esfera}. Ahora que ya sabemos en qué consiste la conexión de Levi-Civita, vamos a hacer el cálculo explícito. En las coordenadas \(\{\theta,\phi\}\), la métrica tiene componentes
+    \begin{equation*}
+        g_{\theta\theta} = 1,\quad g_{\theta\phi}=g_{\phi\theta}\quad\text{y}\quad g_{\phi\phi} = \sin^2(\theta),
+    \end{equation*}
+    y la métrica inversa
+    \begin{equation*}
+        g^{\theta\theta} = 1,\quad g^{\theta\phi}=g_{\phi\theta}\quad\text{y}\quad g^{\phi\phi} = \sin^{-2}(\theta).
+    \end{equation*}
+
+    Empecemos:\marginexercise{Calcular los símbolos de Christoffel del toro con la métrica heredada del espacio euclídeo tridimensional.}
+    \begin{align*}
+        \Gamma^\theta_{\theta\theta} &= \frac{1}{2}g^{\theta i}\left[\partial_\theta g_{i\theta} - \partial_{\theta}g_{i\theta} -\partial_i g_{\theta\theta}\right] =  \frac{1}{2}\left[0 - 0 - 0\right] = 0,\\
+        \Gamma^\theta_{\theta\phi} &= \frac{1}{2}g^{\theta i}\left[\partial_\theta g_{i\phi} - \partial_{\phi}g_{i\theta} -\partial_i g_{\theta\phi}\right] =  \frac{1}{2}\left[0 - 0 - 0\right] = 0= \Gamma^\theta_{\phi\theta},\\
+        \Gamma^\theta_{\phi\phi} &= \frac{1}{2}g^{\theta i}\left[\partial_\phi g_{i\phi} - \partial_{\phi}g_{i\phi} -\partial_i g_{\phi\phi}\right] =  \frac{1}{2}\left[0 - 0 - 2\sin(\theta)\cos(\theta)\right] \\
+        &\phantom{\ = \frac{1}{2}g^{\theta i}\left[\partial_\phi g_{i\phi} - \partial_{\phi}g_{i\phi} -\partial_i g_{\phi\phi}\right]}= -\sin(\theta)\cos(\theta),\\
+        \Gamma^\phi_{\theta\theta} &= \frac{1}{2}g^{\phi i}\left[\partial_\theta g_{i\theta} - \partial_{\theta}g_{i\theta} -\partial_i g_{\theta\theta}\right] = \frac{1}{2\sin^2(\theta)}\left[0 - 0 - 0\right] = 0,\\
+        \Gamma^\phi_{\theta\phi} &= \frac{1}{2}g^{\phi i}\left[\partial_\theta g_{i\phi} - \partial_{\phi}g_{i\theta} -\partial_i g_{\theta\phi}\right] =  \frac{1}{2\sin^2(\theta)}\left[2\sin(\theta)\cos(\theta) - 0 - 0\right] \\
+        &\phantom{\ = \frac{1}{2}g^{\phi i}\left[\partial_\theta g_{i\phi} - \partial_{\phi}g_{i\theta} -\partial_i g_{\theta\phi}\right]}= \cot(\theta) = \Gamma^{\phi}_{\phi\theta},\\
+        \Gamma^\phi_{\phi\phi} &= \frac{1}{2}g^{\phi i}\left[\partial_\phi g_{i\phi} - \partial_{\phi}g_{i\phi} -\partial_i g_{\phi\phi}\right] =  \frac{1}{2\sin^2(\theta)}\left[0 - 0 - 0\right].
+    \end{align*}
+    Este es de los ejemplos más sencillos, porque las derivadas son fáciles, la métrica es diagonal y solo hay dos coordenadas (y por tanto ocho símbolos de Christoffel, aunque solo seis independientes porque no hay torsión). Como se intuye, cualquier ejemplo que se salga de lo clásico es complicado calcularlo a mano. Para ello hay paquetes informáticos de cálculo simbólico dedicados que se encargan de las derivadas. 
+\end{example}
+
+\begin{observation}
+    {Conexión de Levi-Civita en el espacio euclídeo.
+    \label{obs.4-conexion_lc_euclidea}}
+
+    En el espacio euclídeo no hay curvatura. La variedad es \(\mathbb{R}^n\) y la métrica tiene componentes \(g_{ij}=\text{diag}(1, ..., 1)\), usando coordenadas cartesianas \(x^i\). Por tanto, dado que la conexión afín, la métrica y la curvatura están relacionados, uno pensaría que \(\Gamma^{i}_{jk} = 0\). En coordenadas cartesiadas es así, efectivamente. Sin embargo, aunque la variedad sea plana, las coordenadas que utilizemos pueden ser curvilíneas. Entonces, los símbolos de Christoffel no se anulan. Por ejemplo, en coordenadas polares, la métrica es
+    \begin{equation}
+        g_{rr} = 1,\quad g_{r\theta} = g_{\theta r} = 0\quad\text{y}\quad g_{\theta\theta} = r^2,
+    \end{equation}
+    y los coeficientes de Christoffel asociados no nulos son
+    \begin{equation}
+        \Gamma^{r}_{\theta\theta} = -r\quad\text{y}\quad \Gamma^{\theta}_{r\theta} = \Gamma^\theta_{\theta r} = \frac{1}{r}.
+    \end{equation}
+
+    Hay una interpretación geométrica sencilla de los símbolos de Christoffel en términos de los vectores de la base coordenada. Volviendo a la notación sin derivadas parciales, \(\mathbf{e}_i\), y los covectores asociados \(\mathbf{e}^i\). Resulta que 
+    \begin{equation}
+        \frac{\partial \mathbf{e}_j}{\partial x^k} = \Gamma^{i}_{jk}\mathbf{e}_i.
+    \end{equation}
+    Es decir, los símbolos de Christoffel llevan cuenta de cómo cambian los vectores de la base según nos desplazamos en la dirección en la que crece \(x^k\). Comprobemos con las coordenadas polares que es así. Los vectores de la base son
+    \begin{equation}
+        \left\{
+        \begin{aligned}        
+            \mathbf{e}_r &= \cos(\theta)\mathbf{e}_x + \sin(\theta)\mathbf{e}_y,\\
+            \mathbf{e}_\theta &= -r\sin(\theta)\mathbf{e}_x + r\cos(\theta)\mathbf{e}_y.
+        \end{aligned}
+        \right.
+    \end{equation}
+    Tomemos sus derivadas parciales a lo largo de \(\theta\) y \(\phi\):
+    \begin{align*}
+        \frac{\partial \mathbf{e}_r}{\partial r} &= \mathbf{0} &\implies&& \Gamma^{r}_{rr}\mathbf{e}_r + \Gamma^{\theta}_{rr}\mathbf{e}_\theta &= \mathbf{0},\\
+        \frac{\partial \mathbf{e}_r}{\partial \theta} &= \frac{\mathbf{e}_\theta}{r} &\implies&& \Gamma^{r}_{r\theta}\mathbf{e}_r + \Gamma^{\theta}_{r\theta}\mathbf{e}_\theta &= \frac{\mathbf{e}_\theta}{r},\\
+        \frac{\partial \mathbf{e}_\theta}{\partial r} &= \frac{\mathbf{e}_\theta}{r} &\implies&& \Gamma^{r}_{r\theta}\mathbf{e}_r + \Gamma^{\theta}_{r\theta}\mathbf{e}_\theta &= \frac{\mathbf{e}_\theta}{r},\\
+        \frac{\partial \mathbf{e}_\theta}{\partial \theta} &= -r\mathbf{e}_r &\implies&& \Gamma^{r}_{\theta\theta}\mathbf{e}_r + \Gamma^{\theta}_{\theta\theta}\mathbf{e}_\theta &= -r\mathbf{e}_r.
+    \end{align*}
+    ¡Funciona!
+
+\end{observation}
 
 
 
