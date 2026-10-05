@@ -4,9 +4,7 @@
 
 \emph{Un tensor es todo aquello que transforma como tal}. Todo el que haya estudiado tensores alguna vez ha encontrado esta frase que mezcla, a partes iguales, sarcasmo y entendimiento. Lo del sarcasmo está claro para cualquiera; la frase suena a tautología burlona. El asunto es que, cuanto más estudia uno tensores, más de acuerdo está con ella.\footnote{Por lo menos viniendo desde la física.} Nuestro objetivo en esta sección es presentar la construcción de los tensores y dejar la impresión de que, efectivamente, los tensores transforman como tensores. 
 
-Para empezar esta parte, la \cref{subsec.2repaso} da un repaso a las nociones de álgebra lineal básicas, en un registro más formal del que hemos usado hasta ahora. Además de ser un recordatorio, nos permitirá fijar la notación. A continuación, 
-
-
+Para empezar esta parte, la \cref{subsec.2repaso} da un repaso a las nociones de álgebra lineal básicas, en un registro más formal del que hemos usado hasta ahora. Además de ser un recordatorio, nos permitirá fijar la notación. A continuación, definiremos el espacio dual como paso intermedio para llegar a los tensores, objetos que generalizan el concepto de vector.
 
 \subsection{Repaso de álgebra: espacios de Hilbert}
 \label{subsec.2repaso}
@@ -281,7 +279,6 @@ Vemos, pues, que hay una relación íntima entre \(\boldsymbol{\upsilon}_{\mathb
     \end{equation*}
 \end{example}
 
-
 \subsection{Tensores}
 \label{subsec.2formasmultilineales}
 
@@ -370,7 +367,6 @@ En el lenguaje cotidiano, \(T\) es una función lineal que toma como argumentos 
     \mathbf{T}(\boldsymbol{\epsilon}^{i_1}, \dots, \boldsymbol{\epsilon}^{i_n},\mathbf{e}_{j_1}, \dots, \mathbf{e}_{j_m}) =: \tensor{T}{^{i_1}^{...}^{i_n}_{j_1}_{...}_{j_m}}.
 \end{equation}
 
-
 Como podemos apreciar, \(\mathbf{T}\) es un objeto cuyas componentes tienen más de un índice. A la luz de la discusión previa sobre el producto tensorial, este mismo tensor lo podemos considerar como 
 \begin{equation}
     \mathbf{T}\in \underset{n}{\underbrace{V\otimes \cdots\otimes V}}\otimes\underset{n}{\underbrace{V^*\otimes \cdots\otimes V^*}},
@@ -442,10 +438,14 @@ Los físicos, en la pereza descuidada que nos caracteriza a ojos de un matemáti
     Notemos que, técnicamente hablando, hay dos identidades: la de \(V\) y la de \(V^*\). La primera actúa sobre vectores y devuelve vectores, mientras que la segunda hace lo propio con vectores duales. Podríamos distinguirlas escribiendo \(\tensor{\delta}{^i_j}\) o \(\tensor{\delta}{_i^j}\), pero por comodidad vamos a relajarnos un poco escribiendo siempre \(\delta^i_j\) como hasta ahora.      
 \end{myitemize}
 
-Una posible preocupación es si las componentes del tensor identidad dependen de la base en la que la expresemos. Uno desearía que no, y comprobarlo es el ejercicio propuesto a la izquierda.\marginexercise{Demuestra que en un cambio de base simultáneo en \(V\) y \(V^*\) las componentes del tensor identidad siguen coincidiendo con la \(\delta\) de Kronecker.}Podemos destacar otro aspecto interesante y relacionado del tensor \(\mathbf{1}\) con la siguiente pregunta: ¿Las componentes de la matriz de cambio de base \(\tensor{T}{_{i'}^i}\) son componentes de algún tensor? La respuesta es afirmativa; simplemente tenemos que considerar el tensor identidad de la \cref{eq.2identity} haciendo un cambio de base en \(V\):
-\begin{equation}
-    \mathbf{1} = \delta^i_j\, \mathbf{e}_i\otimes\boldsymbol{\epsilon}^j = \delta^{i}_{j} \tensor{T}{^{i'}_i}\,\mathbf{e}_{i'}\otimes\boldsymbol{\epsilon}^j = \tensor{T}{^{i'}_j}\,\mathbf{e}_{i'}\otimes\boldsymbol{\epsilon}^j.
-\end{equation}
-La expresión de arriba pone de manifiesto la verdadera naturaleza de los cambios de base: fundamentalmente, \emph{no hacen nada}. Los objetos siguen siendo los mismos, su acción sigue igual. Lo único que cambia es el modo de referirnos a lo mismo; al fin y al cabo un cambio de base no es más que una manera peculiar de escribir la identidad.
+\begin{observation}
+    {Invariancia del tensor identidad
+    \label{obs.2-invariancia_identidad}}
+    Una posible preocupación es si las componentes del tensor identidad dependen de la base en la que la expresemos. Uno desearía que no, y comprobarlo es el ejercicio propuesto a la izquierda.\marginexercise{Demuestra que en un cambio de base simultáneo en \(V\) y \(V^*\) las componentes del tensor identidad siguen coincidiendo con la \(\delta\) de Kronecker.}Podemos destacar otro aspecto interesante y relacionado del tensor \(\mathbf{1}\) con la siguiente pregunta: ¿Las componentes de la matriz de cambio de base \(\tensor{T}{_{i'}^i}\) son componentes de algún tensor? La respuesta es afirmativa; simplemente tenemos que considerar el tensor identidad de la \cref{eq.2identity} haciendo un cambio de base en \(V\):
+    \begin{equation}
+        \mathbf{1} = \delta^i_j\, \mathbf{e}_i\otimes\boldsymbol{\epsilon}^j = \delta^{i}_{j} \tensor{T}{^{i'}_i}\,\mathbf{e}_{i'}\otimes\boldsymbol{\epsilon}^j = \tensor{T}{^{i'}_j}\,\mathbf{e}_{i'}\otimes\boldsymbol{\epsilon}^j.
+    \end{equation}
+    La expresión de arriba pone de manifiesto la verdadera naturaleza de los cambios de base: fundamentalmente, \emph{no hacen nada}. Los objetos siguen siendo los mismos, su acción sigue igual. Lo único que cambia es el modo de referirnos a lo mismo; al fin y al cabo un cambio de base no es más que una manera peculiar de escribir la identidad.
+\end{observation}
 
 Así damos clausura a esta sección sobre álgebra tensorial. Todo lo que hemos hecho ha tomado como base espacios vectoriales de dimensión finita, que realmente son isomorfos a \(\mathbb{R}^n\) para algún \(n\). En la siguiente sección vamos a introducir los ``espacios base'', o variedades diferenciales, de los que hablamos en la \cref{sec.1motivacion}. Los espacios vectoriales que surgen serán, entonces, los espacios tangentes en cada punto de la variedad.

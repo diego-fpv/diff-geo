@@ -139,8 +139,9 @@ A partir de los coeficientes que caracterizan la conexión infinitesimalmente, p
     \label{eq.4-transporte_paralelo}
     \frac{\mathrm{d}u^i}{\mathrm{d}t} = \frac{\partial u^i}{\partial x^k} \frac{\mathrm{d}x^k}{\mathrm{d}t} = -\Gamma^{i}_{jk}\left(x^1(t),..., x^n(t)\right)u^j(t) \frac{\mathrm{d}x^k}{\mathrm{d}t},
 \end{equation}
-donde \(x^i(t)\) son las coordenadas a lo largo de la trayectoria \(\gamma\). La \cref{eq.4-transporte_paralelo} es, por cierto, la ecuación del \emph{transporte paralelo}. Esencialmente nos dice cómo desplazar un vector \(\mathbf{u}\) ``paralelo'' a sí mismo a lo largo de una trayectoria, dada una conexión. Cada una de las infinitas conexiones afines posibles dará lugar a una noción de paralelismo distinta, aunque hay una elección concreta que se corresponde justamente con la noción intuitiva en la que pensamos casi sin querer: la conexión de Levi-Civita que exploraremos al final de esta subsección. La solución formal de la ecuación del transporte paralelo es, trivialmente,
+donde \(x^i(t)\) son las coordenadas a lo largo de la trayectoria \(\gamma\). La \cref{eq.4-transporte_paralelo} es, por cierto, la ecuación del \emph{transporte paralelo}. Esencialmente nos dice cómo desplazar un vector \(\mathbf{u}\) ``paralelo'' a sí mismo a lo largo de una trayectoria, dada una conexión. Cada una de las infinitas conexiones afines posibles dará lugar a una noción de paralelismo distinta, aunque hay una elección concreta que se corresponde justamente con la noción intuitiva en la que pensamos casi sin querer: la conexión de Levi-Civita que exploraremos al final de esta subsección. Para resolver la ecuación del transporte paralelo, podemos integrarla formalmente,
 \begin{equation}
+    \label{eq.4-transporte_integral}
     u^i(t_1) = u^i(t_0) - \int_{t_0}^{t_1}\mathrm{d}t\, \Gamma^{i}_{jk} \left(x^1(t),...,x^n(t)\right) u^j(t) \frac{\mathrm{d}x^k}{\mathrm{d}t}.
 \end{equation}
 
@@ -195,6 +196,7 @@ Reordenando términos, renombrando algún índice y multiplicando por una matriz
 \end{equation*}
 De esta expresión se deduce que los símbolos de Christoffel que generan la misma conexión, pero expresando todo en las nuevas coordenadas, son
 \begin{bequation}
+    \label{eq.4-christoffel_transformacion}
     \Gamma^{i'}_{j'k'} = \Gamma^{i}_{jk} \frac{\partial x^{i'}}{\partial x^{i}} \frac{\partial x^j}{\partial x^{j'}} \frac{\partial x^k}{\partial x^{k'}} - \frac{\partial x^{i'}}{\partial x^{i}}  \frac{\partial^2 x^i}{\partial x^{k'}\partial x^{j'}}.
 \end{bequation}
 \noindent Observemos que, aunque el primer término sí tiene la estructura de una transformación tensorial, el segundo término rompe el cambio de coordenadas sencillo. Los símbolos de Christoffel no son tensores.
@@ -245,7 +247,7 @@ Si el vector final coincide con el inicial independientemente del camino cerrado
             \phi(t_4) &= \pi/2-t_4
         \end{aligned}\right.
     \end{align*}  
-    La componente \(u^\theta\) obedece la siguiente relación:
+    Según la \cref{eq.4-transporte_integral}, la componente \(u^\theta\) obedece la siguiente relación:
     \begin{align*}
         u^\theta = 1& + \int_\epsilon^{\pi/2} \mathrm{d}t_1\, \sin(t_1)\cos(t_1) u^\phi(t_1) \frac{\mathrm{d}\phi(t_1)}{\mathrm{d}t_1} \\
         &+ \int_0^{\pi/2} \mathrm{d}t_2\, \sin(t_2)\cos(\pi/2) u^\phi(\pi/2) \frac{\mathrm{d}\phi(t_2)}{\mathrm{d}t_2}\\
@@ -309,7 +311,7 @@ Si el vector final coincide con el inicial independientemente del camino cerrado
 \subsubsection{Conexión de Levi-Civita}
 \label{subsubsec.4levicivita}
 
-Ya la hemos mencionado en un par de sitios, pero no le hemos dedicado la atención que merece a la conexión de Levi-Civita. Es hora de arreglarlo. Sea \(\mathcal{M}\) una variedad diferencial que dotamos de métrica \(g\). Notemos que, hasta ahora, no hemos mencionado nada sobre métricas en nuestra discusión sobre las conexiones. Son conceptos diferentes. La métrica mide vectores, la conexión asocia vectores. Sin embargo, la conexión de Levi-Civita es un caso particular que sí está relacionado con la métrica de la variedad. Siendo más formales, la conexión de Levi-Civita es la única conexión \emph{sin torsión} y \emph{compatible con la métrica}. 
+Ya la hemos mencionado en un par de sitios, pero no le hemos dedicado la atención que merece a la conexión de Levi-Civita. Es hora de arreglarlo. Sea \(\mathcal{M}\) una variedad diferencial que dotamos de métrica \(g\). Notemos que, hasta ahora, no hemos mencionado nada sobre métricas en nuestra discusión sobre las conexiones. Son conceptos diferentes. La métrica mide vectores, la conexión asocia vectores. Sin embargo, la conexión de Levi-Civita es un caso particular que sí está relacionado con la métrica de la variedad. Siendo más formales, la conexión de Levi-Civita es la única conexión \emph{sin torsión} y \emph{compatible con la métrica}. Lo más interesante de dicha conexión es que es la que aparece en la teoría de la relatividad general.
 
 \paragraph{Torsión} La torsión de una conexión es una propiedad algo sutil. La idea es preguntarse si un paralelogramo infinitesimal se cierra sobre sí mismo o no. Imaginemos dos vectores \(\mathbf{u}, \mathbf{v}\in T_p\mathcal{M}\), y un desplazamiento infinitesimal \(\delta_\mathbf{u} x^i\) y \(\delta_\mathbf{v} x^i\) a lo largo de la dirección de cada uno, lo que nos lleva a los puntos \(p_\mathbf{u}\) y \(p_\mathbf{v}\). Ahora, cojamos \(\mathbf{u}\) y transportémoslo a lo largo del desplazamiento infinitesimal \(\delta_\mathbf{v} x^i\), y viceversa. Así, llegamos a nuevos vectores en los nuevos puntos: \(\mathbf{u}'\in T_{p_\mathbf{v}}\mathcal{M}\) y \(\mathbf{v}'\in T_{p_\mathbf{u}}\mathcal{M}\). Desde esos nuevos puntos, hacemos nuevos desplazamientos infinitesimales \(\delta_{\mathbf{u}'} x^i\) y \(\delta_{\mathbf{v}'} x^i\). Así, hemos constuido dos caminos desde \(p\); uno caminando primero en \(\mathbf{u}\) y luego en \(\mathbf{v}'\) y el otro primero en \(\mathbf{v}\) y luego en \(\mathbf{u}'\). Si llegamos al mismo punto de ambas formas, a segundo orden en \(\delta x\), entonces la métrica no tiene torsión. Vamos a ilustrarlo con un ejemplo, y después vemos cómo se manifiesta en los símbolos de Christoffel.
 
@@ -391,7 +393,7 @@ Como esta relación debe cumplirse para cualquier par de vectores y cualquier tr
         \partial_l g_{ki} &= g_{ji}\Gamma^{j}_{kl} + g_{kj} \Gamma^{j}_{il}
     \end{align}
 \end{subequations}
-Ahora podemos restar la segunda y tercera líneas de la primera, multiplicar por la métrica inversa \(g^{ak}\) y aplicar la condición de torsión nula (\(\Gamma{i}_{jk} = \Gamma^{i}_{kj}\)). Así, renombrando algunos índices otra vez, obtenemos
+Ahora podemos restar la segunda y tercera líneas de la primera, multiplicar por la métrica inversa \(g^{ak}\) y aplicar la condición de torsión nula (\(\Gamma{i}_{jk} = \Gamma^{i}_{kj}\)). Así, renombrando algunos índices otra vez, obtenemos \marginexercise{Comprueba que estos coeficientes cumplen la ley de transformación que vimos en la \cref{eq.4-christoffel_transformacion}}
 \begin{bequation}
     \label{eq.4-christoffel_levi_civita}
     \Gamma^{i}_{jk} = \frac12 g^{il}\left[\partial_j g_{lk} + \partial_k g_{lj} - \partial_l g_{jk}\right].
@@ -439,6 +441,7 @@ Veamos un ejemplo sencillo donde podamos calcular los símbolos de Christoffel d
 
     Hay una interpretación geométrica sencilla de los símbolos de Christoffel en términos de los vectores de la base coordenada. Volviendo a la notación sin derivadas parciales, \(\mathbf{e}_i\), y los covectores asociados \(\mathbf{e}^i\). Resulta que 
     \begin{equation}
+        \label{eq.4-christoffel_euclideo}
         \frac{\partial \mathbf{e}_j}{\partial x^k} = \Gamma^{i}_{jk}\mathbf{e}_i.
     \end{equation}
     Es decir, los símbolos de Christoffel llevan cuenta de cómo cambian los vectores de la base según nos desplazamos en la dirección en la que crece \(x^k\). Comprobemos con las coordenadas polares que es así. Los vectores de la base son
@@ -458,8 +461,29 @@ Veamos un ejemplo sencillo donde podamos calcular los símbolos de Christoffel d
         \frac{\partial \mathbf{e}_\theta}{\partial \theta} &= -r\mathbf{e}_r &\implies&& \Gamma^{r}_{\theta\theta}\mathbf{e}_r + \Gamma^{\theta}_{\theta\theta}\mathbf{e}_\theta &= -r\mathbf{e}_r.
     \end{align*}
     ¡Funciona!
-
 \end{observation}
+
+\subsubsection{Curvas geodésicas}
+\label{subsubsec.4geodesicas}
+
+Una consecuencia obvia de la curvatura del espacio es que ya no hay noción de línea recta. En su lugar, lo más parecido que tenemos a nuestra disposición es el concepto de curvas geodésicas. La manera geométrica de definir las geodésicas, aprovechando todo lo que hemos descrito acerca de las conexiones, es que son curvas \(\gamma\) con coordenadas \(x^i(t)\) que transportan paralelamente su propio vector tangente \(\dot{x}^i(t)\partial_i\). Dicho de otro modo, si tomo el vector \(\dot{x}^i(0)\partial_i\) y lo propago con la ecuación de transporte paralelo, \cref{eq.4-transporte_paralelo}, a lo largo de la trayectoria \(x^i(t)\) recupero el propio vector \(\dot{x}^i(t)\partial_i\). Las componentes del vector tangente obedecen, por tanto,
+\begin{equation}
+    \label{eq.4-geodesica}
+    \ddot{x}^i = -\Gamma^{i}_{jk}\dot{x}^j\dot{x^k}.
+\end{equation}
+
+Combinada con la \cref{eq.4-christoffel_levi_civita}, la \cref{eq.4-geodesica} es exactamente lo que obtuvimos en el contexto de una partícula libre que vive en una variedad arbitraria. Las trayectorias que resuelvan aquellas ecuaciones de movimiento, \cref{eq.1-newton_christoffel}, son exactamente las geodésicas asociadas a la conexión de Levi-Civita en la variedad.
+
+
+
+% ejemplo de fuerzas ficticias
+
+% derivar: trayectoria autoparalela
+
+% vimos que lo mismo salía en la sección 1 (\cref{eq.1-newton_christoffel})
+
+
+
 
 \subsection{Derivada covariante}
 \label{subsec.4derivadacovariante}
@@ -476,29 +500,117 @@ Fijémonos en que esto es justamente lo que hacemos cuando calculamos la derivad
 
 Si las coordenadas de \(p\) y \(q\) son \(x^i\) y \(x^i + \Delta x^i\), entonces la diferencia entre las componentes de \(\mathbf{v}(q)\) y las de \(T_{p\rightarrow q}\mathbf{v}(p)\) es, a primer orden en \(\Delta x^i\),
 \begin{align*}
-    \nabla_j v^i \Delta x^j &= \left[v^i + \partial_j v^i \Delta x^j\right] - \left[v^i - \Gamma^{i}_{mj} v^m\Delta x^j\right] = \left[\partial_j v^i + \Gamma^{i}_{mj} v^j\right]\Delta x^j,
+    \nabla_j v^i \Delta x^j &= \left[v^i + \partial_j v^i \Delta x^j\right] - \left[v^i - \Gamma^{i}_{mj} v^m\Delta x^j\right] = \left[\partial_j v^i + \Gamma^{i}_{mj} v^m\right]\Delta x^j,
 \end{align*}
 de donde
 \begin{bequation}
     \label{eq.4-derivadacovariante}
-    \nabla_j v^i = \partial_j v^i + \Gamma^{i}_{mj} v^j.
+    \nabla_j v^i = \partial_j v^i + \Gamma^{i}_{mj} v^m.
 \end{bequation}
 
-La \cref{eq.4-derivadacovariante}, a la que hemos llegado con argumentos puramente geométricos, es la defición habitual de la derivada covariante a través de su acción sobre las componentes de un campo vectorial. 
+La \cref{eq.4-derivadacovariante}, a la que hemos llegado con argumentos puramente geométricos, es la defición habitual de la derivada covariante a través de su acción sobre las componentes de un campo vectorial. Queda por aclarar un detalle sobre la nomenclatura. Se llama derivada covariante precisamente porque \(\nabla_i u^j\) son las componentes de un tensor de rango \((1, 1)\); es decir, el índice de \(\nabla_i\) se transforma según la regla covariante:
+\begin{equation}
+    \nabla_{j'}u^{i'} = \frac{\partial x^j}{\partial x^{j'}} \frac{\partial x^{i'}}{\partial x^i} \nabla_j u^i.
+\end{equation}
+
+Esta es, de hecho, la propiedad reseñable que habitualmente motiva su definición y uso en física. Si queremos que la forma de nuestras leyes sea independiente del sistema de coordenadas elegido, el lenguaje natural para expresarlas será el tensorial. Evidentemente, las ecuaciones de la física involucran derivadas parciales a lo largo de las direcciones espaciales. El problema, como veremos en un momento, es que el índice en \(\partial_i\) no sigue la regla de transformación tensorial. Por tanto, la derivada covariante tiene una ventaja clara sobre la derivada parcial de siempre a la hora de expresar las leyes de la física de manera covariante. Vamos a comprobarlo explícitamente.
+
+\begin{example}
+    {Mecánica newtoniana y la derivada covariante.
+    \label{ej.4-newton_covariante}}
+    En mecánica newtoniana, una partícula masiva que se mueve en ausencia de fuerzas sigue la ecuación:
+    \begin{equation*}
+        \frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t} = \mathbf{0}.
+    \end{equation*}
+    La velocidad es, en un sistema de coordenadas arbitrario \(v^i\mathbf{e}_i\), donde tanto las componentes como los vectores dependen del tiempo a través del punto de la trayectoria en el que nos encontremos. La derivada temporal se puede escribir como
+    \begin{equation*}
+        \mathbf{0} = \frac{\mathrm{d}v^i}{\mathrm{d}t} \mathbf{e}_i + v^i \frac{\mathrm{d}}{\mathrm{d}t} \mathbf{e}_i = \dot{x}^k\partial_k v^i \mathbf{e}_i + v^i \dot{x}^k \frac{\partial\mathbf{e}_i}{\partial_k} = v^k\left[\partial_k{v}^i + v^j \Gamma^{i}_{jk}\right]\mathbf{e}_i,
+    \end{equation*}
+    donde hemos utilizado la \cref{eq.4-christoffel_euclideo} y reconocido que \(\dot{x}^k=v^k\). De aquí se deduce que, en un sistema de coordenadas general las componentes de la velocidad evolucionan de acuerdo con
+    \begin{equation*}
+        v^k\nabla_k v^i = 0.
+    \end{equation*}
+\end{example}
+
+\begin{example}
+    {Electrostática y la derivada covariante.
+    \label{ej.4-electrostatica_covariante}}
+    La ley que rige la electrostática es \(\text{div}(\mathbf{E}) = \rho/\varepsilon_0\). Como el lado derecho de la ecuación, \(\rho/\varepsilon_0\), es un escalar, bajo una transformación de coordenadas debe permanecer invariante. Por tanto, el objeto \(\text{div}(\mathbf{E})\) es un tensor de rango \((0,0)\) que, en coordenadas cartesianas, toma la forma \(\partial_i E^i\). 
+    
+    La pregunta es qué aspecto tomará el mismo operador diferencial cuando utilicemos cualquier otro sistema de coordenadas. Inocentemente podríamos suponer que sea \(\partial_{i'} E^{i'} = \rho/\varepsilon_0\), pero así no estaríamos teniendo en cuenta que la derivada parcial no cumple la ley de transformación tensorial:
+    \begin{align*}
+        \partial_{i'} E^{i'} &= \frac{\partial x^i}{\partial x^{i'}}\frac{\partial}{\partial x^i}\left(\frac{\partial x^{i'}}{\partial x^j} E^j\right) = \frac{\partial x^i}{\partial x^{i'}}\frac{\partial}{\partial x^i}\left(\frac{\partial x^{i'}}{\partial x^j} E^j\right) \\
+        &= \partial_i E^i + \frac{\partial x^i}{\partial x^{i'}}\frac{\partial^2 x^{i'}}{\partial x^i\partial x^j} E^j.
+    \end{align*}
+
+    La manera de cancelar el segundo término es, precisamente, añadir los símbolos de Christoffel. Para ello, reemplazamos la derivada parcial por la covariante y escribimos
+    \begin{equation*}
+        \nabla_i E^i = \rho/\varepsilon_0.
+    \end{equation*}
+    En coordenadas cartesianas, \(\Gamma^{i}_{jk} = 0\), de modo que recuperamos precisamente el punto de partida. La ventaja es que la ecuación, escrita de ese modo, es invariante bajo cambios de coordenadas:
+    \begin{equation*}
+        \nabla_i E^i = \nabla_{i'} E^{i'}.
+    \end{equation*}
+    
+    Por supuesto, siempre podemos expandir la derivada covariante en términos de la derivada parcial y los símbolos de Christoffel, como de hecho haríamos para resolver la ecuación. No estamos diciendo que no se pueda escribir \(\partial_{i'}E^{i'}\) y tirar millas. La cuestión es que, conceptualmente, \(\text{div}(\mathbf{E}) = \rho/\varepsilon_0\) es una ecuación tensorial (escalar) y con la derivada covariante sabemos escribirla en cualquier sistema de coordenadas o generalizarla a otra variedad que se nos ocurra. La dificultad se reduce a calcular los símbolos de Christoffel, una actividad tediosa pero esencialmente mecánica.
+\end{example}
 
 
-% cosas que hay que explicar:
+\begin{example}
+    {Ecuación de ondas y la derivada covariante.
+    \label{ej.4-ondas_covariante}}
+    La ecuación de ondas es, en coordenadas cartesianas,
+    \begin{equation*}
+        g^{\mu\nu}\partial_\mu\partial_\nu u = \partial^\mu \partial_\mu u = 0
+    \end{equation*}
+    donde \(g^{\mu\nu} = \text{diag}(-1, 1, 1, 1)\) es la inversa de la métrica de Minkowski. Bajo un cambio de coordenadas arbitrario, igual que en el \cref{ej.4-electrostatica_covariante}, las derivadas parciales adquieren factores no tensoriales. Sin embargo, el lado derecho de la ecuación es un escalar. En coordenadas cartesianas, añadir los símbolos de Christoffel es gratis, porque se anulan, y nos permite convertir las derivadas parciales en covariantes sin alterar la ecuación:
+    \begin{equation*}
+        g^{\mu\nu}\nabla_\mu\nabla_\nu u = \nabla^\mu \nabla_\mu u = 0.
+    \end{equation*}
+    Ahora, bajo cualquier cambio de coordenadas la ecuación se queda exactamente igual.\marginexercise{Expande la ecuación de ondas en coordenadas cilíndricas y esféricas.}
+\end{example}
 
-% por qué el nombre de covariante, teniendo ya los símbolos de christoffel y su transformación
+\subsubsection{Derivada covariante de covectores y tensores}
+\label{subsubsec.4derivadacovariante_tensores}
 
-% por qué es común en física, qué permite hacer.
+Para una 1-forma diferencial la derivada parcial adolece del mismo problema. La solución es, en este caso, añadir términos relacionados con la conexión entre espacios cotangentes, de manera que
+\begin{equation}
+    \nabla_i \omega_j = \partial_i\omega_j + \tilde{\Gamma}^k_{ij} \omega_k.
+\end{equation}
 
+Estos símbolos son, en principio, independientes de los que definimos en la \cref{subsubsec.4christoffel}. No tenemos por qué trabajar con la misma conexión en los fibrados tangente y cotangente. De todas formas, hay una propiedad deseable que, si se impone, relaciona los \(\tilde{\Gamma}\) con los \(\Gamma\): La derivada covariante de un escalar coincide con la derivada parcial:
+\begin{equation}
+    \partial_i u = \nabla_i u.
+\end{equation}
+Tiene sentido debido a que el motivo por el cual \(\partial_i E^i\) no sigue la transformación covariante es que el propio \(E^i\) se transforma. Un escalar \(u\) no tiene ese problema, por lo que \(\partial_i u \,\mathrm{d}x^i = \partial_{i'} u \,\mathrm{d}x^{i'}\). En otras palabras, aplicada a escalares, la derivada parcial sí tiene comportamiento tensorial. Así,
+\begin{align}
+    \nonumber
+    \partial_i \left(v^j \omega_j\right) &= \nabla_i \left(v^j \omega_j\right) = \nabla_i v^j \omega_j + v^j\nabla_i \omega_j \\
+    \nonumber
+    &= \left[\partial_i v^j + \Gamma^j_{ik}v^k\right] \omega_j + v^j \left[\partial_i \omega_j + \tilde{\Gamma}^k_{ij}\omega_k\right] \\
+    &= \partial_i \left(v^j \omega_j\right) + \left[\Gamma^j_{ik} +  \tilde{\Gamma}^j_{ik}\right]v^k\omega_j,
+\end{align}
+de donde se deduce que \(\Gamma^j_{ik} = -\tilde{\Gamma}^j_{ik}\). Es decir, 
+\begin{equation*}
+    \left\{
+    \begin{aligned}
+        \nabla_i v^j &= \partial_i v^j + \Gamma^j_{ik}v^k\\
+        \nabla_i \omega_j &= \partial_i \omega_j - \Gamma^k_{ij}\omega_k
+    \end{aligned}
+    \right.
+\end{equation*}
 
-\subsection{Curvas geodésicas}
+Para definir la derivada covariante sobre campos tensoriales arbitrarios, recurrimos a la generalización natural de la propiedad anterior, que es que la derivada covariante conmute con la contracción de índices:
+\begin{equation}
+    \nabla_i\left(\tensor{T}{^j^k_k_l}\right) = \tensor{\left(\nabla T\right)}{_i^j^k_k_l}.
+\end{equation}
+De manera similar a lo anterior se comprueba que la derivada covariante de un tensor incluye un término \(+\Gamma\) por cada superíndice y otro \(-\Gamma\) por cada subíndice. Por ejemplo:
+\begin{equation}
+    \nabla_i\left(\tensor{T}{^j^k_l}\right) = \partial_i \tensor{T}{^j^k_l} + \Gamma^{j}_{im} \tensor{T}{^m^k_l} + \Gamma^{k}_{im} \tensor{T}{^k^m_l} - \Gamma^{m}_{il} \tensor{T}{^j^k_m}. 
+\end{equation}
 
-% ejemplo de fuerzas ficticias
 
 \subsection{Tensores de curvatura}
 
 
-With his former student Tullio Levi-Civita, he wrote his most famous single publication,[2] a pioneering work on the calculus of tensors, signing it as Gregorio Ricci. This appears to be the only time that Ricci-Curbastro used the shortened form of his name in a publication, and continues to cause confusion.
+% With his former student Tullio Levi-Civita, he wrote his most famous single publication,[2] a pioneering work on the calculus of tensors, signing it as Gregorio Ricci. This appears to be the only time that Ricci-Curbastro used the shortened form of his name in a publication, and continues to cause confusion.
