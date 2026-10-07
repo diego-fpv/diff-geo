@@ -98,7 +98,7 @@ Ya dedicamos unas palabras a la conexión afín en la \cref{subsec.3tensores}, p
             v^y = e^{y_q-y_p}\left(\sin(x_q-x_p)u^x + \cos(x_q-x_p)u^y\right)
         \end{aligned}\right.
     \end{equation*}
-    El significado geométrico de esta conexión afín es el siguiente. Dado un vector en \(p\), con coordenadas \((x_p, y_p)\), lo llevamos a \(q\) rotándolo un ángulo igual a \(x_q-x_p\) y estirándolo o contrayéndolo un factor \(e^{y_q-y_p}\). La \cref{fig.4-conexion_trivialR2} muestra lo que le pasa al vector \(\partial_x\) cuando lo movemos desde el punto \((1.3, 0)\) a lo largo de una circunferencia centrada en el origen.
+    El significado geométrico de esta conexión afín es el siguiente. Dado un vector en \(p\), con coordenadas \((x_p, y_p)\), lo llevamos a \(q\) rotándolo un ángulo igual a \(x_q-x_p\) y estirándolo o contrayéndolo un factor \(e^{y_q-y_p}\). La \cref{fig.4-conexion_peculiarR2} muestra lo que le pasa al vector \(\partial_x\) cuando lo movemos desde el punto \((1.3, 0)\) a lo largo de una circunferencia centrada en el origen.
 
     \begin{figbox}
         {Evolución del vector \(\partial_x\) de acuerdo con una conexión afín peculiar. A medida que la coordenada \(y\) del punto aumenta, el módulo del vector aumenta. Por otro lado, el movimiento horizontal rota el vector.
@@ -210,7 +210,7 @@ Si el vector final coincide con el inicial independientemente del camino cerrado
     {Conexión con curvatura en \(S^2\).
     \label{ej.4-conexión_esfera}}
 
-    En este ejemplo vamos a ver los detalles tras la \cref{fig.3-transporte_paralelo_S2}. Los cálculos son más laboriosos que complicados; no debemos asustarnos al ver la extensión del ejemplo.
+    En este ejemplo vamos a ver los detalles tras la \cref{fig.3-transporte_S2}. Los cálculos son más laboriosos que complicados; no debemos asustarnos al ver la extensión del ejemplo.
 
     En la esfera, como en cualquier otra variedad diferencial, podemos definir una conexión infinitesimalmente a través de sus símbolos de Christoffel. Vamos a dar aquí los valores de los símbolos de una conexión concreta sobre la que hablaremos más adelante, la de Levi-Civita. Dejemos para ese momento la discusión sobre los detalles. Por el momento lo único que hace falta saber es que es la conexión más natural e intuitiva.
 
@@ -223,7 +223,7 @@ Si el vector final coincide con el inicial independientemente del camino cerrado
     Con estos símbolos de Christoffel, miremos qué le pasa al vector \(\mathbf{u} = \partial_\theta\) situado en un punto cercano al polo norte, dado por \(\theta=\epsilon\) y \(\phi = 0\), cuando lo trasladamos a lo largo de un meridiano (\(\phi = 0\)) hasta el ecuador, después lo desplazamos por el ecuador (\(\theta = \pi/2\)) hasta \(\phi=\pi/2\), luego volvemos a subirlo por un meridiano (\(\phi = \pi/2\)) y, por último, cerramos el camino por el paralelo \(\theta=\epsilon\), como en la \cref{fig.4-transporteS2}. Usamos esta trayectoria para evitar el polo norte, que no está bien descrito por nuestras coordenadas, pero al final del cálculo tomaremos el límite \(\epsilon\rightarrow0\) para recuperar el resultado asociado a una trayectoria más sencilla en la que empezamos y acabamos en el polo norte.
 
     \begin{figbox}
-        {Transporte del vector \(\mathbf{u} = \partial_x = \partial_\theta\) a lo largo de la trayectoria marcada en negro. Durante los tres primeros tramos, las componentes del vector no se ven alteradas, de modo que tenemos siempre \(\mathbf{u} = \partial_\theta\). En el último tramo cercano al polo norte sí se producen modificaciones en las componentes, de tal modo que al volver al punto de origen \(\mathbf{u} \approx \partial_y \propto \partial_phi\).
+        {Transporte del vector \(\mathbf{u} = \partial_x = \partial_\theta\) a lo largo de la trayectoria marcada en negro. Durante los tres primeros tramos, las componentes del vector no se ven alteradas, de modo que tenemos siempre \(\mathbf{u} = \partial_\theta\). En el último tramo cercano al polo norte sí se producen modificaciones en las componentes, de tal modo que al volver al punto de origen \(\mathbf{u} \approx \partial_y \propto \partial_\phi\).
         \label{fig.4-transporteS2}}
         \input{figuras/transporteS2.tex}
     \end{figbox}
@@ -313,7 +313,7 @@ Si el vector final coincide con el inicial independientemente del camino cerrado
 
 Ya la hemos mencionado en un par de sitios, pero no le hemos dedicado la atención que merece a la conexión de Levi-Civita. Es hora de arreglarlo. Sea \(\mathcal{M}\) una variedad diferencial que dotamos de métrica \(g\). Notemos que, hasta ahora, no hemos mencionado nada sobre métricas en nuestra discusión sobre las conexiones. Son conceptos diferentes. La métrica mide vectores, la conexión asocia vectores. Sin embargo, la conexión de Levi-Civita es un caso particular que sí está relacionado con la métrica de la variedad. Siendo más formales, la conexión de Levi-Civita es la única conexión \emph{sin torsión} y \emph{compatible con la métrica}. Lo más interesante de dicha conexión es que es la que aparece en la teoría de la relatividad general.
 
-\paragraph{Torsión} La torsión de una conexión es una propiedad algo sutil. La idea es preguntarse si un paralelogramo infinitesimal se cierra sobre sí mismo o no. Imaginemos dos vectores \(\mathbf{u}, \mathbf{v}\in T_p\mathcal{M}\), y un desplazamiento infinitesimal \(\delta_\mathbf{u} x^i\) y \(\delta_\mathbf{v} x^i\) a lo largo de la dirección de cada uno, lo que nos lleva a los puntos \(p_\mathbf{u}\) y \(p_\mathbf{v}\). Ahora, cojamos \(\mathbf{u}\) y transportémoslo a lo largo del desplazamiento infinitesimal \(\delta_\mathbf{v} x^i\), y viceversa. Así, llegamos a nuevos vectores en los nuevos puntos: \(\mathbf{u}'\in T_{p_\mathbf{v}}\mathcal{M}\) y \(\mathbf{v}'\in T_{p_\mathbf{u}}\mathcal{M}\). Desde esos nuevos puntos, hacemos nuevos desplazamientos infinitesimales \(\delta_{\mathbf{u}'} x^i\) y \(\delta_{\mathbf{v}'} x^i\). Así, hemos constuido dos caminos desde \(p\); uno caminando primero en \(\mathbf{u}\) y luego en \(\mathbf{v}'\) y el otro primero en \(\mathbf{v}\) y luego en \(\mathbf{u}'\). Si llegamos al mismo punto de ambas formas, a segundo orden en \(\delta x\), entonces la métrica no tiene torsión. Vamos a ilustrarlo con un ejemplo, y después vemos cómo se manifiesta en los símbolos de Christoffel.
+\paragraph{Torsión} La torsión de una conexión es una propiedad algo sutil. La idea es preguntarse si un paralelogramo infinitesimal se cierra sobre sí mismo o no. Imaginemos dos vectores \(\mathbf{v}_1, \mathbf{v}_2\in T_p\mathcal{M}\), y un desplazamiento infinitesimal \(\Delta_1 x^i\) y \(\Delta_2 x^i\) a lo largo de la dirección de cada uno, lo que nos lleva a los puntos \(p_1\) y \(p_2\). Ahora, cojamos \(\mathbf{v}_1\) y transportémoslo a lo largo del desplazamiento infinitesimal \(\Delta_2 x^i\), y viceversa. Así, llegamos a nuevos vectores en los nuevos puntos: \(\mathbf{v}_1'\in T_{p_2}\mathcal{M}\) y \(\mathbf{v}_2'\in T_{p_1}\mathcal{M}\). Desde esos nuevos puntos, hacemos nuevos desplazamientos infinitesimales \(\Delta_{1} x^i\) y \(\Delta_{2} x^i\). Así, hemos constuido dos caminos desde \(p\); uno caminando primero en \(\mathbf{v}_1\) y luego en \(\mathbf{v}_2'\) y el otro primero en \(\mathbf{v}_2\) y luego en \(\mathbf{v}_1'\). Si llegamos al mismo punto de ambas formas, al menos a segundo orden en \(\Delta x\), entonces la métrica no tiene torsión. Vamos a ilustrarlo con un ejemplo, y después vemos cómo se manifiesta en los símbolos de Christoffel.
 
 \begin{example}
     {Conexión con torsión.
@@ -326,48 +326,48 @@ Ya la hemos mencionado en un par de sitios, pero no le hemos dedicado la atenci�
         \includegraphics{figuras/conexion_torsion.pdf}
     \end{figbox}
     
-    Trabajando en coordenadas cartesianas \(\{x, y\}\). El punto inicial es el \((0, 0)\), y los vectores son \(\mathbf{u} = \partial_x\) y \(\mathbf{v} = \partial_y\). Transportamos \(\mathbf{u}\) en la dirección de \(\mathbf{v}\) una cantidad infinitesimal \(\delta_\mathbf{v}\) (punto \((0, \delta_\mathbf{v})\)), viendo la regla del \cref{ej.4-conexion_peculiarR2}, a
+    Trabajando en coordenadas cartesianas \(\{x, y\}\). El punto inicial es el \((0, 0)\), y los vectores son \(\mathbf{v}_1 = \partial_x\) y \(\mathbf{v}_2 = \partial_y\). Transportamos \(\mathbf{v}_1\) en la dirección de \(\mathbf{v}_2\) una cantidad infinitesimal \(\Delta\) (punto \((0, \Delta)\)), viendo la regla del \cref{ej.4-conexion_peculiarR2}, a
     \begin{equation*}
-        \mathbf{u}' = \partial_x (1 + \delta_\mathbf{v}). 
+        \mathbf{v}_1' = \partial_x (1 + \Delta). 
     \end{equation*}
-    Ahora nos movemos en la dirección de \(\mathbf{u}'\) una cantidad \(\delta_\mathbf{u}\) y llegamos al punto con coordenadas:
+    Ahora nos movemos en la dirección de \(\mathbf{v}_1'\) una cantidad \(\Delta_1\) y llegamos al punto con coordenadas:
     \begin{equation*}
-        (0, \delta_\mathbf{v}) + \delta_\mathbf{u}(1 + \delta_\mathbf{v}, 0) = (\delta_\mathbf{u} + \delta_\mathbf{u}\delta_\mathbf{v}, \delta_\mathbf{v})
+        (0, \Delta) + \Delta(1 + \Delta, 0) = (\Delta + \Delta^2, \Delta)
     \end{equation*}
 
-    El otro vector \(\mathbf{v}\) lo transportamos a hasta el punto \((\delta_\mathbf{u}, 0)\):
+    El otro vector \(\mathbf{v}_2\) lo transportamos a hasta el punto \((\Delta, 0)\):
     \begin{equation*}
-        \mathbf{v}' = \partial_y - \delta_\mathbf{u} \partial_x,
+        \mathbf{v}_2' = \partial_y - \Delta \partial_x,
     \end{equation*}
-    y nos movemos en su dirección una cantidad \(\delta_\mathbf{v}\) para llegar al punto
+    y nos movemos en su dirección una cantidad \(\Delta\) para llegar al punto
     \begin{equation*}
-        (\delta_\mathbf{u}, 0) + \delta_\mathbf{v}(-\delta_\mathbf{u}, 1) = (\delta_\mathbf{u} - \delta_\mathbf{u}\delta_\mathbf{v}, \delta_\mathbf{v})
+        (\Delta, 0) + \Delta(-\Delta, 1) = (\Delta - \Delta^2, \Delta)
     \end{equation*}
-    Entre las dos puntas hay una distancia igual a \(2\delta_\mathbf{u}\delta_\mathbf{v}\), que es un término de segundo orden en \(\delta\). Por tanto, la conexión tiene torsión.
+    Entre las dos puntas hay una distancia igual a \(2\Delta^2\), que es un término de segundo orden en \(\Delta\). Por tanto, la conexión tiene torsión.
 \end{example}
 
-Veamos cómo expresar estas ideas ahora en términos de los símbolos de Christoffel. Sean dos vectores en \(T_p\mathcal{M}\) con componentes \(u^i = \delta^{i}_{i_1}\) y \(v^i = \delta^{i}_{i_2}\). Los desplazamientos que debemos considerar son, en función de las coordenadas, \(\Delta x^{i_1}\) y \(\Delta y^{i_2}\), que nos llevan a los puntos \(p_1\) y \(p_2\), con coordenadas \footnote{Los índices \(i_1\) e \(i_2\) no están sumados, porque se refieren a valores concretos como \(i_1 = 3\) e \(i_2 = 7\), que daría lugar a desplazamientos en la tercera y séptima dimensiones.}
+Veamos cómo expresar estas ideas ahora en términos de los símbolos de Christoffel. Sea el punto \(p\) con coordenadas \(x^i\) y dos vectores en \(T_p\mathcal{M}\) con componentes \((\mathbf{v}_1)^i = \delta^{i}_{i_1}\) y \((\mathbf{v}_2)^i = \delta^{i}_{i_2}\). Los desplazamientos que debemos considerar son, en función de las coordenadas, \(\Delta x^{i_1}\) y \(\Delta x^{i_2}\), que nos llevan a los puntos \(p_1\) y \(p_2\), con coordenadas \footnote{Los índices \(i_1\) e \(i_2\) no están sumados, porque se refieren a valores concretos como \(i_1 = 3\) e \(i_2 = 7\), que daría lugar a desplazamientos en la tercera y séptima dimensiones.}
 \begin{equation*}
-    p_1 \rightarrow \delta^{i}_{i_1} \Delta x^{i_1} \quad\text{y}\quad p_2 \rightarrow \delta^{i}_{i_2} \Delta y^{i_2}.
+    p_1 \rightarrow x^i + \delta^{i}_{i_1} \Delta x^{i_1} \quad\text{y}\quad p_2 \rightarrow x^i + \delta^{i}_{i_2} \Delta x^{i_2}.
 \end{equation*}
 De acuerdo con la \cref{eq.4-transporte_paralelo}, las componentes de los vectores transportados son
 \begin{align*}
-    u^i &= \delta^{i}_{i_1} - \Gamma^{i}_{j k} \delta^{j}_{i_1} \delta^{k}_{i_2} \Delta y^{i_2} = \delta^{i}_{i_1} - \Gamma^{i}_{i_1 i_2} \Delta y^{i_2}, \\
-    v^i &= \delta^{i}_{i_2} - \Gamma^{i}_{j k} \delta^{j}_{i_2} \delta^{k}_{i_1}\Delta x^{i_1} = \delta^{i}_{i_2} - \Gamma^{i}_{i_2 i_1} \Delta x^{i_1}.
+    (T_{p\rightarrow p_2}\mathbf{v}_1)^i &= \delta^{i}_{i_1} - \Gamma^{i}_{j k} \delta^{j}_{i_1} \delta^{k}_{i_2} \Delta x^{i_2} = \delta^{i}_{i_1} - \Gamma^{i}_{i_1 i_2} \Delta x^{i_2}, \\
+    (T_{p\rightarrow p_1}\mathbf{v}_2)^i &= \delta^{i}_{i_2} - \Gamma^{i}_{j k} \delta^{j}_{i_2} \delta^{k}_{i_1}\Delta x^{i_1} = \delta^{i}_{i_2} - \Gamma^{i}_{i_2 i_1} \Delta x^{i_1}.
 \end{align*}
-Por último, encadenamos los últimos desplazamientos sobre \(\mathcal{M}\) desde \(p_1\) y \(p_2\), proporcionales a \(\Delta y^{i_2}\) y \(\Delta x^{i_1}\) respectivamente. Así, acabamos en los puntos con coordenadas
+Por último, encadenamos los últimos desplazamientos sobre \(\mathcal{M}\) desde \(p_1\) y \(p_2\), proporcionales a \(\Delta x^{i_2}\) y \(\Delta x^{i_1}\) respectivamente. Así, acabamos en los puntos con coordenadas
 \begin{equation*}
     \left\{
     \begin{aligned}
-        p_1' \rightarrow \delta^{i}_{i_1}\Delta x^{i_1} + \Delta y^{i_2}v^i = \left(\delta^{i}_{i_1}\Delta x^{i_1} + \delta^{i}_{i_2}\Delta y^{i_2}\right) - \Gamma^{i}_{i_1 i_2} \Delta x^{i_1}\Delta y^{i_2}\\
-        p_2' \rightarrow \delta^{i}_{i_2}\Delta y^{i_2} + \Delta x^{i_1}u^i = \left(\delta^{i}_{i_2}\Delta y^{i_2} + \delta^{i}_{i_1}\Delta x^{i_1}\right) - \Gamma^{i}_{i_2i_1} \Delta x^{i_1}\Delta y^{i_2}
+        p_1' \rightarrow \delta^{i}_{i_1}\Delta x^{i_1} + \Delta x^{i_2}v^i = \left(\delta^{i}_{i_1}\Delta x^{i_1} + \delta^{i}_{i_2}\Delta x^{i_2}\right) - \Gamma^{i}_{i_1 i_2} \Delta x^{i_1}\Delta x^{i_2}\\
+        p_2' \rightarrow \delta^{i}_{i_2}\Delta x^{i_2} + \Delta x^{i_1}u^i = \left(\delta^{i}_{i_2}\Delta x^{i_2} + \delta^{i}_{i_1}\Delta x^{i_1}\right) - \Gamma^{i}_{i_2i_1} \Delta x^{i_1}\Delta y^{i_2}
     \end{aligned}
     \right.
 \end{equation*}
 
 La torsión viene de la diferencia entre las coordenadas de \(p_1'\) y \(p_2'\), a segundo orden en \(\Delta\). En base a las expresiones de arriba, la torsión está relacionada con:
 \begin{equation*}
-    \left(\Gamma^{i}_{i_2 i_1}- \Gamma^{i}_{i_1 i_2}\right)\Delta x^{i_1}\Delta y^{i_2},
+    \left(\Gamma^{i}_{i_2 i_1}- \Gamma^{i}_{i_1 i_2}\right)\Delta x^{i_1}\Delta x^{i_2},
 \end{equation*}
 que se anula cuando \(\Gamma^{i}_{i_2 i_1} = \Gamma^{i}_{i_1 i_2}\). En otras palabras, la conexión no tiene torsión cuando los símbolos de Christoffel son simétricos en las componentes inferiores: \(\Gamma^{i}_{jk} = \Gamma^i_{kj}\).
 
@@ -405,11 +405,11 @@ Veamos un ejemplo sencillo donde podamos calcular los símbolos de Christoffel d
     \label{ej.4-christoffel_S2}}
     Estos símbolos de Christoffel los escribimos sin cuestionar nada en el \cref{ej.4-conexión_esfera}. Ahora que ya sabemos en qué consiste la conexión de Levi-Civita, vamos a hacer el cálculo explícito. En las coordenadas \(\{\theta,\phi\}\), la métrica tiene componentes
     \begin{equation*}
-        g_{\theta\theta} = 1,\quad g_{\theta\phi}=g_{\phi\theta}\quad\text{y}\quad g_{\phi\phi} = \sin^2(\theta),
+        g_{\theta\theta} = 1,\quad g_{\theta\phi}=g_{\phi\theta}=0\quad\text{y}\quad g_{\phi\phi} = \sin^2(\theta),
     \end{equation*}
     y la métrica inversa
     \begin{equation*}
-        g^{\theta\theta} = 1,\quad g^{\theta\phi}=g_{\phi\theta}\quad\text{y}\quad g^{\phi\phi} = \sin^{-2}(\theta).
+        g^{\theta\theta} = 1,\quad g^{\theta\phi}=g^{\phi\theta}=0\quad\text{y}\quad g^{\phi\phi} = \sin^{-2}(\theta).
     \end{equation*}
 
     Empecemos:\marginexercise{Calcular los símbolos de Christoffel del toro con la métrica heredada del espacio euclídeo tridimensional.}
@@ -421,7 +421,7 @@ Veamos un ejemplo sencillo donde podamos calcular los símbolos de Christoffel d
         \Gamma^\phi_{\theta\theta} &= \frac{1}{2}g^{\phi i}\left[\partial_\theta g_{i\theta} - \partial_{\theta}g_{i\theta} -\partial_i g_{\theta\theta}\right] = \frac{1}{2\sin^2(\theta)}\left[0 - 0 - 0\right] = 0,\\
         \Gamma^\phi_{\theta\phi} &= \frac{1}{2}g^{\phi i}\left[\partial_\theta g_{i\phi} - \partial_{\phi}g_{i\theta} -\partial_i g_{\theta\phi}\right] =  \frac{1}{2\sin^2(\theta)}\left[2\sin(\theta)\cos(\theta) - 0 - 0\right] \\
         &\phantom{\ = \frac{1}{2}g^{\phi i}\left[\partial_\theta g_{i\phi} - \partial_{\phi}g_{i\theta} -\partial_i g_{\theta\phi}\right]}= \cot(\theta) = \Gamma^{\phi}_{\phi\theta},\\
-        \Gamma^\phi_{\phi\phi} &= \frac{1}{2}g^{\phi i}\left[\partial_\phi g_{i\phi} - \partial_{\phi}g_{i\phi} -\partial_i g_{\phi\phi}\right] =  \frac{1}{2\sin^2(\theta)}\left[0 - 0 - 0\right].
+        \Gamma^\phi_{\phi\phi} &= \frac{1}{2}g^{\phi i}\left[\partial_\phi g_{i\phi} - \partial_{\phi}g_{i\phi} -\partial_i g_{\phi\phi}\right] =  \frac{1}{2\sin^2(\theta)}\left[0 - 0 - 0\right] = 0.
     \end{align*}
     Este es de los ejemplos más sencillos, porque las derivadas son fáciles, la métrica es diagonal y solo hay dos coordenadas (y por tanto ocho símbolos de Christoffel, aunque solo seis independientes porque no hay torsión). Como se intuye, cualquier ejemplo que se salga de lo clásico es complicado calcularlo a mano. Para ello hay paquetes informáticos de cálculo simbólico dedicados que se encargan de las derivadas. 
 \end{example}
@@ -430,7 +430,7 @@ Veamos un ejemplo sencillo donde podamos calcular los símbolos de Christoffel d
     {Conexión de Levi-Civita en el espacio euclídeo.
     \label{obs.4-conexion_lc_euclidea}}
 
-    En el espacio euclídeo no hay curvatura. La variedad es \(\mathbb{R}^n\) y la métrica tiene componentes \(g_{ij}=\text{diag}(1, ..., 1)\), usando coordenadas cartesianas \(x^i\). Por tanto, dado que la conexión afín, la métrica y la curvatura están relacionados, uno pensaría que \(\Gamma^{i}_{jk} = 0\). En coordenadas cartesiadas es así, efectivamente. Sin embargo, aunque la variedad sea plana, las coordenadas que utilizemos pueden ser curvilíneas. Entonces, los símbolos de Christoffel no se anulan. Por ejemplo, en coordenadas polares, la métrica es
+    En el espacio euclídeo no hay curvatura. La variedad es \(\mathbb{R}^n\) y la métrica tiene componentes \(g_{ij}=\text{diag}(1, ..., 1)\), usando coordenadas cartesianas \(x^i\). Por tanto, dado que la conexión afín, la métrica y la curvatura están relacionados, uno pensaría que \(\Gamma^{i}_{jk} = 0\). En coordenadas cartesiadas es así, efectivamente. Sin embargo, aunque la variedad sea plana, las coordenadas que utilicemos pueden ser curvilíneas. Entonces, los símbolos de Christoffel no se anulan. Por ejemplo, en coordenadas polares, la métrica de \(\mathbb{R}^2\) es
     \begin{equation}
         g_{rr} = 1,\quad g_{r\theta} = g_{\theta r} = 0\quad\text{y}\quad g_{\theta\theta} = r^2,
     \end{equation}
@@ -472,18 +472,65 @@ Una consecuencia obvia de la curvatura del espacio es que ya no hay noción de l
     \ddot{x}^i = -\Gamma^{i}_{jk}\dot{x}^j\dot{x^k}.
 \end{equation}
 
-Combinada con la \cref{eq.4-christoffel_levi_civita}, la \cref{eq.4-geodesica} es exactamente lo que obtuvimos en el contexto de una partícula libre que vive en una variedad arbitraria. Las trayectorias que resuelvan aquellas ecuaciones de movimiento, \cref{eq.1-newton_christoffel}, son exactamente las geodésicas asociadas a la conexión de Levi-Civita en la variedad.
+Combinada con la \cref{eq.4-christoffel_levi_civita}, la \cref{eq.4-geodesica} es exactamente lo que obtuvimos en el contexto de una partícula libre que vive en una variedad arbitraria. Las trayectorias que resuelvan aquellas ecuaciones de movimiento, \cref{eq.1-newton_christoffel}, son exactamente las geodésicas asociadas a la conexión de Levi-Civita en la variedad. Solo hay que tener cuidado con un asunto: la parametrización. 
 
+Cuando derivamos las ecuaciones geodésicas en \cref{subsec.1escalares}, partíamos de la longitud de camino. En ese momento dijimos que podíamos escoger una parametrización ``natural'' \(x^i(\lambda)\) en la que la norma de la velocidad fuera 1. En ese caso, la integral del lagrangiano es sencillamente la longitud del intervalo del propio parámetro. Todo parámetro que obtengamos como \(\lambda' = a + b \lambda\) se conoce como afín, especiales porque la ecuación de la geodésica tiene exactamente el mismo aspecto que la \cref{eq.4-geodesica}, ya que la velocidad en esa parametrización tiene norma constante.
 
+¿Qué pasa si utilizamos un parámetro no afín? En ese caso, la norma de la velocidad no es constante y, para mantener la partícula en la misma trayectoria, deben aparecer aceleraciones compensatorias. Sea \(\lambda\) un parámetro afín y \(\alpha(\lambda)\) otro parámetro no afín. Entonces, \marginexercise{Revisa esta derivación.}
+\begin{align*}
+    0 &= \frac{\mathrm{d}}{\mathrm{d}\lambda}\frac{\mathrm{d}x^i}{\mathrm{d}\lambda} + \Gamma^{i}_{jk}\frac{\mathrm{d}x^j}{\mathrm{d}\lambda}\frac{\mathrm{d}x^k}{\mathrm{d}\lambda} = \frac{\mathrm{d}\alpha}{\mathrm{d}\lambda}\frac{\mathrm{d}}{\mathrm{d}\alpha} \left(\frac{\mathrm{d}\alpha}{\mathrm{d}\lambda} \frac{\mathrm{d}x^i}{\mathrm{d}\alpha} \right) + \left(\frac{\mathrm{d}\alpha}{\mathrm{d}\lambda}\right)^2\Gamma^{i}_{jk}\frac{\mathrm{d}x^j}{\mathrm{d}\alpha}\frac{\mathrm{d}x^k}{\mathrm{d}\alpha}\\
+    &= \frac{\mathrm{d}^2\alpha}{\mathrm{d}\lambda^2}\frac{\mathrm{d}x^i}{\mathrm{d}\alpha} + 
+    \left(\frac{\mathrm{d}\alpha}{\mathrm{d}\lambda}\right)^2 \left[\frac{\mathrm{d}^2x^i}{\mathrm{d}\alpha^2} + \Gamma^{i}_{jk}\frac{\mathrm{d}x^j}{\mathrm{d}\alpha}\frac{\mathrm{d}x^k}{\mathrm{d}\alpha} \right],
+\end{align*}
+de donde
+\begin{equation}
+    \label{eq.4-geodesica_parametro-no-afín}
+    \frac{\mathrm{d}^2x^i}{\mathrm{d}\alpha^2} + \Gamma^{i}_{jk}\frac{\mathrm{d}x^j}{\mathrm{d}\alpha}\frac{\mathrm{d}x^k}{\mathrm{d}\alpha} = -\left(\frac{\mathrm{d}\alpha}{\mathrm{d}\lambda}\right)^{-2}\frac{\mathrm{d}^2\alpha}{\mathrm{d}\lambda^2}\frac{\mathrm{d}x^i}{\mathrm{d}\alpha}.
+\end{equation}
+Ese término a la derecha se corresponde, precisamente, con esas aceleraciones compensatorias que fuerzan la partícula a continuar en la trayectoria geodésica, aunque la norma de su velocidad cambie. 
 
-% ejemplo de fuerzas ficticias
+Si, por ejemplo, tenemos una partícula que se mueve en \(\mathbb{R}^2\) (métrica euclídea) con una trayectoria
+\begin{equation}
+    x(t) = \frac{a_x}{2}t^2, \quad y(t) = \frac{a_y}{2}t^2,
+\end{equation}
+con \(t \in [0, 1]\), entonces \(t\) es claramente un parámetro no afín. La trayectoria, por su parte, es una línea recta, luego sí es una geodésica. Por ser el espacio euclídeo y las coordenadas cartesianas, \(\Gamma^i_{jk} = 0\), y la ecuación de movimiento es
+\begin{equation}
+    \frac{\mathrm{d}^2x}{\mathrm{d}t^2} = a_x,\quad\frac{\mathrm{d}^2y}{\mathrm{d}t^2} = a_y.
+\end{equation}
+Los términos a la derecha del igual son, precisamente, las aceleraciones compensatorias que permiten describir la trayectoria geodésica pese a no ser \(t\) afín. Si hacemos el cambio \(\tilde{t} = t^2\), equivalente a coger un reloj cuyos tics son cada vez más rápidos, entonces la ecuación de la trayectoria se convierte en 
+\begin{equation}
+    \frac{\mathrm{d}^2x}{\mathrm{d}t^2} = 0,\quad\frac{\mathrm{d}^2y}{\mathrm{d}t^2} = 0,
+\end{equation}
+porque \(\tilde{t}\) sí es afín.
 
-% derivar: trayectoria autoparalela
+\paragraph{Geodésicas en relatividad}
 
-% vimos que lo mismo salía en la sección 1 (\cref{eq.1-newton_christoffel})
+La relevancia de las trayectorias geodésicas en relatividad general viene de que son las trayectorias que seguiría una masa puntual de prueba no acelerada, en su movimiento por el espacio-tiempo. Efectos que, desde la perspectiva newtoniana, atribuiríamos a la ``fuerza gravitatoria'', no son más que la consecuencia de la curvatura del espacio-tiempo. Para tenerlos en cuenta, simplemente debemos conocer la métrica, calcular los símbolos de Christoffel y resolver la \cref{eq.4-geodesica}.
 
-
-
+Por dar un ejemplo concreto, vamos a escribir las ecuaciones para una masa de prueba que se mueve sobre la solución del agujero negro de Schwarzschild. La métrica, en coordenadas esféricas asintóticamente inerciales, es
+\begin{align}
+    \nonumber
+    g =&\, -\left(1-\frac{r_\text{S}}{r}\right)\mathrm{d}(ct)\otimes\mathrm{d}(ct) + \left(1-\frac{r_\text{S}}{r}\right)^{-1}\mathrm{d}r\otimes\mathrm{d}r \\
+    &+ r^2\left(\mathrm{d}\theta\otimes\mathrm{d}\theta + \sin^2(\theta)\mathrm{d}\phi\otimes\mathrm{d}\phi\right).
+\end{align}
+Los coeficientes no nulos de la conexión de Levi-Civita asociados a \(g\) son\marginexercise{Calculando, que es gerundio.}
+\begin{align*}
+    \Gamma^{t}{tr} &= \frac{r_\text{S}}{2r(r - r_\text{S})} & \Gamma^{r}_{tt} &= \frac{r_\mathrm{S}(r-r_\mathrm{S})}{2r^3} & \Gamma^r_{rr} &= \frac{-r_\mathrm{S} }{2r(r-r_\mathrm{S})}\\
+    \Gamma^{r}{\theta\theta} &= -(r - r_\text{S}) & \Gamma^{r}_{\phi\phi} &= -(r - r_\text{S})\sin^2(\theta) & \Gamma^\theta_{r\theta} &= \frac{1}{r}\\
+    \Gamma^{\theta}{\phi\phi} &= -\sin(\theta)\cos(\theta) & \Gamma^{\phi}_{r\phi} &= \frac{1}{r} & \Gamma^\phi_{\theta\phi} &= \cot(\theta)
+\end{align*}
+Y, por supuesto, los que faltan pero salen de \(\Gamma^i_{jk}=\Gamma^i_{kj}\). La ecuación geodésica se desdobla en\footnote{Por supuesto, el parámetro \(\lambda\) debe ser afín. En relatividad, el parámetro afín preferido para partículas masivas es su tiempo propio, dado por \(\tau = \int_0^1 \mathrm{d}\lambda \sqrt{-g_\mu\nu\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\frac{\mathrm{d}x^\nu}{\mathrm{d}\lambda}}\). Es, esencialmente, el tiempo medido por un reloj comóvil con la partícula en movimiento.}
+\begin{subequations}
+    \begin{align}
+        \frac{\mathrm{d}^2(ct)}{\mathrm{d}\lambda^2} =&\, -\frac{r_\mathrm{S}}{r(r-r_\mathrm{S})} \frac{\mathrm{d} r}{\mathrm{d}\lambda} \frac{\mathrm{d}(ct)}{\mathrm{d}\lambda}\\
+        \nonumber
+        \frac{\mathrm{d}^2r}{\mathrm{d}\lambda^2} =&\, (r-r_\mathrm{S})\sin^2(\theta) \left(\frac{\mathrm{d} \phi}{\mathrm{d}\lambda}\right)^2 + (r-r_\mathrm{S}) \left(\frac{\mathrm{d} \theta}{\mathrm{d}\lambda}\right)^2 \\
+        &+ \frac{r_\mathrm{S}}{2r(r-r_\mathrm{S})} \left(\frac{\mathrm{d} r}{\mathrm{d}\lambda}\right)^2 - \frac{r_\mathrm{S}(r-r_\mathrm{S})}{2r^3} \left(\frac{\mathrm{d}(ct)}{\mathrm{d}\lambda}\right)^2\\
+        \frac{\mathrm{d}^2\theta}{\mathrm{d}\lambda^2} =&\, \sin(\theta)\cos(\theta) \left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^2 - \frac{2}{r} \frac{\mathrm{d}r}{\mathrm{d}\lambda}\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\\
+        \frac{\mathrm{d}^2\phi}{\mathrm{d}\lambda^2} =&\, -2\cot(\theta) \frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\frac{\mathrm{d}\phi}{\mathrm{d}\lambda} - \frac{2}{r} \frac{\mathrm{d}r}{\mathrm{d}\lambda}\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}
+    \end{align}
+\end{subequations}
+Si estas ecuaciones son algo, desde luego son intimidantes. Analíticamente, hay pocas esperanzas de resolverlas directamente, aunque hay maneras de reducir la complejidad utilizando la simetría del espacio-tiempo. Estas simetrías llevan asociadas cantidades conservadas que se expresan en términos de los llamados vectores de Killing. Dichas cantidades conservadas facilitan la obtención de soluciones, pero no vamos a discutirlo más aquí. Las \href{https://preposterousuniverse.com/grnotes/}{notas de Sean Carroll} hablan de este asunto, para quien quiera profundizar.
 
 \subsection{Derivada covariante}
 \label{subsec.4derivadacovariante}
@@ -513,7 +560,7 @@ La \cref{eq.4-derivadacovariante}, a la que hemos llegado con argumentos puramen
     \nabla_{j'}u^{i'} = \frac{\partial x^j}{\partial x^{j'}} \frac{\partial x^{i'}}{\partial x^i} \nabla_j u^i.
 \end{equation}
 
-Esta es, de hecho, la propiedad reseñable que habitualmente motiva su definición y uso en física. Si queremos que la forma de nuestras leyes sea independiente del sistema de coordenadas elegido, el lenguaje natural para expresarlas será el tensorial. Evidentemente, las ecuaciones de la física involucran derivadas parciales a lo largo de las direcciones espaciales. El problema, como veremos en un momento, es que el índice en \(\partial_i\) no sigue la regla de transformación tensorial. Por tanto, la derivada covariante tiene una ventaja clara sobre la derivada parcial de siempre a la hora de expresar las leyes de la física de manera covariante. Vamos a comprobarlo explícitamente.
+Esta es, de hecho, la propiedad reseñable que habitualmente motiva su definición y uso en física. Si queremos que la forma de nuestras leyes sea independiente del sistema de coordenadas elegido, el lenguaje natural para expresarlas será el tensorial. Evidentemente, las ecuaciones de la física involucran derivadas parciales a lo largo de las direcciones espaciales. El problema, como veremos en un momento, es que el índice en \(\partial_i\) no sigue la regla de transformación tensorial cuando la derivada actúa sobre las componentes de un tensor. Por tanto, la derivada covariante tiene una ventaja clara sobre la derivada parcial de siempre a la hora de expresar las leyes de la física de manera covariante. Vamos a comprobarlo explícitamente.
 
 \begin{example}
     {Mecánica newtoniana y la derivada covariante.
@@ -609,8 +656,95 @@ De manera similar a lo anterior se comprueba que la derivada covariante de un te
     \nabla_i\left(\tensor{T}{^j^k_l}\right) = \partial_i \tensor{T}{^j^k_l} + \Gamma^{j}_{im} \tensor{T}{^m^k_l} + \Gamma^{k}_{im} \tensor{T}{^k^m_l} - \Gamma^{m}_{il} \tensor{T}{^j^k_m}. 
 \end{equation}
 
-
 \subsection{Tensores de curvatura}
+\label{subsec.4tensorescurvatura}
+
+Al comienzo de esta sección, analizamos el papel de la conexión afín a la hora de dar curvatura a una misma variedad.\footnote{Distintas conexiones dan lugar a distintas curvaturas en la misma variedad.} La idea era que al transportar de forma paralela un vector a lo larto de una trayectoria cerrada, el vector original y el final no tenían por qué coincidir. Si la variedad tiene curvatura intrínseca, el vector acabará girando un ángulo relacionado con el propio camino y la curvatura de la variedad a lo largo del mismo. Esta manera de detectar curvatura no es la forma más idónea para hablar del asunto, aunque captura la idea perfectamente. Aquí vamos a desarrollar las herramientas necesarias para poder hablar con precisión: los tensores de curvatura.
+
+\paragraph{Tensor de Riemann} Lo primero que podemos observar es que los efectos que hemos descrito miden, realmente, algo así como una curvatura promedio a lo largo de una trayectoria. Sin embargo, una variedad no tiene por qué tener la misma curvatura en todos los puntos, así que es conveniente buscar una descripción \emph{local}. Eso es, precisamente, lo que nos da el tensor de Riemann. La idea geométrica es similar a lo que hicimos con la torsión, aunque con la derivada covariante hay una forma más algebraica de obtener el tensor de Riemann.
+
+Veamos, para empezar, la idea geométrica. Dado un punto \(p\in\mathcal{M}\) con coordenadas \(x^{i} = 0\), consideramos dos desplazamientos hasta \(q\in\mathcal{M}\), con coordenadas \(x^i = \delta^i_{i_1}\Delta x^{i_1} + \delta^i_{i_2}\Delta x^{i_2} + \). El primero, camino \(a\), consiste en incrementar la coordenada \(x^{i_1}\) en \(\Delta x^{i_1}\), seguido de incrementar la coordenada \(x^{i_2}\) en \(\Delta x^{i_2}\). El segundo camino, \(b\), consiste en hacer dichos incrementos en el orden contrario. En el espacio de coordenadas hemos trazado un rectángulo simplemente, donde el vértice inicial representa \(p\) y el final \(q\). Ahora, tomemos un vector con componentes \(v^i\) y transportemoslo de por ambos caminos. Al llegar a \(q\), tendremos\footnote{El razonamiento es a segundo orden, pero hay términos algunos términos a segundo orden que no hemos tenido en cuenta: los transportes paralelos que conforman cada camino tienen sendos términos de segundo orden propios que no incluimos. El resultado al que llegamos aquí es correcto, porque esos términos se cancelan, y solo embarran las expresiones. Aun así, vale la pena pensar cómo se cancelan.}\marginexercise{Asegúrate de que entiendes de dónde sale la primera línea y repite la derivación para entenderla en detalle.}
+\begin{align*}
+    (v_a)^i &= 
+    \left[v^i - \Gamma^{i}_{ji_1}v^j\Delta x^{i_1}\right] - \Gamma^{i}_{ji_2}\left(\Delta x^{i_1}\right) \left[v^j - \Gamma^{j}_{ki_1}(0)v^k\Delta x^{i_1}\right] \Delta x^{i_2} \\
+    &= v^i - \left[\Gamma^{i}_{ji_1}\Delta x^{i_1} + \Gamma^{i}_{ji_2}\left(\Delta x^{i_1}\right)\Delta x^{i_2}\right]v^j + \Gamma^{i}_{ki_2}\left(\Delta x^{i_1}\right) \Gamma^{k}_{ji_1}\Delta x^{i_1} \Delta x^{i_2}v^j,\\
+    (v_b)^i &= 
+    v^i - \left[\Gamma^{i}_{ji_2}\Delta x^{i_2} + \Gamma^{i}_{ji_1}\left(\Delta x^{i_2}\right)\Delta x^{i_1}\right]v^j + \Gamma^{i}_{ki_1}\left(\Delta x^{i_2}\right) \Gamma^{k}_{ji_2}\Delta x^{i_1} \Delta x^{i_2} v^j,
+\end{align*}
+donde \(\Gamma^{i}_{jk}\) están evaluados en \(p\), y \(\Gamma^{i}_{jk}(\Delta^{i_a})\) están evaluados en los puntos intermedios del rectángulo. Ahora, calculando \((v_a)^i-(v_b)^i\) llegamos a
+\begin{equation}
+    \lim_{\Delta x\rightarrow0}\frac{(v_a)^i - (v_b)^i}{\Delta x^{i_1} \Delta x^{i_2}} = \left[\partial_{i_2}\Gamma^{i}_{ji_1} - \partial_{i_1}\Gamma^{i}_{ji_2} + \Gamma^{i}_{ki_2} \Gamma^{k}_{ji_1} - \Gamma^{i}_{ki_1} \Gamma^{k}_{ji_2}\right] v^j
+\end{equation}
+El término entre corchetes es, precisamente, el tensor de Riemann:
+\begin{bequation}
+    \tensor{R}{^i_{jkl}} = \partial_k \Gamma^{i}_{lj} - \partial_{l}\Gamma^{i}_{kj} + \Gamma^{i}_{km} \Gamma^{m}_{lj} - \Gamma^{i}_{lm} \Gamma^{m}_{kj}.
+\end{bequation}
+
+La manera más directa de llegar al tensor de Riemann es, como decíamos antes, utilizar el conmutador de las derivadas covariantes actuando sobre un campo vectorial:\marginexercise{Rellena los pasos que faltan.}
+\begin{equation}
+    \left[\nabla_k, \nabla_l\right]v^i = \cdots = \tensor{R}{^i_{jkl}} v^j - \left[\Gamma^j_{kl} - \Gamma^j_{lk}\right]\nabla_j v^i.
+\end{equation}
+Si la conexión no tiene torsión, entonces el término entre corchetes se anula. La relación entre ambos métodos viene de recordar que la derivada covariante de un campo tensorial en una dirección mide, infinitesimalmente, la diferencia entre el campo tensorial evaluado en otro punto y el tensor original transportado paralelamente hasta el nuevo punto.
+
+Hay un par de propiedades directas del tensor de Riemann. Las escribimos aquí sin mucha explicación, aunque es un buen ejercicio demostrar las que no son evidentes:\marginexercise{Demostrar las propiedades de la lista.}
+\begin{myitemize}
+    \item \(\tensor{R}{^i_{jkl}}\) depende únicamente de la conexión, lo que refuerza la relación conceptual entre conexión y curvatura.
+    \item Esencialmente, \(\tensor{R}{^i_{jkl}}\) cuantifica la variación en la componente \(i\)-ésima del vector cuando se mueve en la superficie dada por las coordenadas \(x^{k}\) y \(x^{l}\), como función de las propias componentes del vector \(v^{j}\).
+    \item \(\tensor{R}{^i_{jkl}} = -\tensor{R}{^{i}_{jlk}}\).
+    \item \(\tensor{R}{^i_{jkl}}\) está formado por elementos no tensoriales. Aun así, \(\tensor{R}{^i_{jkl}}\) resultan ser las componentes de un tensor; no querríamos que la curvatura dependiese de las coordenadas.
+    \item El tensor de Riemann para una variedad de dimensión \(n\) tiene \(n^4\) componentes, aunque solo \(n^3(n-1)/2\) de ellas son independientes.\footnote{Con la conexión de Levi-Civita, hay una serie de simetrías adicionales que reducen aún más el número de componentes independientes. Aun así, en un espacio-tiempo de 4 dimensiones son 20 las componentes independientes. Más información en las \href{https://preposterousuniverse.com/grnotes/}{notas de Carroll}.}
+\end{myitemize}
+
+\paragraph{Tensor y escalar de Ricci} Muy a menudo es conveniente considerar contracciones del tensor de Riemann. Así, definimos el tensor de Ricci como
+\begin{equation}
+    \tensor{R}{^i_{jil}} = \tensor{R}{_{jl}}.
+\end{equation}
+Con la conexión de Levi-Civita, el tensor de Ricci es simétrico. El tensor de Ricci contiene menos información acerca del efecto de la curvatura que el de Riemann, pero en ciertas ocasiones es suficiente. Por dar un sentido geométrico a \(\tensor{R}{_{jl}}\), consideremos un punto \(p\in\mathcal{M}\) y un vector \(\mathbf{v}\in T_p\mathcal{M}\). La acción del tensor de Ricci sobre \(\mathbf{v}\) en ambas componentes, \(R_{jl}v^j v^l\), indica si el volumen de un ``cono estrecho'' de geodésicas que salgan de \(p\) es mayor o menor que el volumen del cono análogo en el espacio euclídeo. Si \(R_{jl}v^j v^l>0\), el volumen es menor; si \(R_{jl}v^j v^l<0\), mayor.
+
+Aún podemos simplificar un poco más la información sobre la curvatura con el escalar de Ricci:
+\begin{equation}
+    R = g^{ij}R_{ij},
+\end{equation}
+un único número invariante que ofrece un promedio de la curvatura.\footnote{A veces el tensor y el escalar de Ricci no ofrecen una buena medida de la curvatura. Por ejemplo, en la métrica de Schwarzschild ambos son 0. Para esos casos, hay otros invariantes geométricos como el escalar de Kretschmann: \(g_{im}g^{nj}g^{ok}g^{pl}\tensor{R}{^m_{jkl}} \tensor{R}{^m_{nop}}\).} Veamos un ejemplo sencillo del cálculo de todas estas cantidades.
+
+\begin{example}
+    {Tensores de curvatura de la esfera.
+    \label{ej.4-tensores_esfera}}
+    En la esfera, con la métrica heredada del espacio euclídeo y coordenadas \(\theta\) y \(\phi\), \(g_{ij} = \text{diag}\left(1, \sin^2(\theta)\right)\) y \(g^{ij} = \text{diag}\left(1, \sin^{-2}(\theta)\right)\), los símbolos de Christoffel no nulos de la conexión de Levi-Civita son
+    \begin{equation*}
+        \Gamma^\theta_{\phi\phi} = -\sin(\theta)\cos(\theta)\quad\text{y}\quad\Gamma^\phi_{\theta\phi} =  \Gamma^{\phi}_{\phi\theta} = \cot(\theta).
+    \end{equation*}
+    El tensor de Riemann, por tanto, tiene las siguientes componentes distintas de cero:\marginexercise{Calcúlalas a partir de la definición.}
+    \begin{equation*}
+        \tensor{R}{^\theta_{\phi\theta\phi}} = - \tensor{R}{^\theta_{\phi\phi\theta}} = \sin^2(\theta)\quad\text{y}\quad\tensor{R}{^\phi_{\theta\phi\theta}} = - \tensor{R}{^\phi_{\theta\theta\phi}} = 1.
+    \end{equation*}
+
+    El tensor de Ricci, a partir del tensor de Riemann anterior, es
+    \begin{equation*}
+        R_{jl} = \tensor{R}{^i_{jil}} = \text{diag}\left(1, \sin^2(\theta)\right).
+    \end{equation*}
+    En una dirección arbitraria \(\mathbf{v} = v^i\partial_i\), tenemos que 
+    \begin{equation*}
+        R_{jl}v^i v^l = \left(v^\theta\right)^2 + \left(v^\phi\sin(\theta)\right)^2 > 0,
+    \end{equation*}
+    luego el área del cono geodésico en la dirección de \(v\) debe ser menor que el área del cono euclídeo, como muestra la \cref{fig.4-cono_geodesico_esfera}.
+
+    \begin{figbox}
+        {Cono (triángulo) geodésico en la esfera partiendo de un punto con coordenadas \(\theta=\pi/4\), \(\phi=\pi/3\). Las curvas rojas son geodésicas. En el plano de coordenadas las geodésicas son curvas que quedan dentro de las líneas rectas punteadas, tangentes a las geodésicas en el punto.
+        \label{fig.4-cono_geodesico_esfera}}
+        \input{figuras/cono_geodesico_esfera.tex}
+    \end{figbox}
+
+    Por último, el escalar de Ricci es \marginexercise{Repite este ejemplo para el paraboloide hiperbólico.}
+    \begin{equation*}
+        g^{jl}R_{jl} = g^{\theta\theta}R_{\theta\theta} + g^{\phi\phi}R_{\phi\phi} = 2.
+    \end{equation*}
+
+\end{example}
 
 
-% With his former student Tullio Levi-Civita, he wrote his most famous single publication,[2] a pioneering work on the calculus of tensors, signing it as Gregorio Ricci. This appears to be the only time that Ricci-Curbastro used the shortened form of his name in a publication, and continues to cause confusion.
+Lo último que vamos a mencionar, antes de dar estas notas por acabadas, es que el tensor y el escalar de Ricci son importantes en relatividad general. De hecho, las ecuaciones de campo de Einstein de la gravitación son
+\begin{equation}
+    R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu},
+\end{equation}
+donde \(\Lambda\) es la constante cosmológica y \(T_{\mu\nu}\) es el tensor de energía-momento que describe la materia. Todo ese asunto es, sin duda, fascinante. Sin embargo, queda fuera del objetivo de estas notas proporcionar una introducción formal a la relatividad general. Lo que sí espero haber conseguido es proporcionar el vocabulario geométrico necesario para poder iniciarse en su estudio.

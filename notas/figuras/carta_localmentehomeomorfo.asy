@@ -35,18 +35,6 @@ light Light = light(diffuse=gray(0.1), (1,1,1));
 // sphere
 draw(unitsphere, surface_pen);
 
-// // coordinate lines
-// for (int i = 1; i <= 6; ++i) {
-//     real theta = i*pi/6;
-//     real z = cos(theta);
-//     real r = sin(theta);
-//     path3 lat = circle(c=(0, 0, z), r=r, normal=Z);
-//     draw(lat, gridline_pen); 
-//     triple normal_vec = (cos(theta), sin(theta), 0);
-//     path3 lat = circle(c=(0,0,0), r=1, normal=normal_vec);
-//     draw(lat, gridline_pen); 
-// }
-
 real x0 = -0.1;
 real y0 = 0.6;
 pair rs = (0.55, 0.3);
